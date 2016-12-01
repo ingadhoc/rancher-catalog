@@ -9,4 +9,4 @@ To use this, do the following:
 * In the URL box, enter `https://github.com/unxs0/rancher`
 
 Contact us at soporte@adhoc.com.ar if you have any questions.
-Stay informed via [Adhoc News](https://news.adhoc.com.ar)
+Stay informed via [Adhoc News](http://news.adhoc.com.ar)
