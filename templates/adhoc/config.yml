@@ -1,0 +1,5 @@
+name: Odoo 9.0
+description: |
+  Localized for Argentina Docker Odoo stack.
+version: 20161201001
+category: ERP
