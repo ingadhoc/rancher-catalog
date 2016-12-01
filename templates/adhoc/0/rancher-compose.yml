@@ -2,7 +2,7 @@
   name: "Odoo 9.0"
   version: "20161201001"
   description: "Odoo Docker Stack"
-  uuid: ingadhox-odoo9
+  uuid: ingadhoc-odoo9
   minimum_rancher_version: v1.1.4
   questions:
     - variable: nginx_network_name
