@@ -6,7 +6,7 @@
         volumes:
             - pg_data:/var/lib/postgresql/data
     odoo:
-        image: $ODOO_IMAGE:$ODOO_VERSION
+        image: registry.unxs.io:5000/adhoc/odoo-ar:9.0
         external_links:
             - aeroo-docs:aeroo
         ports:
@@ -15,7 +15,9 @@
         volumes:
             - ./data/custom-addons:/opt/odoo/custom-addons
             - odoo_data:/opt/odoo/data
-            - .env
         environment:
             - VIRTUAL_HOST=odoo.local
             - VIRTUAL_PORT=8069,8072
+            - ODOO_VERSION=9.0
+            - ADMIN_PASSWORD=admin
+            - WORKERS=0
