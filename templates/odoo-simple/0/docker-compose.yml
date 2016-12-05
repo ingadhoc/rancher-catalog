@@ -1,3 +1,5 @@
+version: '2'
+services:
     db:
         image: registry.unxs.io:5000/postgres:9.5
         environment:
