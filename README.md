@@ -19,7 +19,7 @@ Every rancher host that will be running the *AdHoc Odoo Hosting* system needs to
 
 ## AdHoc Simple Odoo Stack
 
-Will create only one db/odoo stacks.
+Will create only one db/odoo stack.
 
 ## AdHoc Multiple Odoo Stack
 
