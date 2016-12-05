@@ -23,6 +23,10 @@ This stack provides:
 * An automated nginx proxy that picks-up new Odoo web and chat ports.
 * An Aeroo reporting engine container for Odoo PDF reports.
 
+Planned additions:
+
+* Automated mail gateway container for */opt/odoo/openerp_mailgate.py* Odoo port 1921 mail.
+
 ## AdHoc Simple Odoo Stack
 
 Will create only one db/odoo stack.
