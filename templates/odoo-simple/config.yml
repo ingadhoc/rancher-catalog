@@ -1,5 +1,5 @@
-name: AOH Odoo9
+name: AOH Odoo9 Simple
 description: |
-  AdHoc Odoo Hosting (AOH) Odoo 9.0 stack localized for Argentina.
-version: 20161205001
+  AdHoc Odoo Hosting (AOH) Odoo 9.0 simple stack localized for Argentina. Provides one Odoo production instance.
+version: 20161205002
 category: ERP
