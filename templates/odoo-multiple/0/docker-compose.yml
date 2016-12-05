@@ -1,0 +1,70 @@
+    db0:
+        image: registry.unxs.io:5000/postgres:9.5
+        environment:
+            - POSTGRES_USER=odoo
+            - POSTGRES_PASSWORD=odoo
+        volumes:
+            - pg_data:/var/lib/postgresql/data
+    odoo0:
+        image: $ODOO_IMAGE:$ODOO_VERSION
+        external_links:
+            - aeroo-docs:aeroo
+        depends_on:
+            - db
+        ports:
+            - "8069:8069"
+            - "8072:8072"
+        volumes:
+            - ./data/custom-addons:/opt/odoo/custom-addons
+            - odoo_data:/opt/odoo/data
+            - .env
+        environment:
+            - VIRTUAL_HOST=odoo0.local
+            - VIRTUAL_PORT=8069,8072
+
+    db1:
+        image: registry.unxs.io:5000/postgres:9.5
+        environment:
+            - POSTGRES_USER=odoo
+            - POSTGRES_PASSWORD=odoo
+        volumes:
+            - pg_data:/var/lib/postgresql/data
+    odoo1:
+        image: $ODOO_IMAGE:$ODOO_VERSION
+        external_links:
+            - aeroo-docs:aeroo
+        depends_on:
+            - db
+        ports:
+            - "8069:8069"
+            - "8072:8072"
+        volumes:
+            - ./data/custom-addons:/opt/odoo/custom-addons
+            - odoo_data:/opt/odoo/data
+            - .env
+        environment:
+            - VIRTUAL_HOST=odoo1.local
+            - VIRTUAL_PORT=8069,8072
+    db2:
+        image: registry.unxs.io:5000/postgres:9.5
+        environment:
+            - POSTGRES_USER=odoo
+            - POSTGRES_PASSWORD=odoo
+        volumes:
+            - pg_data:/var/lib/postgresql/data
+    odoo2:
+        image: $ODOO_IMAGE:$ODOO_VERSION
+        external_links:
+            - aeroo-docs:aeroo
+        depends_on:
+            - db
+        ports:
+            - "8069:8069"
+            - "8072:8072"
+        volumes:
+            - ./data/custom-addons:/opt/odoo/custom-addons
+            - odoo_data:/opt/odoo/data
+            - .env
+        environment:
+            - VIRTUAL_HOST=odoo2.local
+            - VIRTUAL_PORT=8069,8072

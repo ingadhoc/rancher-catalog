@@ -1,0 +1,13 @@
+.catalog:
+  name: "AOH Odoo9Multiple"
+  version: "20161205001"
+  description: "AdHoc Odoo Hosting (AOH) system multiple Odoo 9.0 stack. Provides production, training and test Odoo instances."
+  uuid: ingadhoc-odoo9m
+  minimum_rancher_version: v1.1.4
+  questions:
+    - variable: VIRTUAL_HOST
+      description: "The DNS hostname for the Odoo portal"
+      label: "DNS Hostname"
+      type: "string"
+      required: true
+      default: "odoo0.localhost"

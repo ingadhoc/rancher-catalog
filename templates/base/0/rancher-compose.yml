@@ -1,8 +1,8 @@
 .catalog:
-  name: "Odoo 9.0"
-  version: "20161201001"
-  description: "Odoo Docker Stack"
-  uuid: ingadhoc-odoo9
+  name: "AOH Base"
+  version: "20161205001"
+  description: "AhHoc Odoo Hosting (AOH) base stack"
+  uuid: ingadhoc-aohbase
   minimum_rancher_version: v1.1.4
   questions:
     - variable: nginx_network_name

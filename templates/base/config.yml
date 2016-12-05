@@ -1,0 +1,7 @@
+name: AOH Base
+description: |
+  AdHoc Odoo Hosting (AOH) system base stack. You need to install
+  this stack on every rancher node that will host AdHoc Odoo stacks.
+  This stack provides an automated nginx proxy and the Aeroo reports service.
+version: 20161205001
+category: ERP
