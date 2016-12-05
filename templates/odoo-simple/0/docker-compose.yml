@@ -1,5 +1,3 @@
-version: '2'
-services:
     db:
         image: registry.unxs.io:5000/postgres:9.5
         environment:
@@ -11,8 +9,6 @@ services:
         image: $ODOO_IMAGE:$ODOO_VERSION
         external_links:
             - aeroo-docs:aeroo
-        depends_on:
-            - db
         ports:
             - "8069:8069"
             - "8072:8072"
