@@ -2,5 +2,5 @@ name: AOH Base
 description: |
   AdHoc Odoo Hosting (AOH) system base stack. You need to install
   this stack on every rancher host that will provide AdHoc Odoo Hosting services.
-version: 20161205002
+version: 20161223002
 category: ERP
