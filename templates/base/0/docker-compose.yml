@@ -1,11 +1,11 @@
-nginx-proxy:
+nginx-dockprox:
   ports:
   - 80:80/tcp
   labels:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.pull_image: always
   tty: true
-  image: registry.unxs.io:5000/jwilder/nginx-proxy
+  image: unxsio/nginx-dockprox
   volumes:
   - /var/run/docker.sock:/tmp/docker.sock:ro
   stdin_open: true
@@ -13,4 +13,4 @@ aeroo-docs:
   labels:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.pull_image: always
-  image: registry.unxs.io:5000/adhoc/aeroo-docs
+  image: adhoc/aeroo-docs
