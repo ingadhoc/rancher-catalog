@@ -7,7 +7,7 @@ nginx-dockprox:
   tty: true
   image: unxsio/nginx-dockprox
   volumes:
-  - /var/run/docker.sock:/tmp/docker.sock:ro
+  - /var/run/docker.sock:/var/run/docker.sock:ro
   stdin_open: true
 aeroo-docs:
   labels:
