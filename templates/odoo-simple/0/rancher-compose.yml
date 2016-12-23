@@ -1,13 +1,13 @@
 .catalog:
   name: "AOH Odoo9 Simple"
-  version: "20161205005"
+  version: "20161223001"
   description: "AdHoc Odoo Hosting (AOH) system simple Odoo 9.0 stack. Provides a production Odoo instance."
   uuid: ingadhoc-odoo9s
   minimum_rancher_version: v1.1.4
   questions:
-    - variable: VIRTUAL_HOST
-      description: "The DNS hostname for the Odoo portal"
-      label: "DNS Hostname"
+    - variable: strVirtualHost
+      description: "The DNS hostname for Odoo"
+      label: "Odoo DNS Hostname"
       type: "string"
       required: true
       default: "odoo0.localhost"

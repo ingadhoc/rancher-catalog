@@ -1,23 +1,26 @@
     db:
-        image: registry.unxs.io:5000/postgres:9.5
+        image: postgres:9.5
+        labels:
+            io.rancher.container.network: 'false'
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
             - pg_data:/var/lib/postgresql/data
     odoo:
-        image: registry.unxs.io:5000/adhoc/odoo-ar:9.0
+        image: adhoc/odoo-ar:9.0
+        labels:
+            io.rancher.container.network: 'false'
         external_links:
             - aeroo-docs:aeroo
-        ports:
-            - "8069:8069"
-            - "8072:8072"
         volumes:
-            - ./data/custom-addons:/opt/odoo/custom-addons
+            - custom-addons:/opt/odoo/custom-addons
             - odoo_data:/opt/odoo/data
         environment:
-            - VIRTUAL_HOST=odoo.local
+            - VIRTUAL_HOST=$strVirtualHost
             - VIRTUAL_PORT=8069,8072
             - ODOO_VERSION=9.0
             - ADMIN_PASSWORD=admin
             - WORKERS=0
+#strVirtualHost is set via rancher-compose.yml variable
+#the second virtual port is the chat/IM port

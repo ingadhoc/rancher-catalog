@@ -38,6 +38,8 @@ This stack provides:
 
 ## AdHoc Multiple Odoo Stack
 
+Not available yet!
+
 Will create three db/odoo stacks for a given customer:
 * Production stack
 * Train stack
