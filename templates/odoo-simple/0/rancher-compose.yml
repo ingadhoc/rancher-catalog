@@ -10,4 +10,4 @@
       label: "Odoo DNS Hostname"
       type: "string"
       required: true
-      default: "odoo0.localhost"
+      default: "odoo0.your.com"
