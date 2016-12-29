@@ -1,2 +1,1 @@
-# [Documentation](http://adhoc.com.ar)
-
+See comments in yml files
