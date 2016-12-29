@@ -11,15 +11,4 @@
       type: "string"
       required: true
       default: "odoo0.your.com"
-    - variable: boolVirtualAlias
-      description: "Postfix mail demux virtual_aliases inclusion"
-      label: "Include Hostname Mail Alias"
-      type: "boolean"
-      required: true
-      default: "true"
-     - variable: boolVirtualDomainRegex
-      description: "Postfix mail demux virtual_domains_regex inclusion"
-      label: "Include Hostname Mail Regex"
-      type: "boolean"
-      required: true
-      default: "true"
+
