@@ -22,8 +22,8 @@
             - ODOO_VERSION=9.0
             - ADMIN_PASSWORD=admin
             - WORKERS=0
-            - VIRTUAL_ALIASES=$boolVirtualAliases
-            - VIRTUAL_DOMAINS=$boolVirtualDomainsRegex
+            - VIRTUAL_ALIAS=$boolVirtualAlias
+            - VIRTUAL_DOMAIN=$boolVirtualDomain
 
 #environtment: comments
 #strVirtualHost is set via rancher-compose.yml variable
