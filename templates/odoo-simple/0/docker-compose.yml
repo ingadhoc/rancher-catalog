@@ -23,7 +23,7 @@
             - ADMIN_PASSWORD=admin
             - WORKERS=0
             - VIRTUAL_ALIASES=$boolVirtualAliases
-            - VIRTUAL_DOMAINS=$boolVirtualDomainRegex
+            - VIRTUAL_DOMAINS=$boolVirtualDomainsRegex
 
 #environtment: comments
 #strVirtualHost is set via rancher-compose.yml variable
