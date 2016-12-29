@@ -1,6 +1,6 @@
 .catalog:
   name: "AOH Odoo9 Simple"
-  version: "20161223001"
+  version: "20161229001"
   description: "AdHoc Odoo Hosting (AOH) system simple Odoo 9.0 stack. Provides a production Odoo instance."
   uuid: ingadhoc-odoo9s
   minimum_rancher_version: v1.1.4
@@ -11,3 +11,15 @@
       type: "string"
       required: true
       default: "odoo0.your.com"
+    - variable: boolVirtualAlias
+      description: "Postfix mail demux virtual_aliases inclusion"
+      label: "Include Hostname Mail Alias"
+      type: "boolean"
+      required: true
+      default: true
+     - variable: boolVirtualDomainRegex
+      description: "Postfix mail demux virtual_domains_regex inclusion"
+      label: "Include Hostname Mail Regex"
+      type: "boolean"
+      required: true
+      default: true
