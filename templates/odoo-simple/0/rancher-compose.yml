@@ -8,7 +8,7 @@
     - variable: strVirtualHost
       description: "The DNS hostname for Odoo"
       label: "Odoo DNS Hostname"
-      type: "boolean"
+      type: "string"
       required: true
       default: "odoo0.your.com"
     - variable: boolVirtualAliases
