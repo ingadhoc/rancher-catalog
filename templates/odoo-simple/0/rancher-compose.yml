@@ -11,12 +11,12 @@
       type: "string"
       required: true
       default: "odoo0.your.com"
-    - variable: boolVirtualAliases
+    - variable: boolVirtualAlias
       description: "Include hostname in postfix virtual_aliases"
       label: "Include Hostname Alias"
       type: "boolean"
       default: "true"
-    - variable: boolVirtualDomainsRegex
+    - variable: boolVirtualDomain
       description: "Include hostname in postfix virtual_domains_regex"
       label: "Include Hostname Regex"
       type: "boolean"
