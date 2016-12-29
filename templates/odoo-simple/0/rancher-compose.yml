@@ -13,7 +13,6 @@
       default: "odoo0.your.com"
     - variable: boolVirtualAliases
       description: "Include hostname in postfix virtual_aliases"
-      label: "Include hostname in mail frontend"
+      label: "Include Hostname Alias"
       type: "boolean"
-      required: true
       default: "true"
