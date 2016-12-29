@@ -16,3 +16,8 @@
       label: "Include Hostname Alias"
       type: "boolean"
       default: "true"
+    - variable: boolVirtualDomainsRegex
+      description: "Include hostname in postfix virtual_domains_regex"
+      label: "Include Hostname Regex"
+      type: "boolean"
+      default: "true"
