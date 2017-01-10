@@ -12,12 +12,7 @@
       required: true
       default: "odoo0.your.com"
     - variable: boolVirtualAlias
-      description: "Include hostname in postfix virtual_aliases"
-      label: "Include Hostname Alias"
-      type: "boolean"
-      default: "true"
-    - variable: boolVirtualDomain
-      description: "Include hostname in postfix virtual_domains_regex"
-      label: "Include Hostname Regex"
+      description: "Include DNS hostname in base automated postfix-dockprox base container"
+      label: "Postfix Configuration"
       type: "boolean"
       default: "true"
