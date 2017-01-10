@@ -6,4 +6,26 @@
     postfix automated incoming mail system and Aeroo Reports services."
   uuid: ingadhoc-aohbase
   minimum_rancher_version: v1.1.4
+  questions:
+    - variable: cMyHostname
+      description: "Postfix main.cf myhostname configuration parameter."
+      label: "Postfix myhostname"
+      type: "string"
+      required: true
+      default: "servername.c.adhoc-sa.internal"
+      - variable: cMyDestination
+      description: "Postfix main.cf mydestination configuration parameter, local hostnames comma separated list."
+      label: "Postfix mydestination"
+      type: "string"
+      required: true
+      default: "servername.adhoc.com.ar, servername.c.adhoc-sa.internal, localhost.c.servername-sa.internal, localhost"
+      - variable: cRelayHostLine
+      description: "Postfix main.cf"
+      label: "Postfix relayhost"
+      type: "string"
+      required: true
+      default: "[smtp.sendgrid.net]:2525"
+
+  
+  
   
