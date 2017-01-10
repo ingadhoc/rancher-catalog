@@ -28,3 +28,4 @@ postfix-dockprox:
   image: unxsio/postfix-dockprox
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock:ro
+  stdin_open: true
