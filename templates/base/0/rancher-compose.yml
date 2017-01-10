@@ -18,7 +18,7 @@
       required: true
       default: "servername.adhoc.com.ar, servername.c.adhoc-sa.internal, localhost.c.servername-sa.internal, localhost"
     - variable: cRelayHostLine
-      description: "Postfix main.cf"
+      description: "Postfix main.cf relayhost configuration parameter [host]:port format."
       label: "Postfix relayhost"
       type: "string"
       required: true
