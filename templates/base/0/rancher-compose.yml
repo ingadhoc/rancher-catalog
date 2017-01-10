@@ -13,19 +13,16 @@
       type: "string"
       required: true
       default: "servername.c.adhoc-sa.internal"
-      - variable: cMyDestination
+    - variable: cMyDestination
       description: "Postfix main.cf mydestination configuration parameter, local hostnames comma separated list."
       label: "Postfix mydestination"
       type: "string"
       required: true
       default: "servername.adhoc.com.ar, servername.c.adhoc-sa.internal, localhost.c.servername-sa.internal, localhost"
-      - variable: cRelayHostLine
+    - variable: cRelayHostLine
       description: "Postfix main.cf"
       label: "Postfix relayhost"
       type: "string"
       required: true
       default: "[smtp.sendgrid.net]:2525"
-
-  
-  
-  
+      
