@@ -6,11 +6,3 @@
     postfix automated incoming mail system and Aeroo Reports services."
   uuid: ingadhoc-aohbase
   minimum_rancher_version: v1.1.4
-  questions:
-    - variable: cMyHostname
-      description: "Postfix main.cf myhostname configuration parameter."
-      label: "Postfix myhostname"
-      type: "string"
-      required: true
-      default: "servername.c.adhoc-sa.internal"
-    
