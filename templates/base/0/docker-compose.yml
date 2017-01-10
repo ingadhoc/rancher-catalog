@@ -14,3 +14,17 @@ aeroo-docs:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.pull_image: always
   image: adhoc/aeroo-docs
+postfix-dockprox:
+  ports:
+  - 25:25/tcp
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.pull_image: always
+  environment:
+    - cMyHostname=$cMyHostname
+    - cMyDestination=$cMyDestination
+    - cRelayHostLine=$cRelayHostLine
+  tty: true
+  image: unxsio/postfix-dockprox
+  volumes:
+  - /var/run/docker.sock:/var/run/docker.sock:ro
