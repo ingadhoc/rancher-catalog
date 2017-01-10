@@ -11,8 +11,8 @@
       type: "string"
       required: true
       default: "odoo0.your.com"
-    - variable: boolVirtualAlias
-      description: "Include DNS hostname in base automated postfix-dockprox base container"
-      label: "Postfix Configuration"
+    - variable: boolPostfixConfigure
+      description: "Use DNS hostname for base stack automated postfix-dockprox container"
+      label: "Postfix Configure"
       type: "boolean"
       default: "true"
