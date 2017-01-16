@@ -44,3 +44,10 @@ Will create three db/odoo stacks for a given customer:
 * Test stack
 
 This stack provides the same services as the *Simple Odoo Stack* but times 3 as mentioned above.
+
+# Known Issues
+
+## Base Stack
+
+You must supply a postfix hostname
+If you do not supply the postfix hostname since 'hostname -f' fails in the postfix-dockprox container.
