@@ -7,16 +7,16 @@
   questions:
     - variable: cMyHostname
       label: "Postfix Hostname"
-      description: "Postfix main.cf myhostname configuration parameter. Usually FQDN of host. E.g. acme.company.org"
+      description: "Postfix main.cf myhostname configuration parameter. Usually FQDN of host. E.g. acme.company.org. If not provided will use system 'hostname -f'."
       type: "string"
-      required: true
-      default: "servername.domain.dom"
+      required: false
+      default: ""
     - variable: cMyDestination
       label: "Postfix Local Mail Destination Domains"
-      description: "Postfix main.cf mydestination configuration parameter, local hostnames for mail reception, a comma separated list."
+      description: "Postfix main.cf mydestination configuration parameter, local hostnames for mail reception, a comma separated list. E.g. servername.domain.dom, altservername.domain.dom, localhost. If not provided will use Postfix Hostname and localhost."
       type: "string"
-      required: true
-      default: "servername.domain.dom, altservername.domain.dom, localhost"
+      required: false
+      default: ""
     - variable: cRelayHostLine
       label: "Optional Postfix Relay Host"
       description: "Postfix main.cf relayhost configuration parameter [host]:port format. E.g. [smtp.sendgrid.net]:2525"
