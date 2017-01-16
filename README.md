@@ -49,5 +49,5 @@ This stack provides the same services as the *Simple Odoo Stack* but times 3 as 
 
 ## Base Stack
 
-You must supply a postfix hostname
-If you do not supply the postfix hostname since 'hostname -f' fails in the postfix-dockprox container.
+You must supply a postfix hostname.
+If you do not supply the postfix hostname 'hostname -f' fails in the postfix-dockprox container configuration.
