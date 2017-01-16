@@ -1,15 +1,15 @@
 .catalog:
   name: "AOH Base"
-  version: "20170116002"
+  version: "20170116003"
   description: "AhHoc Odoo Hosting (AOH) base stack. Provides nginx, postfix and Aeroo Reports services."
   uuid: ingadhoc-aohbase
   minimum_rancher_version: v1.1.4
   questions:
     - variable: cMyHostname
       label: "Postfix Hostname"
-      description: "Postfix main.cf myhostname configuration parameter. Usually FQDN of host. E.g. acme.company.org. If not provided will use system 'hostname -f'."
+      description: "Postfix main.cf myhostname configuration parameter. Usually FQDN of host. E.g. acme.company.org.
       type: "string"
-      required: false
+      required: true
       default: ""
     - variable: cMyDestination
       label: "Postfix Local Mail Destination Domains"
