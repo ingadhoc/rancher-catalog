@@ -1,26 +1,38 @@
 .catalog:
   name: "AOH Base"
-  version: "20170110003"
+  version: "20170116001"
   description: "AhHoc Odoo Hosting (AOH) base stack. Provides nginx, postfix and Aeroo Reports services."
   uuid: ingadhoc-aohbase
   minimum_rancher_version: v1.1.4
   questions:
     - variable: cMyHostname
-      description: "Postfix main.cf myhostname configuration parameter."
+      description: "Postfix main.cf myhostname configuration parameter. Usually FQDN of host. E.g. acme.company.org"
       label: "Postfix myhostname"
       type: "string"
       required: true
-      default: "servername.c.adhoc-sa.internal"
+      default: "servername.domain.dom"
     - variable: cMyDestination
-      description: "Postfix main.cf mydestination configuration parameter, local hostnames comma separated list."
+      description: "Postfix main.cf mydestination configuration parameter, local hostnames for mail reception, a comma separated list."
       label: "Postfix mydestination"
       type: "string"
       required: true
-      default: "servername.adhoc.com.ar, servername.c.adhoc-sa.internal, localhost.c.servername-sa.internal, localhost"
+      default: "servername.domain.dom, altservername.domain.dom, localhost"
     - variable: cRelayHostLine
-      description: "Postfix main.cf relayhost configuration parameter [host]:port format."
-      label: "Postfix relayhost"
+      description: "Postfix main.cf relayhost configuration parameter [host]:port format. E.g. [smtp.sendgrid.net]:2525"
+      label: "Optional Postfix relayhost"
       type: "string"
-      required: true
+      required: false
       default: "[smtp.sendgrid.net]:2525"
-      
+    - variable: cRelaySASLUser
+      description: "Enter your optional relayhost SASL user name"
+      label: "Optional Username for relayhost"
+      type: "string"
+      required: false
+      default: "user"
+    - variable: cRelaySASLPasswd
+      description: "Enter your optional relayhost SASL password"
+      label: "Optional Passwd for relayhost"
+      type: "string"
+      required: false
+      default: "passwd"
+
