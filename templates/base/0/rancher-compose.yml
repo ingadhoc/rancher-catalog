@@ -7,7 +7,7 @@
   questions:
     - variable: cMyHostname
       label: "Postfix Hostname"
-      description: "Postfix main.cf myhostname configuration parameter. Usually FQDN of host. E.g. acme.company.org.
+      description: "Postfix main.cf myhostname configuration parameter. Usually FQDN of host. E.g. acme.company.org."
       type: "string"
       required: true
       default: ""
