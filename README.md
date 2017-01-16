@@ -7,7 +7,7 @@ To use this, do the following:
 * Go to the admin tab, then click on settings
 * In the catalog section, click "Add Catalog"
 * In the Name box, enter `AdHoc`
-* In the URL box, enter `https://github.com/unxs0/rancher`
+* In the URL box, enter `https://github.com/unxs0/adhoc-rancher`
 * Set to branch `master`
 
 Contact us at soporte@adhoc.com.ar if you have any questions.
@@ -22,11 +22,8 @@ Every rancher host that will be running the *AdHoc Odoo Hosting* system needs to
 This stack provides:
 
 * An automated nginx proxy that picks-up new Odoo web and chat ports.
+* An automated postfix incoming mail proxy for Odoo that supports on stack install relayhost configuration.
 * An Aeroo reporting engine container for Odoo PDF reports.
-
-Planned additions:
-
-* Automated mail gateway container for */opt/odoo/openerp_mailgate.py* Odoo port 1921 mail.
 
 ## AdHoc Simple Odoo Stack
 
