@@ -1,6 +1,6 @@
 .catalog:
   name: "AOH Base"
-  version: "20170116003"
+  version: "20170116004"
   description: "AhHoc Odoo Hosting (AOH) base stack. Provides nginx, postfix and Aeroo Reports services."
   uuid: ingadhoc-aohbase
   minimum_rancher_version: v1.1.4
