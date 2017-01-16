@@ -18,14 +18,11 @@
             - odoo_data:/opt/odoo/data
         environment:
             - VIRTUAL_HOST=$strVirtualHost
+            - CREATE_DBNAME=$strDatabase
             - VIRTUAL_PORT=8069,8072
             - ODOO_VERSION=9.0
             - ADMIN_PASSWORD=admin
             - WORKERS=0
-            - VIRTUAL_ALIAS=$boolVirtualAlias
-            - VIRTUAL_DOMAIN=$boolVirtualDomain
 
 #environtment: comments
-#strVirtualHost is set via rancher-compose.yml variable
 #the second virtual port is the chat/IM port
-#booleans for postfix virtual_aliases and virtual_domains_regex inclusion control
