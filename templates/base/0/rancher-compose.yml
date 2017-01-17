@@ -1,6 +1,6 @@
 .catalog:
   name: "AOH Base"
-  version: "20170116004"
+  version: "20170117001"
   description: "AhHoc Odoo Hosting (AOH) base stack. Provides nginx, postfix and Aeroo Reports services."
   uuid: ingadhoc-aohbase
   minimum_rancher_version: v1.1.4
@@ -32,6 +32,18 @@
     - variable: cRelaySASLPasswd
       label: "Optional Passwd for Relay Host"
       description: "Enter your optional relayhost SASL password. If you enter a relay host this is required."
+      type: "string"
+      required: false
+      default: ""
+    - variable: cDomainsRegex1
+      label: "Optional Postfix Domain Regex 1 of 2"
+      description: "Enter your optional post fix domain regex for accepting mail based on SaaS Odoo hosting shared domain. E.g. domain1.com"
+      type: "string"
+      required: false
+      default: ""
+    - variable: cDomainsRegex2
+      label: "Optional Postfix Domain Regex 2 of 2"
+      description: "Enter another optional post fix domain regex for accepting mail based on SaaS Odoo hosting shared domain. E.g. domain2.com"
       type: "string"
       required: false
       default: ""

@@ -1,6 +1,6 @@
 name: AOH Base
 description: |
-  20170116004 AdHoc Odoo Hosting (AOH) system base stack. 
+  20170117001 AdHoc Odoo Hosting (AOH) system base stack. 
   Installs Aeroo Docs, Nginx automated proxy, Postfix automated incoming mail frontend.
 version: 20170116004
 category: ERP
