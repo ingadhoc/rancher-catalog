@@ -26,6 +26,8 @@ postfix-dockprox:
   - cRelayHostLine=$cRelayHostLine
   - cRelaySASLUser=$cRelaySASLUser
   - cRelaySASLPasswd=$cRelaySASLPasswd
+  - cDomainsRegex1=$cDomainsRegex1
+  - cDomainsRegex2=$cDomainsRegex2
   tty: true
   image: unxsio/postfix-dockprox
   volumes:
