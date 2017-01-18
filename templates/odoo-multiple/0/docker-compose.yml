@@ -1,70 +1,78 @@
-    db0:
-        image: registry.unxs.io:5000/postgres:9.5
+    db:
+        image: postgres:9.5
+        labels:
+            io.rancher.container.network: 'false'
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
             - pg_data:/var/lib/postgresql/data
-    odoo0:
-        image: $ODOO_IMAGE:$ODOO_VERSION
+    odoo:
+        image: adhoc/odoo-ar:9.0
+        labels:
+            io.rancher.container.network: 'false'
         external_links:
             - aeroo-docs:aeroo
-        depends_on:
-            - db
-        ports:
-            - "8069:8069"
-            - "8072:8072"
         volumes:
-            - ./data/custom-addons:/opt/odoo/custom-addons
+            - custom-addons:/opt/odoo/custom-addons
             - odoo_data:/opt/odoo/data
-            - .env
         environment:
-            - VIRTUAL_HOST=odoo0.local
+            - VIRTUAL_HOST=$strVirtualHostProd
+            - CREATE_DBNAME=$strDatabase
             - VIRTUAL_PORT=8069,8072
+            - ODOO_VERSION=9.0
+            - ADMIN_PASSWORD=admin
+            - WORKERS=0
 
-    db1:
-        image: registry.unxs.io:5000/postgres:9.5
+    db-test:
+        image: postgres:9.5
+        labels:
+            io.rancher.container.network: 'false'
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
             - pg_data:/var/lib/postgresql/data
-    odoo1:
-        image: $ODOO_IMAGE:$ODOO_VERSION
+    odoo-test:
+        image: adhoc/odoo-ar:9.0
+        labels:
+            io.rancher.container.network: 'false'
         external_links:
             - aeroo-docs:aeroo
-        depends_on:
-            - db
-        ports:
-            - "8069:8069"
-            - "8072:8072"
         volumes:
-            - ./data/custom-addons:/opt/odoo/custom-addons
+            - custom-addons:/opt/odoo/custom-addons
             - odoo_data:/opt/odoo/data
-            - .env
         environment:
-            - VIRTUAL_HOST=odoo1.local
+            - VIRTUAL_HOST=$strVirtualHostTest
+            - CREATE_DBNAME=$strDatabase
             - VIRTUAL_PORT=8069,8072
-    db2:
-        image: registry.unxs.io:5000/postgres:9.5
+            - ODOO_VERSION=9.0
+            - ADMIN_PASSWORD=admin
+            - WORKERS=0
+
+    db-train:
+        image: postgres:9.5
+        labels:
+            io.rancher.container.network: 'false'
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
             - pg_data:/var/lib/postgresql/data
-    odoo2:
-        image: $ODOO_IMAGE:$ODOO_VERSION
+    odoo-train:
+        image: adhoc/odoo-ar:9.0
+        labels:
+            io.rancher.container.network: 'false'
         external_links:
             - aeroo-docs:aeroo
-        depends_on:
-            - db
-        ports:
-            - "8069:8069"
-            - "8072:8072"
         volumes:
-            - ./data/custom-addons:/opt/odoo/custom-addons
+            - custom-addons:/opt/odoo/custom-addons
             - odoo_data:/opt/odoo/data
-            - .env
         environment:
-            - VIRTUAL_HOST=odoo2.local
+            - VIRTUAL_HOST=$strVirtualHostTrain
+            - CREATE_DBNAME=$strDatabase
             - VIRTUAL_PORT=8069,8072
+            - ODOO_VERSION=9.0
+            - ADMIN_PASSWORD=admin
+            - WORKERS=0
+
