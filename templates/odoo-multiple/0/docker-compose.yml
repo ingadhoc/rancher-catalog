@@ -13,6 +13,7 @@
             io.rancher.container.network: 'false'
         external_links:
             - aeroo-docs:aeroo
+            - db:db
         volumes:
             - custom-addons:/opt/odoo/custom-addons
             - odoo_data:/opt/odoo/data
@@ -39,6 +40,7 @@
             io.rancher.container.network: 'false'
         external_links:
             - aeroo-docs:aeroo
+            - db-test:db
         volumes:
             - custom-addons:/opt/odoo/custom-addons
             - odoo_data:/opt/odoo/data
@@ -65,6 +67,7 @@
             io.rancher.container.network: 'false'
         external_links:
             - aeroo-docs:aeroo
+            - db-train:db
         volumes:
             - custom-addons:/opt/odoo/custom-addons
             - odoo_data:/opt/odoo/data
