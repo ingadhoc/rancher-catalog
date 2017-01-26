@@ -1,6 +1,6 @@
 .catalog:
   name: "AOH Base with DNS"
-  version: "20170126001"
+  version: "20170126002"
   description: "AhHoc Odoo Hosting (AOH) base stack. Provides GC DNS, nginx, postfix and Aeroo Reports services."
   uuid: ingadhoc-aohbase-dns
   minimum_rancher_version: v1.3.2
@@ -53,5 +53,10 @@
       type: "string"
       required: false
       default: ""
-
+    - variable: cGCDNSProject
+      label: "Optional Google Cloud DNS Project Name"
+      description: "Enter project name that has the associated json credentials for Google Cloud DNS. E.g. myproject-dev"
+      type: "string"
+      required: false
+      default: ""
 

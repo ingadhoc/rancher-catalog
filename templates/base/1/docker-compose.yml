@@ -39,6 +39,7 @@ gcdns-dockbot:
     io.rancher.container.pull_image: always
   environment:
   - cGCDNSZone=$cGCDNSZone
+  - cGCDNSProject=$cGCDNSProject
   tty: true
   image: unxsio/gcdns-dockbot
   volumes:
