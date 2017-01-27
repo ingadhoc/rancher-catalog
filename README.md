@@ -1,3 +1,7 @@
+# adhoc-rancher
+
+Rancher catalog for Odoo Docker based hosting.
+
 # AdHoc Odoo Hosting for Rancher
 
 Use this catalog to host AdHoc Odoo services.
