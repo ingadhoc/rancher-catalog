@@ -44,4 +44,5 @@ gcdns-genbot:
   image: unxsio/gcdns-genbot
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock:ro
+  - /var/local/dockprox:/var/local/dockprox:ro
   stdin_open: true
