@@ -85,14 +85,14 @@
             - ADMIN_PASSWORD=admin
             - WORKERS=0
 
-volumes:
-    prod_pg_data:
-    prod_odoo_data:
-    prod_odoo_custom-addons:
-    test_pg_data:
-    test_odoo_data:
-    test_odoo_custom-addons:
-    train_pg_data:
-    train_odoo_data:
-    train_odoo_custom-addons:
+#volumes:
+#    prod_pg_data:
+#    prod_odoo_data:
+#    prod_odoo_custom-addons:
+#    test_pg_data:
+#    test_odoo_data:
+#    test_odoo_custom-addons:
+#    train_pg_data:
+#    train_odoo_data:
+#    train_odoo_custom-addons:
 
