@@ -6,7 +6,7 @@
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - pg_data_prod:/var/lib/postgresql/$strVirtualHostProd/data
+            - pg_data/$strVirtualHostProd/data:/var/lib/postgresql/data
     odoo:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -16,8 +16,8 @@
         links:
             - db:db
         volumes:
-            - custom-addons:/opt/odoo/$strVirtualHostProd/custom-addons
-            - odoo_data:/opt/odoo/$strVirtualHostProd/data
+            - custom-addons/$strVirtualHostProd/custom-addons:/opt/odoo/custom-addons
+            - odoo_data/$strVirtualHostProd/data:/opt/odoo/data
         environment:
             - VIRTUAL_HOST=$strVirtualHostProd
             - CREATE_DBNAME=$strDatabase
@@ -34,7 +34,7 @@
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - pg_data_test:/var/lib/postgresql/$strVirtualHostTest/data
+            - pg_data/$strVirtualHostTest/data:/var/lib/postgresql/data
     odoo-test:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -44,8 +44,8 @@
         links:
             - db-test:db
         volumes:
-            - custom-addons:/opt/odoo/$strVirtualHostTest/custom-addons
-            - odoo_data:/opt/odoo/$strVirtualHostTest/data
+            - custom-addons/$strVirtualHostTest/custom-addons:/opt/odoo/custom-addons
+            - odoo_data/$strVirtualHostTest/data:/opt/odoo/data
         environment:
             - VIRTUAL_HOST=$strVirtualHostTest
             - CREATE_DBNAME=$strDatabase
@@ -62,7 +62,7 @@
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - pg_data_train:/var/lib/postgresql/$strVirtualHostTrain/data
+            - pg_data/$strVirtualHostTrain/data:/var/lib/postgresql/data
     odoo-train:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -72,8 +72,8 @@
         links:
             - db-train:db
         volumes:
-            - custom-addons:/opt/odoo/$strVirtualHostTrain/custom-addons
-            - odoo_data:/opt/odoo/$strVirtualHostTrain/data
+            - custom-addons/$strVirtualHostTrain/custom-addons:/opt/odoo/custom-addons
+            - odoo_data/$strVirtualHostTrain/data:/opt/odoo/data
         environment:
             - VIRTUAL_HOST=$strVirtualHostTrain
             - CREATE_DBNAME=$strDatabase
