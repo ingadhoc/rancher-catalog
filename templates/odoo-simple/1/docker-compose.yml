@@ -1,0 +1,34 @@
+    dbData:
+        image: postgres:9.5
+	entrypoint: /bin/bash
+    db:
+        image: postgres:9.5
+        labels:
+            io.rancher.container.network: 'false'
+            io.rancher.sidekicks: 'dbData'
+        environment:
+            - POSTGRES_USER=odoo
+            - POSTGRES_PASSWORD=odoo
+        volumes_from:
+            - dbData
+
+    odooData:
+        image: adhoc/odoo-ar:9.0
+	entrypoint: /bin/bash
+    odoo:
+        image: adhoc/odoo-ar:9.0
+        labels:
+            io.rancher.container.network: 'false'
+            io.rancher.sidekicks: 'odooData'
+        external_links:
+            - aeroo-docs:aeroo
+        volumes_from:
+            - odooData
+        environment:
+            - VIRTUAL_HOST=$strVirtualHost
+            - CREATE_DBNAME=$strDatabase
+            - VIRTUAL_PORT=8069,8072
+            - ODOO_VERSION=9.0
+            - ADMIN_PASSWORD=admin
+            - WORKERS=0
+
