@@ -6,7 +6,7 @@
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - pg_data/$strVirtualHost/data:/var/lib/postgresql/data
+            - /var/lib/postgresql/data
     odoo:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -14,8 +14,8 @@
         external_links:
             - aeroo-docs:aeroo
         volumes:
-            - $strVirtualHost/custom-addons:/opt/odoo/custom-addons
-            - $strVirtualHost/odoo_data:/opt/odoo/data
+            - /opt/odoo/custom-addons
+            - /opt/odoo/data
         environment:
             - VIRTUAL_HOST=$strVirtualHost
             - CREATE_DBNAME=$strDatabase
