@@ -9,8 +9,8 @@
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
-        volumes_from:
-            - dbData
+#        volumes_from:
+#            - dbData
 
     odooData:
         image: adhoc/odoo-ar:9.0
@@ -22,8 +22,8 @@
             io.rancher.sidekicks: odooData
         external_links:
             - aeroo-docs:aeroo
-        volumes_from:
-            - odooData
+#        volumes_from:
+#            - odooData
         environment:
             - VIRTUAL_HOST=$strVirtualHost
             - CREATE_DBNAME=$strDatabase
