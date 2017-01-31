@@ -6,7 +6,7 @@
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - pg_data_prod:/var/lib/postgresql/data
+            - pg_data_prod:/var/lib/postgresql/$strVirtualHostProd/data
     odoo:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -16,8 +16,8 @@
         links:
             - db:db
         volumes:
-            - custom-addons:/opt/odoo/custom-addons
-            - odoo_data:/opt/odoo/data
+            - custom-addons:/opt/odoo/$strVirtualHostProd/custom-addons
+            - odoo_data:/opt/odoo/$strVirtualHostProd/data
         environment:
             - VIRTUAL_HOST=$strVirtualHostProd
             - CREATE_DBNAME=$strDatabase
@@ -34,7 +34,7 @@
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - pg_data_test:/var/lib/postgresql/data
+            - pg_data_test:/var/lib/postgresql/$strVirtualHostTest/data
     odoo-test:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -44,8 +44,8 @@
         links:
             - db-test:db
         volumes:
-            - custom-addons:/opt/odoo/custom-addons
-            - odoo_data:/opt/odoo/data
+            - custom-addons:/opt/odoo/$strVirtualHostTest/custom-addons
+            - odoo_data:/opt/odoo/$strVirtualHostTest/data
         environment:
             - VIRTUAL_HOST=$strVirtualHostTest
             - CREATE_DBNAME=$strDatabase
@@ -62,7 +62,7 @@
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - pg_data_train:/var/lib/postgresql/data
+            - pg_data_train:/var/lib/postgresql/$strVirtualHostTrain/data
     odoo-train:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -72,8 +72,8 @@
         links:
             - db-train:db
         volumes:
-            - custom-addons:/opt/odoo/custom-addons
-            - odoo_data:/opt/odoo/data
+            - custom-addons:/opt/odoo/$strVirtualHostTrain/custom-addons
+            - odoo_data:/opt/odoo/$strVirtualHostTrain/data
         environment:
             - VIRTUAL_HOST=$strVirtualHostTrain
             - CREATE_DBNAME=$strDatabase
