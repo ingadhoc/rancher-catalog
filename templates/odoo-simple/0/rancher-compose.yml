@@ -1,6 +1,6 @@
 .catalog:
   name: "AOH Odoo9 Simple"
-  version: "20170131001"
+  version: "20170131002"
   description: "AdHoc Odoo Hosting (AOH) system simple Odoo 9.0 stack. Provides a production Odoo instance."
   uuid: ingadhoc-odoo9s
   minimum_rancher_version: v1.1.4
