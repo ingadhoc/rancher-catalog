@@ -7,6 +7,7 @@
             - POSTGRES_PASSWORD=odoo
         volumes:
             - prod_pg_data:/var/lib/postgresql/data
+
     odoo:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -25,6 +26,7 @@
             - ODOO_VERSION=9.0
             - ADMIN_PASSWORD=admin
             - WORKERS=0
+
     db-test:
         image: postgres:9.5
         labels:
@@ -34,6 +36,7 @@
             - POSTGRES_PASSWORD=odoo
         volumes:
             - test_pg_data:/var/lib/postgresql/data
+
     odoo-test:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -52,6 +55,7 @@
             - ODOO_VERSION=9.0
             - ADMIN_PASSWORD=admin
             - WORKERS=0
+
     db-train:
         image: postgres:9.5
         labels:
@@ -61,6 +65,7 @@
             - POSTGRES_PASSWORD=odoo
         volumes:
             - train_pg_data:/var/lib/postgresql/data
+
     odoo-train:
         image: adhoc/odoo-ar:9.0
         labels:
