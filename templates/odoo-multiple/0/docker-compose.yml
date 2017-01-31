@@ -79,6 +79,7 @@
             - ODOO_VERSION=9.0
             - ADMIN_PASSWORD=admin
             - WORKERS=0
+
 volumes:
     prod_pg_data:
     prod_odoo_data:
