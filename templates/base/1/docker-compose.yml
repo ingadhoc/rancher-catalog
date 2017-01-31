@@ -33,7 +33,7 @@ postfix-dockprox:
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock:ro
   stdin_open: true
-gcdns-dockbot:
+gcdns-genbot:
   labels:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.pull_image: always
@@ -41,7 +41,8 @@ gcdns-dockbot:
   - cGCDNSZone=$cGCDNSZone
   - cGCDNSProject=$cGCDNSProject
   tty: true
-  image: unxsio/gcdns-dockbot
+  image: unxsio/gcdns-genbot
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock:ro
+  - /var/local/dockprox:/var/local/dockprox:ro
   stdin_open: true
