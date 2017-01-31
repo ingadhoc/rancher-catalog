@@ -6,7 +6,7 @@
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - /var/lib/postgresql/data
+            - prod_pg_data:/var/lib/postgresql/data
     odoo:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -16,8 +16,8 @@
         links:
             - db:db
         volumes:
-            - /opt/odoo/custom-addons
-            - /opt/odoo/data
+            - prod_odoo_custom-addons:/opt/odoo/custom-addons
+            - prod_odoo_data:/opt/odoo/data
         environment:
             - VIRTUAL_HOST=$strVirtualHostProd
             - CREATE_DBNAME=$strDatabase
@@ -33,7 +33,7 @@
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - pg_data/$strVirtualHostTest/data:/var/lib/postgresql/data
+            - test_pg_data:/var/lib/postgresql/data
     odoo-test:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -43,8 +43,8 @@
         links:
             - db-test:db
         volumes:
-            - /opt/odoo/custom-addons
-            - /opt/odoo/data
+            - test_odoo_custom-addons:/opt/odoo/custom-addons
+            - test_odoo_data:/opt/odoo/data
         environment:
             - VIRTUAL_HOST=$strVirtualHostTest
             - CREATE_DBNAME=$strDatabase
@@ -60,7 +60,7 @@
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - /var/lib/postgresql/data
+            - train_pg_data:/var/lib/postgresql/data
     odoo-train:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -70,8 +70,8 @@
         links:
             - db-train:db
         volumes:
-            - /opt/odoo/custom-addons
-            - /opt/odoo/data
+            - train_odoo_custom-addons:/opt/odoo/custom-addons
+            - train_odoo_data:/opt/odoo/data
         environment:
             - VIRTUAL_HOST=$strVirtualHostTrain
             - CREATE_DBNAME=$strDatabase
@@ -79,4 +79,14 @@
             - ODOO_VERSION=9.0
             - ADMIN_PASSWORD=admin
             - WORKERS=0
+volumes:
+    prod_pg_data:
+    prod_odoo_data:
+    prod_odoo_custom-addons:
+    test_pg_data:
+    test_odoo_data:
+    test_odoo_custom-addons:
+    train_pg_data:
+    train_odoo_data:
+    train_odoo_custom-addons:
 
