@@ -15,10 +15,7 @@
             - aeroo-docs:aeroo 
         environment:
             - VIRTUAL_HOST=$strVirtualHost
-            - CREATE_DBNAME=$strDatabase 
-            - ./data/custom-addons:/opt/odoo/custom-addons
-            - odoo_data:/opt/odoo/data
-
+            - CREATE_DBNAME=$strDatabase
             - VIRTUAL_PORT=8069,8072
             - ODOO_VERSION=9.0
             - ADMIN_PASSWORD=admin
