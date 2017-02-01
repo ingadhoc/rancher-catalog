@@ -6,7 +6,7 @@
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - ${stack_name}_pg_data:/var/lib/postgresql/data
+            - $strPgDataDir:/var/lib/postgresql/data
     odoo:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -21,6 +21,6 @@
             - ADMIN_PASSWORD=admin
             - WORKERS=0
         volumes:
-            - ${stack_name}_addons:/opt/odoo/custom-addons
-            - ${stack_name}_data:/opt/odoo/data
+            - $strAddonsDataDir:/opt/odoo/custom-addons
+            - $strOdooDataDir:/opt/odoo/data
             
