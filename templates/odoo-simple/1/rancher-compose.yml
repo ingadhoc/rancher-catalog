@@ -17,11 +17,22 @@
       type: "string"
       required: true
       default: "default"
-    - variable: strDataDir
-      description: "Per stack docker data directory path prefix"
+    - variable: strDataDirOdooData
+      description: "Per stack Odoo data directory path prefix"
       label: "Data Directory"
       type: "string"
       required: true
-      default: "odoo0"
-      
+      default: "odoo0_Data"
+     - variable: strDataDirOdooAddons
+      description: "Per stack Odoo addons directory path prefix"
+      label: "Data Directory"
+      type: "string"
+      required: true
+      default: "odoo0_Addons"
+      - variable: strDataDirPgData
+      description: "Per stack postgresql data directory path prefix"
+      label: "Data Directory"
+      type: "string"
+      required: true
+      default: "odoo0_PgData"
       
