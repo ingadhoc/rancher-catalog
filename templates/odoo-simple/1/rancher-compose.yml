@@ -1,6 +1,6 @@
 .catalog:
   name: "AOH Odoo9 Simple Data Containers"
-  version: "20170201001"
+  version: "20170201002"
   description: "AdHoc Odoo Hosting (AOH) system Odoo 9.0 stack using side-kick data containers."
   uuid: ingadhoc-odoo9s
   minimum_rancher_version: v1.1.4
@@ -17,4 +17,11 @@
       type: "string"
       required: true
       default: "default"
+      - variable: strDataDir
+      description: "Per stack docker data directory path prefix"
+      label: "Data Directory"
+      type: "string"
+      required: true
+      default: "odoo0"
+      
       
