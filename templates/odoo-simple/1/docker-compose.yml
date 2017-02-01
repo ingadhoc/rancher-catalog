@@ -6,7 +6,7 @@
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - pg_data: /var/lib/postgresql/data
+            - pg_data:/var/lib/postgresql/data
     odoo:
         image: adhoc/odoo-ar:9.0
         labels:
