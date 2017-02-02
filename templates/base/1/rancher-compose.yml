@@ -1,6 +1,6 @@
 .catalog:
-  name: "AOH Base with DNS"
-  version: "20170130001"
+  name: "AOH Base stack with GC DNS for public A records"
+  version: "DNSEnabled"
   description: "AhHoc Odoo Hosting (AOH) base stack. Provides GC DNS, nginx, postfix and Aeroo Reports services."
   uuid: ingadhoc-aohbase-dns
   minimum_rancher_version: v1.3.2
