@@ -29,7 +29,7 @@ volumes:
     pg_data:
         driver: rancher
     odoo_data:
-        driver: default
+        driver: rancher
     odoo_addons:
-        driver: default
+        driver: rancher
     
