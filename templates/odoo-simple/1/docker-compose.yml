@@ -1,5 +1,4 @@
 version: '2'
-
 services:
     db:
         image: postgres:9.5
@@ -26,7 +25,7 @@ services:
         volumes:
             - odoo_data:/opt/odoo/data
             - odoo_addons:/opt/odoo/custom-addons
- volumes:
+volumes:
     pg_data:
     odoo_data:
     odoo_addons:
