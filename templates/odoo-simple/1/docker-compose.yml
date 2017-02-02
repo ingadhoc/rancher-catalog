@@ -27,6 +27,9 @@ services:
             - odoo_addons:/opt/odoo/custom-addons
 volumes:
     pg_data:
+        driver: rancher
     odoo_data:
+        driver: default
     odoo_addons:
+        driver: default
     
