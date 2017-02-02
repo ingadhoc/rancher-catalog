@@ -1,4 +1,10 @@
 version: '2'
+
+volumes:
+    pg_data:
+    odoo_data:
+    odoo_addons:
+    
 services:
     db:
         image: postgres:9.5
@@ -8,7 +14,7 @@ services:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - $strDataDirPgData:/var/lib/postgresql/data
+            - pd_data:/var/lib/postgresql/data
     odoo:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -23,6 +29,5 @@ services:
             - ADMIN_PASSWORD=admin
             - WORKERS=0
         volumes:
-            - $strDataDirOdooAddons:/opt/odoo/custom-addons
-            - $strDataDirOdooData:/opt/odoo/data
-            
+            - odoo_data:/opt/odoo/data
+            - odoo_addons:/opt/odoo/custom-addons
