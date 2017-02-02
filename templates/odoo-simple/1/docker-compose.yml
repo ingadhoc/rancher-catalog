@@ -8,7 +8,7 @@ services:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - pd_data:/var/lib/postgresql/data
+            - pg_data:/var/lib/postgresql/data
     odoo:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -27,9 +27,9 @@ services:
             - odoo_addons:/opt/odoo/custom-addons
 volumes:
     pg_data:
-        driver: rancher
+        driver: default
     odoo_data:
-        driver: rancher
+        driver: default
     odoo_addons:
-        driver: rancher
+        driver: default
     
