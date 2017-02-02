@@ -2,7 +2,7 @@ version: '2'
 services:
     dbdata:
         image: postgres:9.5
-        entrypoint: /bin/true
+        entrypoint: /bin/bash
     db:
         image: postgres:9.5
         labels:
@@ -15,7 +15,7 @@ services:
             - dbdata
     odoodata:
         image: adhoc/odoo-ar:9.0
-        entrypoint: /bin/true
+        entrypoint: /bin/bash
         volumes:
             - /opt/odoo/data
             - /opt/odoo/custom-addons
