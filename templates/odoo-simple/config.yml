@@ -1,5 +1,5 @@
 name: AOH Odoo9 Simple
 description: |
-  20170202001 AdHoc Odoo Hosting (AOH) Odoo 9.0 simple stack. Provides one Odoo production instance.
-version: 20170202001
+  20170202003 AdHoc Odoo Hosting (AOH) Odoo 9.0 simple stack.
+version: 20170202003
 category: ERP

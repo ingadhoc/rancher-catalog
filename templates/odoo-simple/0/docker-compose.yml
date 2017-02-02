@@ -1,21 +1,31 @@
+version: '2'
+services:
+    dbdata:
+        image: postgres:9.5
+        entrypoint: /bin/true
     db:
         image: postgres:9.5
         labels:
             io.rancher.container.network: 'false'
+            io.rancher.sidekicks: dbdata
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
+        volumes_from:
+            - dbdata
+    odoodata:
+        image: adhoc/odoo-ar:9.0
+        entrypoint: /bin/true
         volumes:
-            - /var/lib/postgresql/data
+            - /opt/odoo/data
+            - /opt/odoo/custom-addons
     odoo:
         image: adhoc/odoo-ar:9.0
         labels:
             io.rancher.container.network: 'false'
+            io.rancher.sidekicks: odoodata
         external_links:
-            - aeroo-docs:aeroo
-        volumes:
-            - /opt/odoo/custom-addons
-            - /opt/odoo/data
+            - aeroo-docs:aeroo 
         environment:
             - VIRTUAL_HOST=$strVirtualHost
             - CREATE_DBNAME=$strDatabase
@@ -23,6 +33,6 @@
             - ODOO_VERSION=9.0
             - ADMIN_PASSWORD=admin
             - WORKERS=0
+        volumes_from:
+            - odoodata
 
-#environtment: comments
-#the second virtual port is the chat/IM port
