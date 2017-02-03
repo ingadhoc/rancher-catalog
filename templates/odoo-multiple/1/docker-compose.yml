@@ -1,21 +1,21 @@
 version: '2'
 services:
-    dbdata:
+    dbdata-prod:
         image: postgres:9.5
         entrypoint: /bin/bash
         labels:
             io.rancher.container.start_once: 'true'
-    db:
+    db-prod:
         image: postgres:9.5
         labels:
             io.rancher.container.network: 'false'
-            io.rancher.sidekicks: dbdata
+            io.rancher.sidekicks: dbdata-prod
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes_from:
-            - dbdata
-    odoodata:
+            - dbdata-prod
+    odoodata-prod:
         image: adhoc/odoo-ar:9.0
         entrypoint: /bin/bash
         labels:
@@ -23,16 +23,17 @@ services:
         volumes:
             - /opt/odoo/data
             - /opt/odoo/custom-addons
-    odoo:
+    odoo-prod:
         image: adhoc/odoo-ar:9.0
         labels:
             io.rancher.container.network: 'false'
+            io.rancher.sidekicks: odoodata-prod
         external_links:
             - aeroo-docs:aeroo
         links:
-            - db:db
+            - db-prod:db
         volumes_from:
-            - odoodata
+            - odoodata-prod
         environment:
             - VIRTUAL_HOST=$strVirtualHostProd
             - CREATE_DBNAME=$strDatabase
@@ -40,6 +41,7 @@ services:
             - ODOO_VERSION=9.0
             - ADMIN_PASSWORD=admin
             - WORKERS=0
+
     dbdata-test:
         image: postgres:9.5
         entrypoint: /bin/bash
@@ -81,6 +83,7 @@ services:
             - WORKERS=0
         volumes_from:
             - odoodata-test
+
     dbdata-train:
         image: postgres:9.5
         entrypoint: /bin/bash
