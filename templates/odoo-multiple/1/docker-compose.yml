@@ -1,15 +1,29 @@
 version: '2'
 services:
+#production instance
+    dbdata:
+        image: postgres:9.5
+        entrypoint: /bin/bash
+        labels:
+            io.rancher.container.start_once: 'true'
     db:
         image: postgres:9.5
         labels:
             io.rancher.container.network: 'false'
+            io.rancher.sidekicks: dbdata
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
+        volumes_from:
+            - dbdata
+    odoodata:
+        image: adhoc/odoo-ar:9.0
+        entrypoint: /bin/bash
+        labels:
+            io.rancher.container.start_once: 'true'
         volumes:
-            - /var/lib/postgresql/data
-
+            - /opt/odoo/data
+            - /opt/odoo/custom-addons
     odoo:
         image: adhoc/odoo-ar:9.0
         labels:
@@ -18,9 +32,8 @@ services:
             - aeroo-docs:aeroo
         links:
             - db:db
-        volumes:
-            - /opt/odoo/custom-addons
-            - /opt/odoo/data
+        volumes_from:
+            - odoodata
         environment:
             - VIRTUAL_HOST=$strVirtualHostProd
             - CREATE_DBNAME=$strDatabase
@@ -29,27 +42,37 @@ services:
             - ADMIN_PASSWORD=admin
             - WORKERS=0
 
+#test instance
+    dbdata-test:
+        image: postgres:9.5
+        entrypoint: /bin/bash
+        labels:
+            io.rancher.container.start_once: 'true'
     db-test:
         image: postgres:9.5
         labels:
             io.rancher.container.network: 'false'
+            io.rancher.sidekicks: dbdata-test
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
+        volumes_from:
+            - dbdata-test
+    odoodata-test:
+        image: adhoc/odoo-ar:9.0
+        entrypoint: /bin/bash
+        labels:
+            io.rancher.container.start_once: 'true'
         volumes:
-            - /var/lib/postgresql/data
-
+            - /opt/odoo/data
+            - /opt/odoo/custom-addons
     odoo-test:
         image: adhoc/odoo-ar:9.0
         labels:
             io.rancher.container.network: 'false'
+            io.rancher.sidekicks: odoodata-test
         external_links:
-            - aeroo-docs:aeroo
-        links:
-            - db-test:db
-        volumes:
-            - /opt/odoo/custom-addons
-            - /opt/odoo/data
+            - aeroo-docs:aeroo 
         environment:
             - VIRTUAL_HOST=$strVirtualHostTest
             - CREATE_DBNAME=$strDatabase
@@ -57,28 +80,40 @@ services:
             - ODOO_VERSION=9.0
             - ADMIN_PASSWORD=admin
             - WORKERS=0
+        volumes_from:
+            - odoodata-test
 
+#train instance
+    dbdata-train:
+        image: postgres:9.5
+        entrypoint: /bin/bash
+        labels:
+            io.rancher.container.start_once: 'true'
     db-train:
         image: postgres:9.5
         labels:
             io.rancher.container.network: 'false'
+            io.rancher.sidekicks: dbdata-train
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
+        volumes_from:
+            - dbdata-train
+    odoodata-train:
+        image: adhoc/odoo-ar:9.0
+        entrypoint: /bin/bash
+        labels:
+            io.rancher.container.start_once: 'true'
         volumes:
-            - /var/lib/postgresql/data
-
+            - /opt/odoo/data
+            - /opt/odoo/custom-addons
     odoo-train:
         image: adhoc/odoo-ar:9.0
         labels:
             io.rancher.container.network: 'false'
+            io.rancher.sidekicks: odoodata-train
         external_links:
-            - aeroo-docs:aeroo
-        links:
-            - db-train:db
-        volumes:
-            - /opt/odoo/custom-addons
-            - /opt/odoo/data
+            - aeroo-docs:aeroo 
         environment:
             - VIRTUAL_HOST=$strVirtualHostTrain
             - CREATE_DBNAME=$strDatabase
@@ -86,4 +121,6 @@ services:
             - ODOO_VERSION=9.0
             - ADMIN_PASSWORD=admin
             - WORKERS=0
+        volumes_from:
+            - odoodata-train
 
