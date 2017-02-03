@@ -5,7 +5,7 @@ services:
         labels:
             io.rancher.scheduler.affinity:container_soft_ne: $${service_name}
     dbdata-prod:
-        container-name: $${service_name}
+        container_name: $${service_name}
         image: postgres:9.5
         entrypoint: /bin/bash
         labels:
