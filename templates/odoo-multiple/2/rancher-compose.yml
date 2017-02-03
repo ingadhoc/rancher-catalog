@@ -1,0 +1,32 @@
+.catalog:
+  name: "AOH Odoo9 Multiple"
+  version: "SideKickStorageAndBackup"
+  description: "AdHoc Odoo Hosting (AOH) multi system Odoo stack w/sidekick storage and backup. Provides production, training and test Odoo instances."
+  uuid: ingadhoc-odoo9m
+  minimum_rancher_version: v1.1.4
+  questions:
+    - variable: strVirtualHostProd
+      label: "Odoo Production DNS Hostname"
+      description: "The DNS hostname for the production Odoo instance"
+      type: "string"
+      required: true
+      default: "odoo.your.com"
+    - variable: strVirtualHostTest
+      label: "Odoo Test DNS Hostname"
+      description: "The DNS hostname for the test Odoo instance"
+      type: "string"
+      required: true
+      default: "odoo-test.your.com"
+    - variable: strVirtualHostTrain
+      label: "Odoo Training DNS Hostname"
+      description: "The DNS hostname for the training Odoo instance"
+      type: "string"
+      required: true
+      default: "odoo-train.your.com"
+    - variable: strDatabase
+      description: "The Odoo PostgreSQL database to be created on deploy"
+      label: "Initial Odoo DB Name"
+      type: "string"
+      required: true
+      default: "default"
+
