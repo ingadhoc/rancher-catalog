@@ -70,6 +70,8 @@ services:
             io.rancher.sidekicks: odoodata-test
         external_links:
             - aeroo-docs:aeroo 
+        links:
+            - db:db-test
         environment:
             - VIRTUAL_HOST=$strVirtualHostTest
             - CREATE_DBNAME=$strDatabase
@@ -109,6 +111,8 @@ services:
             io.rancher.sidekicks: odoodata-train
         external_links:
             - aeroo-docs:aeroo 
+        links:
+            - db:db-train
         environment:
             - VIRTUAL_HOST=$strVirtualHostTrain
             - CREATE_DBNAME=$strDatabase
