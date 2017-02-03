@@ -71,7 +71,7 @@ services:
         external_links:
             - aeroo-docs:aeroo 
         links:
-            - db:db-test
+            - db-test:db
         environment:
             - VIRTUAL_HOST=$strVirtualHostTest
             - CREATE_DBNAME=$strDatabase
@@ -112,7 +112,7 @@ services:
         external_links:
             - aeroo-docs:aeroo 
         links:
-            - db:db-train
+            - db-train:db
         environment:
             - VIRTUAL_HOST=$strVirtualHostTrain
             - CREATE_DBNAME=$strDatabase
