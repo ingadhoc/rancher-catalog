@@ -3,9 +3,8 @@ services:
     dbdata-prod-backup:
         image: million12/ssh
         labels:
-            io.rancher.scheduler.affinity:container_soft_ne: $${service_name}
+              io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     dbdata-prod:
-        container_name: $${service_name}
         image: postgres:9.5
         entrypoint: /bin/bash
         labels:
