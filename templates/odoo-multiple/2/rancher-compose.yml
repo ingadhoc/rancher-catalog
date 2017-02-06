@@ -10,19 +10,19 @@
       description: "The DNS hostname for the production Odoo instance"
       type: "string"
       required: true
-      default: "odoo.your.com"
+      default: "odoo.sistemasadhoc.com"
     - variable: strVirtualHostTest
       label: "Odoo Test DNS Hostname"
       description: "The DNS hostname for the test Odoo instance"
       type: "string"
       required: true
-      default: "odoo-test.your.com"
+      default: "odoo-test.sistemasadhoc.com"
     - variable: strVirtualHostTrain
       label: "Odoo Training DNS Hostname"
       description: "The DNS hostname for the training Odoo instance"
       type: "string"
       required: true
-      default: "odoo-train.your.com"
+      default: "odoo-train.sistemasadhoc.com"
     - variable: strDatabase
       description: "The Odoo PostgreSQL database to be created on deploy"
       label: "Initial Odoo DB Name"

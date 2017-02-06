@@ -1,9 +1,5 @@
 version: '2'
 services:
-    dbdata-prod-backup:
-        image: million12/ssh
-        labels:
-            io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/db-prod
     dbdata-prod:
         image: postgres:9.5
         entrypoint: /bin/bash
@@ -135,4 +131,10 @@ services:
             - WORKERS=0
         volumes_from:
             - odoodata-train
+
+    dbdata-prod-backup:
+        image: million12/ssh
+        labels:
+            io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/db-prod
+
 

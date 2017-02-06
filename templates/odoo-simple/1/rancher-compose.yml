@@ -1,0 +1,20 @@
+.catalog:
+  name: "AOH Odoo9 Simple SSB"
+  version: "SideKickStorageAndBackup"
+  description: "AdHoc Odoo Hosting (AOH) single Odoo stack w/sidekick storage and backup."
+  uuid: ingadhoc-odoo9ssb
+  minimum_rancher_version: v1.1.4
+  questions:
+    - variable: strVirtualHostProd
+      label: "Odoo Production DNS Hostname"
+      description: "The DNS hostname. Used by any DNS agents and by http proxies."
+      type: "string"
+      required: true
+      default: "odoo0.sistemasadhoc.com"
+    - variable: strDatabase
+      description: "The Odoo PostgreSQL database to be created on deploy"
+      label: "Initial Odoo DB Name"
+      type: "string"
+      required: true
+      default: "default"
+
