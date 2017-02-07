@@ -1,5 +1,5 @@
-# adhoc-rancher
-Rancher catalog for Odoo Docker based hosting.
+# AdHoc Rancher Catalog
+Rancher catalog adhoc-rancher for Odoo ERP Docker based hosting.
 
 ## AdHoc Odoo Hosting for Rancher
 Use this catalog to host AdHoc Odoo services with the awesome Rancher!
@@ -12,9 +12,6 @@ To use this, do the following:
 * In the URL box, enter `https://github.com/unxs0/adhoc-rancher`
 * Set to branch `master`
 
-Contact us at soporte@adhoc.com.ar if you have any questions.
-Stay informed via [Adhoc News](http://news.adhoc.com.ar)
-
 # Catalog Entries Summary
 
 ## AdHoc Base Stack
@@ -26,6 +23,7 @@ This stack provides:
 * An automated nginx proxy that picks-up new Odoo web and chat ports.
 * An automated postfix incoming mail proxy for Odoo that supports on stack install relayhost configuration.
 * An Aeroo reporting engine container for Odoo PDF reports.
+* An automated DNS agent for Google Cloud DNS. This agent creates A records for new Odoo instances.
 
 ## AdHoc Simple Odoo Stack
 
@@ -35,21 +33,15 @@ This stack provides:
 
 * Odoo container.
 * PostgreSQL db container.
+* PostgreSQL db backup container on different host.
 
-## AdHoc Multiple Odoo Stack
-
-Not available yet!
-
-Will create three db/odoo stacks for a given customer:
-* Production stack
-* Train stack
-* Test stack
-
-This stack provides the same services as the *Simple Odoo Stack* but times 3 as mentioned above.
+Uses 2 sidekicks for stack scoped storage for Odoo data and DB data.
 
 # Known Issues
 
-## Base Stack
+The postfix proxies may need to have different names. Or only one should be active via a loadbalancer at the region level and not at the host level. This requires that the proxies inform all other proxies of mail destination. This requires service discovery probably via a simple DNS SRV record setup.
+
+### Base Stack Install
 
 You must supply a postfix hostname.
 If you do not supply the postfix hostname 'hostname -f' fails in the postfix-dockprox container configuration.
