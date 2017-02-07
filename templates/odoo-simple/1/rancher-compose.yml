@@ -7,10 +7,10 @@
   questions:
     - variable: strVirtualHostProd
       label: "Odoo Production DNS Hostname"
-      description: "The DNS hostname. Used by any DNS agents and by http proxies."
+      description: "The DNS hostname. Used by any DNS agents and by http proxies. E.g. myapp0.domain.io"
       type: "string"
       required: true
-      default: "odoo0.sistemasadhoc.com"
+      default: "{io.rancher.stack.name}"
     - variable: strDatabase
       description: "The Odoo PostgreSQL database to be created on deploy"
       label: "Initial Odoo DB Name"
