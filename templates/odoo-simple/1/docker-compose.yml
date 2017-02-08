@@ -12,7 +12,6 @@ services:
         labels:
             io.rancher.container.network: 'false'
             io.rancher.sidekicks: dbdata
-            io.rancher.scheduler.affinity:container_label: io.rancher.stack.name=$${stack_name}
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
@@ -31,7 +30,7 @@ services:
         labels:
             io.rancher.container.network: 'false'
             io.rancher.sidekicks: odoodata
-            io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/db
+            io.rancher.scheduler.affinity:container_label: io.rancher.stack.name=$${stack_name}
         external_links:
             - base/aeroo-docs:aeroo
         links:
