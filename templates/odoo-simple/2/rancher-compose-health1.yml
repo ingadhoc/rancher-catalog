@@ -1,9 +1,9 @@
 .catalog:
   name: "AOH Odoo9 Simple SSB"
-  version: "SideKickStorageAndBackup"
-  description: "AdHoc Odoo Hosting (AOH) single Odoo stack w/sidekick storage and backup."
-  uuid: ingadhoc-odoo9ssb
-  minimum_rancher_version: v1.1.4
+  version: "SSB+HealthChecks"
+  description: "AdHoc Odoo Hosting (AOH) single Odoo stack w/sidekick storage and backup. Plus health checks."
+  uuid: ingadhoc-odoo9ssbh
+  minimum_rancher_version: v1.3.2
   questions:
     - variable: strVirtualHostProd
       label: "Odoo Production DNS Hostname"
@@ -17,3 +17,17 @@
       type: "string"
       required: true
       default: "default"
+#scaling and health checks per service as per docker-compose.yml
+version: 2
+services:
+  odoo:
+    scale: 1
+    health_check:
+      port: 8069
+      interval: 2000
+      initializing_timeout: 60000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
+
