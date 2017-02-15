@@ -7,7 +7,7 @@
   questions:
     - variable: strVirtualHostProd
       label: "Odoo Production DNS Hostname"
-      description: "The DNS hostname. Used by any DNS agents and by http proxies. E.g. myapp0.domain.io"
+      description: "The DNS hostname. Used by any DNS agents and by http proxies. E.g. myapp0.domain.io. The default uses the stack name."
       type: "string"
       required: true
       default: "{io.rancher.stack.name}"
@@ -22,4 +22,5 @@
       label: "Optional backup options"
       type: "string"
       required: false
-      default: ""
+      default: "--backupcron=(12 3 * * *)"
+
