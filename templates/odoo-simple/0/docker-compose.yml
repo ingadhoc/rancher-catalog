@@ -38,4 +38,6 @@ services:
             - WORKERS=0
         volumes_from:
             - odoodata
+        links:
+            - db:db
 
