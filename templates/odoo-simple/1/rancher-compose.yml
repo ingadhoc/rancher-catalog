@@ -1,7 +1,7 @@
 .catalog:
   name: "AOH Odoo9 Simple SSB"
   version: "SideKickStorageAndBackup"
-  description: "AdHoc Odoo Hosting (AOH) single Odoo stack w/sidekick storage and backup."
+  description: "AdHoc Odoo Hosting (AOH) single Odoo stack w/sidekick storage and a safety remote backup"
   uuid: ingadhoc-odoo9ssb
   minimum_rancher_version: v1.1.4
   questions:
@@ -17,3 +17,9 @@
       type: "string"
       required: true
       default: "default"
+    - variable: strBackupOptions
+      description: "Backup options. E.g. --backupcron=(1 4 * * *)"
+      label: "Optional backup options"
+      type: "string"
+      required: false
+      default: ""

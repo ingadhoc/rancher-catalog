@@ -8,7 +8,6 @@ services:
     db:
         image: postgres:9.5
         labels:
-            io.rancher.container.network: 'false'
             io.rancher.sidekicks: dbdata
         environment:
             - POSTGRES_USER=odoo
@@ -26,8 +25,8 @@ services:
     odoo:
         image: adhoc/odoo-ar:9.0
         labels:
-            io.rancher.container.network: 'false'
             io.rancher.sidekicks: odoodata
+            io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/db
         external_links:
             - aeroo-docs:aeroo 
         environment:

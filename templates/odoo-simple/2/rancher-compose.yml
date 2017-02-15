@@ -17,12 +17,53 @@
       type: "string"
       required: true
       default: "default"
+    - variable: strBackupOptions
+      description: "Backup options. E.g. --backuptype=[daily,weekly,monthly,warmcopy] --backuptime=4am --warmbackupfreq=15m"
+      label: "Optional backup options"
+      type: "string"
+      required: false
+      default: ""
 #scaling and health checks per service as per docker-compose.yml
 version: 2
 services:
   odoo:
     scale: 1
-  dbdata-backup:
+    health_check:
+      port: 8069
+      interval: 2000
+      initializing_timeout: 60000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
+  odoo-copy:
     scale: 1
+    health_check:
+      port: 8069
+      interval: 2000
+      initializing_timeout: 60000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
   db:
     scale: 1
+    health_check:
+      port: 5432
+      interval: 2000
+      initializing_timeout: 60000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
+  db-copy:
+    scale: 1
+    health_check:
+      port: 5432
+      interval: 2000
+      initializing_timeout: 60000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
+
