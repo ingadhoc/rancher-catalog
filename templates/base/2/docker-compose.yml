@@ -1,0 +1,48 @@
+nginx-dockprox:
+  ports:
+  - 80:80/tcp
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.pull_image: always
+  tty: true
+  image: unxsio/nginx-dockprox
+  volumes:
+  - /var/run/docker.sock:/var/run/docker.sock:ro
+  stdin_open: true
+aeroo-docs:
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.pull_image: always
+  image: adhoc/aeroo-docs
+postfix-dockprox:
+  ports:
+  - 25:25/tcp
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.pull_image: always
+  environment:
+  - cMyHostname=$cMyHostname
+  - cMyDestination=$cMyDestination
+  - cRelayHostLine=$cRelayHostLine
+  - cRelaySASLUser=$cRelaySASLUser
+  - cRelaySASLPasswd=$cRelaySASLPasswd
+  - cDomainsRegex1=$cDomainsRegex1
+  - cDomainsRegex2=$cDomainsRegex2
+  tty: true
+  image: unxsio/postfix-dockprox
+  volumes:
+  - /var/run/docker.sock:/var/run/docker.sock:ro
+  stdin_open: true
+gcdns-genbot:
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.pull_image: always
+  environment:
+  - cGCDNSZone=$cGCDNSZone
+  - cGCDNSProject=$cGCDNSProject
+  tty: true
+  image: unxsio/gcdns-genbot
+  volumes:
+  - /var/run/docker.sock:/var/run/docker.sock:ro
+  - /var/local/dockprox:/var/local/dockprox:ro
+  stdin_open: true
