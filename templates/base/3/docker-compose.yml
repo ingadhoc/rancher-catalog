@@ -30,6 +30,7 @@ postfix-dockprox:
   - cRelaySASLPasswd=$cRelaySASLPasswd
   - cDomainsRegex1=$cDomainsRegex1
   - cDomainsRegex2=$cDomainsRegex2
+  - cOtherServerNames=$cOtherServerNames
   tty: true
   image: unxsio/postfix-dockprox
   volumes:
