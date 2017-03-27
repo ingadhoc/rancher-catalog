@@ -6,13 +6,6 @@
   minimum_rancher_version: v1.3.2
   questions:
 
-    - variable: cOtherServerNames
-      label: "Optional server names for nginx"
-      description: "A semicolon (;) separated and terminated list of domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com;www.acme.org;"
-      type: "string"
-      required: false
-      default: ""
-
     - variable: cMyHostname
       label: "Postfix Hostname"
       description: "Postfix main.cf myhostname configuration parameter. Usually FQDN of host. E.g. acme.company.org."

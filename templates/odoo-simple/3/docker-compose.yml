@@ -1,0 +1,89 @@
+version: '2'
+services:
+    dbdata:
+        image: postgres:9.5
+        entrypoint: /bin/bash
+        labels:
+            io.rancher.container.start_once: 'true'
+    db:
+        image: postgres:9.5
+        labels:
+            io.rancher.sidekicks: dbdata
+        environment:
+            - POSTGRES_USER=odoo
+            - POSTGRES_PASSWORD=odoo
+        volumes_from:
+            - dbdata
+    odoodata:
+        image: adhoc/odoo-ar:9.0
+        entrypoint: /bin/bash
+        labels:
+            io.rancher.container.start_once: 'true'
+        volumes:
+            - /opt/odoo/data
+            - /opt/odoo/custom-addons
+    odoo:
+        image: adhoc/odoo-ar:9.0
+        labels:
+            io.rancher.sidekicks: odoodata
+            io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/db
+        external_links:
+            - base/aeroo-docs:aeroo
+        links:
+            - db:db
+        volumes_from:
+            - odoodata
+        environment:
+            - VIRTUAL_HOST=$strVirtualHostProd
+            - cOtherServerNames=$cOtherServerNames
+            - CREATE_DBNAME=$strDatabase
+            - VIRTUAL_PORT=8069,8072
+            - ODOO_VERSION=9.0
+            - ADMIN_PASSWORD=admin
+            - WORKERS=0
+#Backup system on other host
+    dbdata-backup:
+        image: postgres:9.5
+        entrypoint: /bin/bash
+        labels:
+            io.rancher.container.start_once: 'true'
+    db-backup:
+        image: postgres:9.5
+        labels:
+            io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/db
+            io.rancher.sidekicks: dbdata-backup
+        environment:
+            - POSTGRES_USER=odoo
+            - POSTGRES_PASSWORD=odoo
+            - BACKUP_OPTIONS=$strBackupOptions
+        volumes_from:
+            - dbdata-backup
+        links:
+            - db:db
+    odoodata-backup:
+        image: adhoc/odoo-ar:9.0
+        entrypoint: /bin/bash
+        labels:
+            io.rancher.container.start_once: 'true'
+        volumes:
+            - /opt/odoo/data
+            - /opt/odoo/custom-addons
+    odoo-backup:
+        image: adhoc/odoo-ar:9.0
+        labels:
+            io.rancher.sidekicks: odoodata-backup
+            io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/db-backup
+        external_links:
+            - base/aeroo-docs:aeroo
+        links:
+            - db-backup:db
+        volumes_from:
+            - odoodata-backup
+        environment:
+            - VIRTUAL_HOST=backup.$strVirtualHostProd
+            - CREATE_DBNAME=$strDatabase
+            - VIRTUAL_PORT=8069,8072
+            - ODOO_VERSION=9.0
+            - ADMIN_PASSWORD=admin
+            - WORKERS=0
+            - BACKUP_OPTIONS=$strBackupOptions
