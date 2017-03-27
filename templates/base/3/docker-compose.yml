@@ -6,7 +6,7 @@ nginxssl-dockprox:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.pull_image: always
   tty: true
-  image: unxsio/nginx-dockprox
+  image: unxsio/nginxssl-dockprox
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock:ro
   - /etc/letsencrypt:/etc/letsencrypt:rw
