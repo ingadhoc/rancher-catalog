@@ -1,0 +1,103 @@
+.catalog:
+  name: "AOH Base stack with Postfix/Aeroo/Nginx/DNS/HealthCheck/LetsEncryptSSL"
+  version: "DNSEnabledAndHealthSSL"
+  description: "AhHoc Odoo Hosting (AOH) base stack. Provides GC DNS, nginx/certbotSSL, postfix and Aeroo Reports services. Basic health checks."
+  uuid: ingadhoc-aohbase-dnsplus
+  minimum_rancher_version: v1.3.2
+  questions:
+
+    - variable: cOtherServerNames
+      label: "Optional server names for nginx"
+      description: "A semicolon (;) separated and terminated list of domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com;www.acme.org;"
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: cMyHostname
+      label: "Postfix Hostname"
+      description: "Postfix main.cf myhostname configuration parameter. Usually FQDN of host. E.g. acme.company.org."
+      type: "string"
+      required: true
+      default: ""
+
+    - variable: cMyDestination
+      label: "Postfix Local Mail Destination Domains"
+      description: "Postfix main.cf mydestination configuration parameter, local hostnames for mail reception, a comma separated list. E.g. servername.domain.dom, altservername.domain.dom, localhost. If not provided will use Postfix Hostname and localhost."
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: cRelayHostLine
+      label: "Optional Postfix Relay Host"
+      description: "Postfix main.cf relayhost configuration parameter [host]:port format. E.g. [smtp.sendgrid.net]:2525"
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: cRelaySASLUser
+      label: "Optional Username for Relay Host"
+      description: "Enter your optional relayhost SASL user name. If you enter a relay host this is required."
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: cRelaySASLPasswd
+      label: "Optional Passwd for Relay Host"
+      description: "Enter your optional relayhost SASL password. If you enter a relay host this is required."
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: cDomainsRegex1
+      label: "Optional Postfix Domain Regex 1 of 2"
+      description: "Enter your optional post fix domain regex for accepting mail based on SaaS Odoo hosting shared domain. E.g. domain1.com"
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: cDomainsRegex2
+      label: "Optional Postfix Domain Regex 2 of 2"
+      description: "Enter another optional post fix domain regex for accepting mail based on SaaS Odoo hosting shared domain. E.g. domain2.com"
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: cGCDNSZone
+      label: "Optional Google Cloud DNS Zone Name"
+      description: "If you would like to create DNS A records for all your Odoo containers, enter your Google Cloud DNS zone. E.g. sistemasadhoc-com"
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: cGCDNSProject
+      label: "Optional Google Cloud DNS Project Name"
+      description: "Enter project name that has the associated json credentials for Google Cloud DNS. E.g. myproject-dev"
+      type: "string"
+      required: false
+      default: ""
+#
+# Scaling and health checks per service as per docker-compose.yml
+#
+version: 2
+services:
+  nginx-dockprox:
+    scale: 1
+    health_check:
+      port: 80
+      interval: 2000
+      initializing_timeout: 60000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
+  postfix-dockprox:
+    scale: 1
+    health_check:
+      port: 25
+      interval: 2000
+      initializing_timeout: 60000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
+
