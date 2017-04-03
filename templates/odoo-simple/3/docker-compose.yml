@@ -29,6 +29,7 @@ services:
             io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/db
         external_links:
             - base/aeroo-docs:aeroo
+            - base/postfix-dockprox:smtp
         links:
             - db:db
         volumes_from:

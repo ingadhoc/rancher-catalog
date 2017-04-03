@@ -12,6 +12,8 @@ nginxssl-dockprox:
   - /etc/letsencrypt:/etc/letsencrypt:rw
   stdin_open: true
 aeroo-docs:
+  ports:
+  - 8989:8989/tcp
   labels:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.pull_image: always
