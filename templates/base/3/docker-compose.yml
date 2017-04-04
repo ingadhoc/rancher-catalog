@@ -23,6 +23,7 @@ postfix-dockprox:
   - 25:25/tcp
   labels:
     io.rancher.scheduler.global: 'true'
+    io.rancher.container.pull_image: always
   environment:
   - cMyHostname=$cMyHostname
   - cMyDestination=$cMyDestination
