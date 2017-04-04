@@ -25,7 +25,7 @@
       description: "Postfix main.cf relayhost configuration parameter [host]:port format. E.g. [smtp.sendgrid.net]:2525"
       type: "string"
       required: false
-      default: ""
+      default: "[smtp.sendgrid.net]:2525"
 
     - variable: cRelaySASLUser
       label: "Optional Username for Relay Host"
