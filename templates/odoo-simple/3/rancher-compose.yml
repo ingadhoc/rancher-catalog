@@ -29,7 +29,7 @@
 
     - variable: cOtherServerNames
       label: "Optional server names for nginx"
-      description: "A semicolon (;) separated and terminated list of domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com;www.acme.org;"
+      description: "A semicolon (;) separated and terminated list of max 8 domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com;www.acme.org;"
       type: "string"
       required: false
       default: ""
