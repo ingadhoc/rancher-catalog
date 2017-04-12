@@ -42,6 +42,7 @@ services:
             - ODOO_VERSION=9.0
             - ADMIN_PASSWORD=admin
             - WORKERS=0
+            - SERVER_MODE=
 #Backup system on other host
     dbdata-backup:
         image: postgres:9.5
@@ -88,3 +89,4 @@ services:
             - ADMIN_PASSWORD=admin
             - WORKERS=0
             - BACKUP_OPTIONS=$strBackupOptions
+            - SERVER_MODE=
