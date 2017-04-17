@@ -20,10 +20,10 @@ Every rancher host that will be running the *AdHoc Odoo Hosting* system needs to
 
 This stack provides:
 
-* An automated nginx proxy that picks-up new Odoo web and chat ports.
-* An automated postfix incoming mail proxy for Odoo that supports on stack install relayhost configuration.
+* An automated nginx proxy that picks-up new Odoo web and chat ports. Supports Letsencrypt and alternative host names.
+* An automated postfix outgoing mail proxy for Odoo instances that supports on stack install relayhost configuration.
 * An Aeroo reporting engine container for Odoo PDF reports.
-* An automated DNS agent for Google Cloud DNS. This agent creates A records for new Odoo instances.
+* An automated DNS agent for Google Cloud DNS. This agent creates A records for new Odoo instances. Using the alternative hostname feature external DNS domains are supported. SSL certs for the alternative domains should be able to be placed in the node /etc/letsencrypt config dirs for certbot override.
 
 ## AdHoc Simple Odoo Stack
 
@@ -31,17 +31,27 @@ Will create only one db/odoo stack.
 
 This stack provides:
 
-* Odoo container.
+* Odoo container(*1).
 * PostgreSQL db container.
+* Backup Odoo container.
 * PostgreSQL db backup container on different host.
 
-Uses 2 sidekicks for stack scoped storage for Odoo data and DB data.
+(*1) Uses 2 sidekicks for stack scoped storage for Odoo data and DB data.
 
 # Known Issues
 
+## Postfix
+
 The postfix proxies may need to have different names. Or only one should be active via a loadbalancer at the region level and not at the host level. This requires that the proxies inform all other proxies of mail destination. This requires service discovery probably via a simple DNS SRV record setup.
 
-### Base Stack Install
+## Base Stack Install
 
-You must supply a postfix hostname.
-If you do not supply the postfix hostname 'hostname -f' fails in the postfix-dockprox container configuration.
+## Reboot Rancher System
+
+You should always start up the rancher cluster by starting the nodes first and then the rancher controller. On shutdown the reverse should be executued: First power off Rancher then the nodes.
+
+In many cases the affintity rules regarding backup Odoo and DB fail on reboot. E.g. the primary and the backup stack parts end up on the same node.
+
+## DNS subsystem
+
+You will need to manually cleanup unused A records in Google Cloud DNS.
