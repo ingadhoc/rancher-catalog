@@ -2,7 +2,7 @@
 Rancher catalog adhoc-rancher for Odoo ERP Docker based hosting.
 
 ## Status
-Scheduled March 1 Beta realease is on track. Almost all is non Rancher related. Rancher/Docker areas thart could beneifit from expert help maybe are: SSL cert store, Service backup and other Rancher/Docker architecture issues.
+Scheduled March 1 Beta realease is on track. Almost all work so far is non Rancher related, it is custom Docker container work for automation of node services (*a la* genbot etc) in the base stack. Rancher/Docker areas thart could beneifit from expert help maybe are: SSL cert store, Service backup and other Rancher/Docker architecture issues.
 ### Open issues
 * Manual SSL cert install for alternative host names.
 * No backup mechanism in place for Odoo stack.
