@@ -8,5 +8,5 @@ Postfix email proxy, Aeroo reports, Nginx proxy with LetsEncrypt SSL management 
 
 ## nginxssl-dockprox: Some Preliminary Notes
 
-Make sure you have the same /etc/letsencrypt dir content on all of your Rancker controlled hosts or you may
+Make sure you have the same /etc/letsencrypt dir content on all of your Rancher controlled hosts or you may
 exceed the permitted CertBOT weekly certificates number!
