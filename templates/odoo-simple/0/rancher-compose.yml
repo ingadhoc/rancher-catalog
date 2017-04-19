@@ -18,6 +18,20 @@ catalog:
       required: true
       default: "{io.rancher.stack.name}"
 
+    - variable: strAdminPassword
+      label: "Odoo ADMIN_PASSWORD"
+      description: "Odoo ADMIN_PASSWORD environment var"
+      type: "string"
+      required: true
+      default: "admin"
+
+    - variable: strDatabase
+      label: "Initial Odoo DB Name"
+      description: "The Odoo PostgreSQL database to be created on deploy"
+      type: "string"
+      required: true
+      default: "default"
+
     - variable: strServerMode
       label: "Odoo SERVER_MODE"
       description: "Odoo SERVER_MODE environment var"
@@ -38,20 +52,6 @@ catalog:
       type: "boolean"
       required: true 
       default: True
-
-    - variable: strAdminPassword
-      label: "Odoo ADMIN_PASSWORD"
-      description: "Odoo ADMIN_PASSWORD environment var"
-      type: "string"
-      required: true
-      default: "admin"
-
-    - variable: strDatabase
-      label: "Initial Odoo DB Name"
-      description: "The Odoo PostgreSQL database to be created on deploy"
-      type: "string"
-      required: true
-      default: "default"
 
     - variable: strBackupOptions
       label: "Optional backup options"
