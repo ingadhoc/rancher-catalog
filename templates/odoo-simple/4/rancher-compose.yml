@@ -37,7 +37,7 @@
     - variable: strAdminPassword
       label: "Odoo ADMIN_PASSWORD"
       description: "Odoo ADMIN_PASSWORD environment var"
-      type: "password"
+      type: "string"
       required: true
       default: "admin"
 
