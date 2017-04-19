@@ -18,12 +18,12 @@ catalog:
       required: true
       default: "{io.rancher.stack.name}"
 
-    - variable: strAdminPassword
+    - variable: strOdooPassword
       label: "Odoo ADMIN_PASSWORD"
       description: "Odoo ADMIN_PASSWORD environment var"
       type: "string"
       required: true
-      default: ""
+      default: "admin"
 
     - variable: strDatabase
       label: "Initial Odoo DB Name"

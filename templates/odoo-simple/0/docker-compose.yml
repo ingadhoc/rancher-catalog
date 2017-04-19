@@ -43,7 +43,7 @@ services:
             - ADMIN_PASSWORD=admin
             - SERVER_MODE=$strServerMode
             - WORKERS=$intWorkers
-            - ADMIN_PASSWORD=$strAdminPassword
+            - ADMIN_PASSWORD=$strOdooPassword
             - WITHOUT_DEMO=$boolWithoutDemo
 #Backup system on other host
     dbdata-backup:
