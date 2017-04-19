@@ -1,11 +1,11 @@
 version: 2
 catalog:
 
-  name: "AdHoc Odoo Stack"
+  name: "AdHoc Odoo"
 
   version: "1.0.0-rancher"
 
-  description: "AdHoc Odoo Hosting (AOH) single Odoo stack w/sidekick storage and backup. Plus health checks and alternate server names. Has new configuration items."
+  description: "AdHoc Odoo Hosting (AOH) single Odoo 9 stack w/sidekick storage and backup. Plus health checks and alternate server name support. "
 
   minimum_rancher_version: v1.3.2
 
@@ -18,7 +18,7 @@ catalog:
       required: true
       default: "{io.rancher.stack.name}"
 
-    - variable: strOdooPassword
+    - variable: strAdminPassword
       label: "Odoo ADMIN_PASSWORD"
       description: "Odoo ADMIN_PASSWORD environment var"
       type: "string"

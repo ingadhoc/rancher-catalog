@@ -40,10 +40,9 @@ services:
             - CREATE_DBNAME=$strDatabase
             - VIRTUAL_PORT=8069,8072
             - ODOO_VERSION=9.0
-            - ADMIN_PASSWORD=admin
             - SERVER_MODE=$strServerMode
             - WORKERS=$intWorkers
-            - ADMIN_PASSWORD=$strOdooPassword
+            - ADMIN_PASSWORD=$strAdminPassword
             - WITHOUT_DEMO=$boolWithoutDemo
 #Backup system on other host
     dbdata-backup:
