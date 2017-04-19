@@ -23,7 +23,7 @@ catalog:
       description: "Odoo ADMIN_PASSWORD environment var"
       type: "string"
       required: true
-      default: "admin"
+      default: ""
 
     - variable: strDatabase
       label: "Initial Odoo DB Name"
