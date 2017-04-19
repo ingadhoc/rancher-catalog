@@ -34,6 +34,13 @@
       required: false
       default: ""
 
+    - variable: strVolumeOptions
+      description: "Name to be used to create volumns"
+      label: "Volume Names - You can use the same name of the Stack"
+      type: "string"
+      required: true
+      default: "my_company"
+
 #scaling and health checks per service as per docker-compose.yml
 version: 2
 services:
