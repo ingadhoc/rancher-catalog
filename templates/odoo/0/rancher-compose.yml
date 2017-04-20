@@ -29,7 +29,7 @@
 
     - variable: strServerMode
       label: "Odoo SERVER_MODE"
-      description: "Odoo SERVER_MODE environment var"
+      description: "Odoo SERVER_MODE environment var (leave empty for production environment)"
       type: "string"
       required: false
       default: ""
