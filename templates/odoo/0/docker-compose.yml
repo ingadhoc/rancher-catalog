@@ -8,7 +8,7 @@ db:
         - ${strVolumeOptions}_db:/var/lib/postgresql
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 odoo:
-    image: adhoc/odoo-ar:9.0
+    image: ${strOdooImage}
     external_links:
         - base/aeroo-docs:aeroo
         - base/postfix-dockprox:smtp
