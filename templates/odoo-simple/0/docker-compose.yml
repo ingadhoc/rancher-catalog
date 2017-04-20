@@ -1,6 +1,6 @@
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 db:
-    image: postgres:9.5
+    image: postgres:9.6
     environment:
         - POSTGRES_USER=odoo
         - POSTGRES_PASSWORD=odoo
@@ -16,7 +16,6 @@ odoo:
         - db:db
     volumes:
         - ${strVolumeOptions}_odoo:/opt/odoo/data
-        - ${strVolumeOptions}_odoo_custom:/opt/odoo/custom-addons
     environment:
         - VIRTUAL_HOST=$strVirtualHostProd
         - cOtherServerNames=$cOtherServerNames
@@ -28,32 +27,3 @@ odoo:
         - ADMIN_PASSWORD=$strAdminPassword
         - WITHOUT_DEMO=$boolWithoutDemo
         - SMTP_HOST=smtp
-
-#Backup system on other host
-db-backup:
-    image: postgres:9.5
-    environment:
-        - POSTGRES_USER=odoo
-        - POSTGRES_PASSWORD=odoo
-        - BACKUP_OPTIONS=$strBackupOptions
-    links:
-        - db:db
-
-odoo-backup:
-    image: adhoc/odoo-ar:9.0
-    external_links:
-        - base/aeroo-docs:aeroo
-    links:
-        - db-backup:db
-    volumes:
-        - ${strVolumeOptions}_odoo:/opt/odoo/data
-        - ${strVolumeOptions}_odoo_custom:/opt/odoo/custom-addons
-    environment:
-        - VIRTUAL_HOST=backup.$strVirtualHostProd
-        - CREATE_DBNAME=$strDatabase
-        - VIRTUAL_PORT=8069,8072
-        - ODOO_VERSION=9.0
-        - ADMIN_PASSWORD=admin
-        - WORKERS=0
-        - BACKUP_OPTIONS=$strBackupOptions
-        - SERVER_MODE=

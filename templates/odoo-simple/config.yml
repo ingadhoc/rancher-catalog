@@ -1,5 +1,6 @@
-name: AdHoc Odoo 9
+name: Odoo
 description: |
-  20170420000 AdHoc Odoo Hosting (AOH) Odoo 9.0 stack.
-version: 20170420000
+  Odoo Hosting
+version: 1.0
 category: ERP
+projectURL: https://github.com/ingadhoc/adhoc-rancher
