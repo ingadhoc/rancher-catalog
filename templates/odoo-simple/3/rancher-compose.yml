@@ -29,10 +29,17 @@
 
     - variable: cOtherServerNames
       label: "Optional server names for nginx"
-      description: "A semicolon (;) separated and terminated list of domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com;www.acme.org;"
+      description: "A semicolon (;) separated and terminated list of max 8 domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com;www.acme.org;"
       type: "string"
       required: false
       default: ""
+
+    - variable: strVolumeOptions
+      description: "Name to be used to create volumns"
+      label: "Volume Names - You can use the same name of the Stack"
+      type: "string"
+      required: true
+      default: "my_company"
 
 #scaling and health checks per service as per docker-compose.yml
 version: 2
