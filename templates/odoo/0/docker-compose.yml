@@ -32,8 +32,8 @@ services:
             - ADMIN_PASSWORD=$strAdminPassword
             - WITHOUT_DEMO=$boolWithoutDemo
             - SMTP_HOST=smtp
-volumes:
-    odoo_data:
-        driver: rancher-nfs
-    db_data:
-        driver: rancher-nfs
+# volumes:
+#     odoo_data:
+#         driver: rancher-nfs
+#     db_data:
+#         driver: rancher-nfs

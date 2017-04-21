@@ -6,12 +6,13 @@
   minimum_rancher_version: v1.3.2
   questions:
 
-    - variable: strVirtualHostProd
-      label: "Odoo Production DNS Hostname"
-      description: "The DNS hostname. Used by any DNS agents and by http proxies. E.g. myapp0.domain.io"
-      type: "string"
-      required: true
-      default: "{io.rancher.stack.name}"
+    # we force to use stack name
+    # - variable: strVirtualHostProd
+    #   label: "Odoo Production DNS Hostname"
+    #   description: "The DNS hostname. Used by any DNS agents and by http proxies. E.g. myapp0.domain.io"
+    #   type: "string"
+    #   required: true
+    #   default: "{io.rancher.stack.name}"
 
     - variable: strAdminPassword
       label: "Odoo ADMIN_PASSWORD"
@@ -48,12 +49,12 @@
       required: true 
       default: True
 
-    # - variable: cOtherServerNames
-    #   label: "Optional server names for nginx"
-    #   description: "A semicolon (;) separated and terminated list of max 8 domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com;www.acme.org;"
-    #   type: "string"
-    #   required: false
-    #   default: ""
+    - variable: cOtherServerNames
+      label: "Optional server names for nginx"
+      description: "A semicolon (;) separated and terminated list of max 8 domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com;www.acme.org;"
+      type: "string"
+      required: false
+      default: ""
 
     # al final directamente usamos el nombre
     # - variable: strVolumeOptions
