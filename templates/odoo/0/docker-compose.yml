@@ -1,33 +1,34 @@
 version: '2'
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-db:
-    image: postgres:9.6
-    environment:
-        - POSTGRES_USER=odoo
-        - POSTGRES_PASSWORD=odoo
-    volumes:
-        - db_data:/var/lib/postgresql
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-odoo:
-    image: ${strOdooImage}
-    external_links:
-        - base/aeroo-docs:aeroo
-        - base/postfix-dockprox:smtp
-    links:
-        - db:db
-    volumes:
-        - odoo_data:/opt/odoo/data
-    environment:
-        - VIRTUAL_HOST=$strVirtualHostProd
-        - cOtherServerNames=$cOtherServerNames
-        - CREATE_DBNAME=$strDatabase
-        - VIRTUAL_PORT=8069,8072
-        - ODOO_VERSION=9.0
-        - SERVER_MODE=$strServerMode
-        - WORKERS=$intWorkers
-        - ADMIN_PASSWORD=$strAdminPassword
-        - WITHOUT_DEMO=$boolWithoutDemo
-        - SMTP_HOST=smtp
+services:
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    db:
+        image: postgres:9.6
+        environment:
+            - POSTGRES_USER=odoo
+            - POSTGRES_PASSWORD=odoo
+        volumes:
+            - db_data:/var/lib/postgresql
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    odoo:
+        image: ${strOdooImage}
+        external_links:
+            - base/aeroo-docs:aeroo
+            - base/postfix-dockprox:smtp
+        links:
+            - db:db
+        volumes:
+            - odoo_data:/opt/odoo/data
+        environment:
+            - VIRTUAL_HOST=$strVirtualHostProd
+            - cOtherServerNames=$cOtherServerNames
+            - CREATE_DBNAME=$strDatabase
+            - VIRTUAL_PORT=8069,8072
+            - ODOO_VERSION=9.0
+            - SERVER_MODE=$strServerMode
+            - WORKERS=$intWorkers
+            - ADMIN_PASSWORD=$strAdminPassword
+            - WITHOUT_DEMO=$boolWithoutDemo
+            - SMTP_HOST=smtp
 volumes:
     odoo_data:
         driver: rancher-nfs
