@@ -17,10 +17,10 @@ services:
         links:
             - db:db
         labels:
-            - traefik.enable:stack
-            - traefik.domain:dev-adhoc.com
-            - traefik.port:8069
-            - traefik.alias.fqdn:$cOtherServerNames
+            - traefik.enable=stack
+            - traefik.domain=dev-adhoc.com
+            - traefik.port=8069
+            - traefik.alias.fqdn=$cOtherServerNames
         volumes:
             - odoo_data:/opt/odoo/data
         environment:
