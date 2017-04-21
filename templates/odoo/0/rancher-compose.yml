@@ -55,12 +55,13 @@
     #   required: false
     #   default: ""
 
-    - variable: strVolumeOptions
-      label: "Volume Names - You can use the same name of the Stack"
-      description: "Name to be used to create volumns"
-      type: "string"
-      required: true
-      default: "{io.rancher.stack.name}"
+    # al final directamente usamos el nombre
+    # - variable: strVolumeOptions
+    #   label: "Volume Names - You can use the same name of the Stack"
+    #   description: "Name to be used to create volumns"
+    #   type: "string"
+    #   required: true
+    #   default: "{io.rancher.stack.name}"
 
     - variable: strOdooImage
       label: "Name and tag of odoo image to be used"

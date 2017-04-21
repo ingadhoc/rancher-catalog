@@ -5,7 +5,7 @@ db:
         - POSTGRES_USER=odoo
         - POSTGRES_PASSWORD=odoo
     volumes:
-        - ${strVolumeOptions}_db:/var/lib/postgresql
+        - ${strVirtualHostProd}_db:/var/lib/postgresql
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 odoo:
     image: ${strOdooImage}
@@ -15,7 +15,7 @@ odoo:
     links:
         - db:db
     volumes:
-        - ${strVolumeOptions}_odoo:/opt/odoo/data
+        - ${strVirtualHostProd}_odoo:/opt/odoo/data
     environment:
         - VIRTUAL_HOST=$strVirtualHostProd
         - cOtherServerNames=$cOtherServerNames
@@ -27,3 +27,8 @@ odoo:
         - ADMIN_PASSWORD=$strAdminPassword
         - WITHOUT_DEMO=$boolWithoutDemo
         - SMTP_HOST=smtp
+volumes:
+  ${strVirtualHostProd}_odoo:
+    driver: rancher-nfs
+  ${strVirtualHostProd}_db:
+    driver: rancher-nfs
