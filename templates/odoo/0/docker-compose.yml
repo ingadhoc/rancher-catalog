@@ -6,11 +6,11 @@ services:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            # - db_data:/var/lib/postgresql/data
             # TODO check if we use subdirectory as recommended here for GCE
             # https://hub.docker.com/_/postgres/
+            - db_data:/var/lib/postgresql/data
     odoo:
-        image: ${strOdooImage}
+        image: adhoc/odoo-ar-e:${strOdooVersion}
         external_links:
             - base/aeroo-docs:aeroo
             - base/postfix-dockprox:smtp
@@ -24,14 +24,14 @@ services:
         volumes:
             - odoo_data:/opt/odoo/data
         environment:
-            - CREATE_DBNAME=$strDatabase
+            # TODO remove or use
+            # - SMTP_HOST=smtp
             - VIRTUAL_PORT=8069,8072
-            - ODOO_VERSION=9.0
+            - CREATE_DBNAME=$strDatabase
             - SERVER_MODE=$strServerMode
             - WORKERS=$intWorkers
             - ADMIN_PASSWORD=$strAdminPassword
             - WITHOUT_DEMO=$boolWithoutDemo
-            - SMTP_HOST=smtp
 volumes:
     odoo_data:
         driver: rancher-nfs

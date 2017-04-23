@@ -64,12 +64,12 @@
     #   required: true
     #   default: "{io.rancher.stack.name}"
 
-    - variable: strOdooImage
-      label: "Name and tag of odoo image to be used"
-      description: "Volume Names - You can use the same name of the Stack"
+    - variable: strOdooVersion
+      label: "Tag for the odoo image to be used"
+      description: "Odoo version can be 8.0 or 9.0 for now"
       type: "string"
       required: true
-      default: "adhoc/odoo-ar-e:9.0"
+      default: "9.0"
 
 #scaling and health checks per service as per docker-compose.yml
 version: 2
