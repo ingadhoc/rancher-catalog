@@ -1,14 +1,14 @@
 version: '2'
 services:
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     db:
         image: postgres:9.6
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
         volumes:
-            - db_data:/var/lib/postgresql
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            # - db_data:/var/lib/postgresql/data
+            # TODO check if we use subdirectory as recommended here for GCE
+            # https://hub.docker.com/_/postgres/
     odoo:
         image: ${strOdooImage}
         external_links:
@@ -18,7 +18,7 @@ services:
             - db:db
         labels:
             - traefik.enable=stack
-            - traefik.domain=dev-adhoc.com
+            - traefik.domain=juan.dev-adhoc.com
             - traefik.port=8069
             - traefik.alias.fqdn=$cOtherServerNames
         volumes:
@@ -32,8 +32,10 @@ services:
             - ADMIN_PASSWORD=$strAdminPassword
             - WITHOUT_DEMO=$boolWithoutDemo
             - SMTP_HOST=smtp
-# volumes:
-#     odoo_data:
-#         driver: rancher-nfs
-#     db_data:
-#         driver: rancher-nfs
+volumes:
+    odoo_data:
+        driver: rancher-nfs
+        external: false
+    db_data:
+        driver: rancher-nfs
+        external: false
