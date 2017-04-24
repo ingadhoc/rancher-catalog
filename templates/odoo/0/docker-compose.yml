@@ -33,11 +33,12 @@ services:
             - WORKERS=$intWorkers
             - ADMIN_PASSWORD=$strAdminPassword
     nginx:
-        image: nginx
+        image: adhoc/odoo-nginx
+        # image: nginx
         links:
             - odoo:odoo
-        volumes:
-            - nginx_conf:/etc/nginx/nginx.conf:ro
+        # volumes:
+        #     - nginx_conf:/etc/nginx/nginx.conf:ro
 volumes:
     odoo_data:
         driver: rancher-nfs
