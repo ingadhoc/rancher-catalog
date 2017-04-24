@@ -27,8 +27,9 @@ services:
             # TODO remove or use
             # - SMTP_HOST=smtp
             # - WITHOUT_DEMO=$boolWithoutDemo
-            # - CREATE_DBNAME=$strDatabase
             # - VIRTUAL_PORT=8069,8072
+            - CREATEDB=True
+            - DATABASE=$strDatabase
             - SERVER_MODE=$strServerMode
             - WORKERS=$intWorkers
             - ADMIN_PASSWORD=$strAdminPassword

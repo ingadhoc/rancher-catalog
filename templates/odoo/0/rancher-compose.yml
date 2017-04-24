@@ -21,12 +21,13 @@
       required: true
       default: "admin"
 
-    # - variable: strDatabase
-    #   label: "Initial Odoo DB Name"
-    #   description: "The Odoo PostgreSQL database to be created on deploy"
-    #   type: "string"
-    #   required: true
-    #   default: "default"
+    - variable: strDatabase
+      label: "Initial Odoo DB Name"
+      description: "The Odoo PostgreSQL database to be created on deploy"
+      type: "string"
+      required: false
+      # required: true
+      # default: "default"
 
     - variable: strServerMode
       label: "Odoo SERVER_MODE"
