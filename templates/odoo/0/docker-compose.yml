@@ -26,12 +26,18 @@ services:
         environment:
             # TODO remove or use
             # - SMTP_HOST=smtp
-            - VIRTUAL_PORT=8069,8072
-            - CREATE_DBNAME=$strDatabase
+            # - WITHOUT_DEMO=$boolWithoutDemo
+            # - CREATE_DBNAME=$strDatabase
+            # - VIRTUAL_PORT=8069,8072
             - SERVER_MODE=$strServerMode
             - WORKERS=$intWorkers
             - ADMIN_PASSWORD=$strAdminPassword
-            - WITHOUT_DEMO=$boolWithoutDemo
+    nginx:
+        image: nginx
+        links:
+            - odoo:odoo
+        volumes:
+            - nginx_conf:/etc/nginx/nginx.conf:ro
 volumes:
     odoo_data:
         driver: rancher-nfs
@@ -39,3 +45,6 @@ volumes:
     db_data:
         driver: rancher-nfs
         external: false
+    nginx_conf:
+        driver: rancher-nfs
+        external: true

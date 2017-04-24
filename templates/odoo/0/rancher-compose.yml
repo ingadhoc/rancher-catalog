@@ -42,12 +42,13 @@
       required: true
       default: "0"
 
-    - variable: boolWithoutDemo
-      label: "Odoo WITHOUT_DEMO"
-      description: "Odoo WITHOUT_DEMO environment var"
-      type: "boolean"
-      required: true 
-      default: True
+    # en realidad esta variable no suma, la consideramos solo si creamos bds
+    # - variable: boolWithoutDemo
+    #   label: "Odoo WITHOUT_DEMO"
+    #   description: "Odoo WITHOUT_DEMO environment var"
+    #   type: "boolean"
+    #   required: true 
+    #   default: True
 
     - variable: cOtherServerNames
       label: "Optional server names for nginx"
