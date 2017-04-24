@@ -16,11 +16,11 @@ services:
             - base/postfix-dockprox:smtp
         links:
             - db:db
-        labels:
-            - traefik.enable=stack
-            - traefik.domain=juan.dev-adhoc.com
-            - traefik.port=8069
-            - traefik.alias.fqdn=$cOtherServerNames
+        # labels:
+        #     - traefik.enable=stack
+        #     - traefik.domain=juan.dev-adhoc.com
+        #     - traefik.port=8069
+        #     - traefik.alias.fqdn=$cOtherServerNames
         volumes:
             - odoo_data:/opt/odoo/data
         environment:
@@ -37,6 +37,11 @@ services:
         # image: nginx
         links:
             - odoo:odoo
+        labels:
+            - traefik.enable=stack
+            - traefik.domain=juan.dev-adhoc.com,juans.dev-adhoc.com
+            - traefik.port=80
+            - traefik.alias.fqdn=$cOtherServerNames
         # volumes:
         #     - nginx_conf:/etc/nginx/nginx.conf:ro
 volumes:
