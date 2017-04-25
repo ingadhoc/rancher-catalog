@@ -31,8 +31,9 @@ services:
             # - VIRTUAL_PORT=8069,8072
             # TODO borrar o usar, al final fuimos por hacer la config con odoo ws porque la var de stack_name no funciona y ademas queremos configurar el freeze y otros
             # - MAIL_CATCHALL_DOMAIN={$stack_name}.juans.dev-adhoc.com
+            # TODO borrar al final no lo usamos porque crear la bd desde odoo nos da mas control como por ej idioma, pais y tmb es mas estandar porque usamos ws de odoo
+            # - CREATEDB=True
             - SMTP_SERVER=smtp
-            - CREATEDB=True
             - DATABASE=$strDatabase
             - SERVER_MODE=$strServerMode
             - WORKERS=$intWorkers
