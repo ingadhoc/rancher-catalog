@@ -3,19 +3,19 @@ services:
     db:
         image: postgres:9.6
         environment:
-            POSTGRES_USER: odoo
-            POSTGRES_PASSWORD: odoo
+            - POSTGRES_USER=odoo
+            - POSTGRES_PASSWORD=odoo
         volumes:
             # TODO check if we use subdirectory as recommended here for GCE
             # https://hub.docker.com/_/postgres/
-            db_data: /var/lib/postgresql/data
+            - db_data:/var/lib/postgresql/data
     odoo:
         image: adhoc/odoo-ar-e:${strOdooVersion}
         # external_links:
         #     - base/aeroo-docs:aeroo
         #     - base/postfix-dockprox:smtp
         links:
-            db: db
+            - db:db
         labels:
             io.rancher.service.selector.link: aeroo=True
             io.rancher.container.pull_image: always
@@ -24,7 +24,7 @@ services:
         #     - traefik.port=8069
         #     - traefik.alias.fqdn=$cOtherServerNames
         volumes:
-            odoo_data: /opt/odoo/data
+            - odoo_data:/opt/odoo/data
         environment:
             # TODO remove or use
             # - SMTP_HOST=smtp
@@ -32,21 +32,21 @@ services:
             # - VIRTUAL_PORT=8069,8072
             # TODO borrar o usar, al final fuimos por hacer la config con odoo ws porque la var de stack_name no funciona y ademas queremos configurar el freeze y otros
             # - MAIL_CATCHALL_DOMAIN={$stack_name}.juans.dev-adhoc.com
-            SMTP_SERVER: smtp
-            DATABASE: $strDatabase
-            SERVER_MODE: $strServerMode
-            WORKERS: $intWorkers
-            ADMIN_PASSWORD: $strAdminPassword
+            - SMTP_SERVER=smtp
+            - DATABASE=$strDatabase
+            - SERVER_MODE=$strServerMode
+            - WORKERS=$intWorkers
+            - ADMIN_PASSWORD=$strAdminPassword
     nginx:
         image: adhoc/odoo-nginx
         # image: nginx
         links:
-            odoo:odoo
+            - odoo:odoo
         labels:
-            traefik.enable: stack
-            traefik.domain: juan.dev-adhoc.com,juans.dev-adhoc.com
-            traefik.port: 80
-            traefik.alias.fqdn: $cOtherServerNames
+            - traefik.enable=stack
+            - traefik.domain=juan.dev-adhoc.com,juans.dev-adhoc.com
+            - traefik.port=80
+            - traefik.alias.fqdn=$cOtherServerNames
         # volumes:
         #     - nginx_conf:/etc/nginx/nginx.conf:ro
 volumes:
