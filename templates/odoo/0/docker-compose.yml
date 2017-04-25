@@ -11,18 +11,12 @@ services:
             - db_data:/var/lib/postgresql/data
     odoo:
         image: adhoc/odoo-ar-e:${strOdooVersion}
-        # external_links:
-        #     - base/aeroo-docs:aeroo
-        #     - base/postfix-dockprox:smtp
-        links:
-            - db:db
+        depends_on:
+            - db
         labels:
             io.rancher.service.selector.link: aeroo=True
+            io.rancher.service.selector.link: postfix=True
             io.rancher.container.pull_image: always
-        #     - traefik.enable=stack
-        #     - traefik.domain=juan.dev-adhoc.com
-        #     - traefik.port=8069
-        #     - traefik.alias.fqdn=$cOtherServerNames
         volumes:
             - odoo_data:/opt/odoo/data
         environment:
@@ -39,9 +33,8 @@ services:
             - ADMIN_PASSWORD=$strAdminPassword
     nginx:
         image: adhoc/odoo-nginx
-        # image: nginx
-        links:
-            - odoo:odoo
+        depends_on:
+            - odoo
         labels:
             - traefik.enable=stack
             - traefik.domain=juan.dev-adhoc.com,juans.dev-adhoc.com

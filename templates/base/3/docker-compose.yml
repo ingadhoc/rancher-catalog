@@ -20,6 +20,7 @@ services:
             # no need to have one on each host but better to distribute load
             io.rancher.scheduler.global: 'true'
             io.rancher.container.pull_image: always
+            # used to be autolinked on odoo containers
             aeroo: True
         image: adhoc/aeroo-docs
     postfix-dockprox:
@@ -28,6 +29,8 @@ services:
         labels:
             io.rancher.scheduler.global: 'true'
             io.rancher.container.pull_image: always
+            # used to be autolinked on odoo containers
+            postfix: True
         environment:
             - cMyHostname=$cMyHostname
             # - cMyDestination=$cMyDestination
