@@ -28,7 +28,9 @@ services:
             # - SMTP_HOST=smtp
             # - WITHOUT_DEMO=$boolWithoutDemo
             # - VIRTUAL_PORT=8069,8072
-            - MAIL_CATCHALL_DOMAIN={$service_name}.juans.dev-adhoc.com
+            # TODO borrar o usar, al final fuimos por hacer la config con odoo ws porque la var de stack_name no funciona y ademas queremos configurar el freeze y otros
+            # - MAIL_CATCHALL_DOMAIN={$stack_name}.juans.dev-adhoc.com
+            - SMTP_SERVER=smtp
             - CREATEDB=True
             - DATABASE=$strDatabase
             - SERVER_MODE=$strServerMode
