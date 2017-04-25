@@ -16,7 +16,8 @@ services:
             - base/postfix-dockprox:smtp
         links:
             - db:db
-        # labels:
+        labels:
+            - io.rancher.container.pull_image=always
         #     - traefik.enable=stack
         #     - traefik.domain=juan.dev-adhoc.com
         #     - traefik.port=8069
