@@ -1,5 +1,5 @@
-name: AOH Base
+name: Odoo Hosting Base Stack
 description: |
-  20170404002 AdHoc Odoo Hosting (AOH) system base stack. 
+  Stack to be deploy on each host where you use odoo stacks
 version: 20170404002
 category: ERP
