@@ -28,6 +28,7 @@ services:
             # - SMTP_HOST=smtp
             # - WITHOUT_DEMO=$boolWithoutDemo
             # - VIRTUAL_PORT=8069,8072
+            - MAIL_CATCHALL_DOMAIN=${STACK_NAME}.juans.dev-adhoc.com
             - CREATEDB=True
             - DATABASE=$strDatabase
             - SERVER_MODE=$strServerMode
