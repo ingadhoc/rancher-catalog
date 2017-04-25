@@ -14,6 +14,7 @@ services:
     #     - /etc/letsencrypt:/etc/letsencrypt:rw
     #     stdin_open: true
     aeroo-docs:
+        image: adhoc/aeroo-docs
         # ports:
         #     - 8989:8989/tcp
         labels:
@@ -21,16 +22,15 @@ services:
             io.rancher.scheduler.global: 'true'
             io.rancher.container.pull_image: always
             # used to be autolinked on odoo containers
-            aeroo: True
-        image: adhoc/aeroo-docs
-    postfix-dockprox:
+            odoo_service: True
+    postfix:
         ports:
             - 25:25/tcp
         labels:
             io.rancher.scheduler.global: 'true'
             io.rancher.container.pull_image: always
             # used to be autolinked on odoo containers
-            postfix: True
+            odoo_service: True
         environment:
             - cMyHostname=$cMyHostname
             # - cMyDestination=$cMyDestination

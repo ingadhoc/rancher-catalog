@@ -14,8 +14,7 @@ services:
         depends_on:
             - db
         labels:
-            io.rancher.service.selector.link: aeroo=True
-            io.rancher.service.selector.link: postfix=True
+            io.rancher.service.selector.link: odoo_service=True
             io.rancher.container.pull_image: always
         volumes:
             - odoo_data:/opt/odoo/data
@@ -26,7 +25,7 @@ services:
             # - VIRTUAL_PORT=8069,8072
             # TODO borrar o usar, al final fuimos por hacer la config con odoo ws porque la var de stack_name no funciona y ademas queremos configurar el freeze y otros
             # - MAIL_CATCHALL_DOMAIN={$stack_name}.juans.dev-adhoc.com
-            - SMTP_SERVER=smtp
+            - SMTP_SERVER=postfix
             - DATABASE=$strDatabase
             - SERVER_MODE=$strServerMode
             - WORKERS=$intWorkers
