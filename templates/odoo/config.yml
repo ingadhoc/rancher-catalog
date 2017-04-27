@@ -1,6 +1,6 @@
-name: Odoo
+name: Odoo bty ADHOC 
 description: |
-  Odoo Hosting
+  Odoo customized by ADHOC
 version: 1.0
 category: ERP
 projectURL: https://github.com/ingadhoc/adhoc-rancher

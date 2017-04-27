@@ -1,5 +1,5 @@
-Installs a basic per node base stack for AdHoc Odoo hosting. 
+## ADHOC Odoo Hosting Base Stack.
 
-Installs: Aeroo-docs, nginx-dockprox and postfix-dockprox on every node for use with AdHoc simple and multiple Odoo ERP stacks.
+Base stack picks up changes and provides and configures the following:
 
-If you need Google Cloud DNS public A record IPs for each Odoo use the DNS enabled base stack version.
+Postfix email proxy, Aeroo reports.

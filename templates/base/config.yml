@@ -1,5 +1,5 @@
-name: Odoo Hosting Base Stack
+name: ADHOC Odoo Hosting Base Stack
 description: |
   Stack to be deploy on each host where you use odoo stacks
-version: 20170404002
+version: 1.0
 category: ERP
