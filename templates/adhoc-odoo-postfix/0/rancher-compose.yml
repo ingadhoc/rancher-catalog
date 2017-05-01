@@ -8,7 +8,8 @@
     # Variables for receiving emails
     - variable: cCatchallDomain
       label: "Catchall Domain"
-      description: "domain that is using as wildcar for the catchall, for eg 'nubeadhoc.com'. We use it to check if incoming email to addrees, has that domain or not."
+      description: "aa"
+      # description: "domain that is using as wildcar for the catchall, for eg 'nubeadhoc.com'. We use it to check if incoming email to addrees, has that domain or not."
       type: "string"
       required: true
       default: "nubeadhoc.com"
@@ -20,9 +21,10 @@
       required: true
       default: "/(.*)nubeadhoc\.com$/"
 
-    - variable: MailAdmins
+    - variable: cMailAdmins
       label: "Mail Admins"
-      description: "Tuple of eMails where wrong deliveryies will be notified splitted by ',' and between ()"
+      description: "aa"
+      # description: "Tuple of eMails where wrong deliveryies will be notified splitted by ',' and between ()"
       type: "string"
       required: true
       default: "('info@example.com',)"
