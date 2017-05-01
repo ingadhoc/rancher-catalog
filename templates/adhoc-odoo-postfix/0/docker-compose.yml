@@ -14,9 +14,8 @@ services:
             - DOMAIN_REGEX=$cDomainRegex
             - MAIL_ADMINS=$MailAdmins
             # variables for sending emails
-            - cMyHostname=$cMyHostname
+            # - cMyHostname=$cMyHostname
             - cRelayHostLine=$cRelayHostLine
             - cRelaySASLUser=$cRelaySASLUser
             - cRelaySASLPasswd=$cRelaySASLPasswd
-            - cDomainsRegex1=$cMyHostname
         image: adhoc/odoo-postfix
