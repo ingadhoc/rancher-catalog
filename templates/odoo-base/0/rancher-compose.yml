@@ -2,7 +2,6 @@
   name: "ADHOC Odoo Hosting Base Stack"
   version: "1.0"
   description: "Stack to be deploy on each host where you use odoo stacks"
-  uuid: ingadhoc-base
   minimum_rancher_version: v1.3.2
   questions:
 

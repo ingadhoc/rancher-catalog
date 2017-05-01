@@ -3,3 +3,4 @@ description: |
   Stack to be deploy on each host where you use odoo stacks
 version: 1.0
 category: ERP
+projectURL: https://bitbucket.org/ingadhoc/rancher-catalog
