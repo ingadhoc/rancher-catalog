@@ -9,6 +9,11 @@ services:
             # used to be autolinked on odoo containers
             odoo_service: True
         environment:
+            # variables for receiving emails
+            - CATCHALL_DOMAIN=$cCatchallDomain
+            - DOMAIN_REGEX=$cDomainRegex
+            - MAIL_ADMINS=$MailAdmins
+            # variables for sending emails
             - cMyHostname=$cMyHostname
             - cRelayHostLine=$cRelayHostLine
             - cRelaySASLUser=$cRelaySASLUser

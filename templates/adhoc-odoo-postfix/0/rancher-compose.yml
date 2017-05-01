@@ -5,6 +5,29 @@
   minimum_rancher_version: v1.3.2
   questions:
 
+# Variables for receiving emails
+    - variable: cCatchallDomain
+      label: "Catchall Domain"
+      description: "domain that is using as wildcar for the catchall, for eg "nubeadhoc.com". We use it to check if incoming email to addrees, has that domain or not."
+      type: "string"
+      required: true
+      default: "nubeadhoc.com"
+
+    - variable: cDomainRegex
+      label: "Postfix Domain Regex"
+      description: "Postfix domain regex for accepting mail based on SaaS Odoo hosting shared domain. E.g. domain2.com"
+      type: "string"
+      required: true
+      default: "/(.*)nubeadhoc\.com$/"
+
+    - variable: MailAdmins
+      label: "Mail Admins"
+      description: "Tuple of eMails where wrong deliveryies will be notified splitted by "," and between ()"
+      type: "string"
+      required: true
+      default: "('info@example.com',)"
+
+# Variables for sending emails
     - variable: cMyHostname
       label: "Postfix Hostname"
       description: "Postfix main.cf myhostname configuration parameter. Usually FQDN of host. E.g. acme.company.org."
