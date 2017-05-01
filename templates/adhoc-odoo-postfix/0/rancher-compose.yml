@@ -14,12 +14,12 @@
     #   required: true
     #   default: "nubeadhoc.com"
 
-    # - variable: cDomainRegex
-    #   label: "Postfix Domain Regex"
-    #   description: "Postfix domain regex for accepting mail based on SaaS Odoo hosting shared domain. E.g. domain2.com"
-    #   type: "string"
-    #   required: true
-    #   default: "/(.*)nubeadhoc\.com$/"
+    - variable: cDomainRegex
+      label: "Postfix Domain Regex"
+      description: "Postfix domain regex for accepting mail based on SaaS Odoo hosting shared domain. E.g. domain2.com"
+      type: "string"
+      required: true
+      default: "/(.*)nubeadhoc\.com$/"
 
     - variable: cMailAdmins
       label: "Mail Admins"
