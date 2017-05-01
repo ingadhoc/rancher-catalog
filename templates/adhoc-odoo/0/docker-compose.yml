@@ -20,12 +20,12 @@ services:
             - odoo_data:/opt/odoo/data
         environment:
             # TODO remove or use
-            # - SMTP_HOST=smtp
             # - WITHOUT_DEMO=$boolWithoutDemo
             # - VIRTUAL_PORT=8069,8072
             # TODO borrar o usar, al final fuimos por hacer la config con odoo ws porque la var de stack_name no funciona y ademas queremos configurar el freeze y otros
             # - MAIL_CATCHALL_DOMAIN={$stack_name}.juans.dev-adhoc.com
             - SMTP_SERVER=postfix
+            - AEROO_DOCS_HOST=aeroo-docs
             - DATABASE=$strDatabase
             - SERVER_MODE=$strServerMode
             - WORKERS=$intWorkers

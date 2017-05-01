@@ -19,4 +19,4 @@ services:
             - cRelaySASLUser=$cRelaySASLUser
             - cRelaySASLPasswd=$cRelaySASLPasswd
             - cDomainsRegex1=$cMyHostname
-        image: unxsio/postfix-dockprox
+        image: adhoc/odoo-postfix

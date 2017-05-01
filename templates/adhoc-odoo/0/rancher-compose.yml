@@ -21,7 +21,7 @@
       default: "admin"
 
     - variable: strDatabase
-      label: "Initial Odoo DB Name"
+      label: "Odoo DB Name"
       description: "The Odoo PostgreSQL database to be created on deploy. If none is set, then no database is created"
       type: "string"
       required: false
