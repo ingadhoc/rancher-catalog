@@ -6,20 +6,20 @@
   questions:
 
     # Variables for receiving emails
-    # - variable: cCatchallDomain
-    #   label: "Catchall Domain"
-    #   description: "aa"
-    #   # description: "domain that is using as wildcar for the catchall, for eg 'nubeadhoc.com'. We use it to check if incoming email to addrees, has that domain or not."
-    #   type: "string"
-    #   required: true
-    #   default: "nubeadhoc.com"
+    - variable: cCatchallDomain
+      label: "Catchall Domain"
+      description: "aa"
+      # description: "domain that is using as wildcar for the catchall, for eg 'nubeadhoc.com'. We use it to check if incoming email to addrees, has that domain or not."
+      type: "string"
+      required: true
+      default: "nubeadhoc.com"
 
     - variable: cDomainRegex
       label: "Postfix Domain Regex"
       description: "Postfix domain regex for accepting mail based on SaaS Odoo hosting shared domain. E.g. domain2.com"
       type: "string"
       required: true
-      default: "/(.*)nubeadhoc\.com$/"
+      # default: "/(.*)nubeadhoc\.com$/"
 
     - variable: cMailAdmins
       label: "Mail Admins"
