@@ -1,7 +1,7 @@
 .catalog:
-  name: "ADHOC Odoo Hosting Base Stack"
+  name: "ADHOC Odoo Postfix"
   version: "1.0"
-  description: "Stack to be deploy on each host where you use odoo stacks"
+  description: "Postfix stack used to deliver mails to odoo stacks and also to send emails from stacks"
   minimum_rancher_version: v1.3.2
   questions:
 
@@ -47,14 +47,3 @@ services:
       strategy: recreate
       healthy_threshold: 2
       response_timeout: 2000
-  aeroo-docs:
-    scale: 1
-    health_check:
-      port: 8989
-      interval: 2000
-      initializing_timeout: 60000
-      unhealthy_threshold: 3
-      strategy: recreate
-      healthy_threshold: 2
-      response_timeout: 2000
-

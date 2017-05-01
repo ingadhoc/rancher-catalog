@@ -1,6 +1,6 @@
-name: ADHOC Odoo Hosting Base Stack
+name: ADHOC Aeroo Docs
 description: |
-  Stack to be deploy on each host where you use odoo stacks
+  Aeroo Docs Stack used to convert openoffice docs to pdf or office format
 version: 1.0
 category: ERP
 projectURL: https://bitbucket.org/ingadhoc/rancher-catalog

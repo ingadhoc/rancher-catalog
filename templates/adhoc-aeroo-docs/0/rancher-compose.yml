@@ -1,0 +1,23 @@
+.catalog:
+  name: "ADHOC Aeroo Docs Stack"
+  version: "1.0"
+  description: "Aeroo Docs Stack used to convert openoffice docs to pdf or office format"
+  minimum_rancher_version: v1.3.2
+  questions:
+
+#
+# Scaling and health checks per service as per docker-compose.yml
+#
+version: 2
+services:
+  aeroo-docs:
+    scale: 1
+    health_check:
+      port: 8989
+      interval: 2000
+      initializing_timeout: 60000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
+
