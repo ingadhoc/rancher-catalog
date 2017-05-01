@@ -5,6 +5,29 @@
   minimum_rancher_version: v1.3.2
   questions:
 
+# domain y alias configuration
+    - variable: strTraefikDomain
+      label: "Traefik domain"
+      description: "Base domain used to create subdomains to access this stack"
+      type: "string"
+      required: false
+      default: "dev-adhoc.com"
+
+    # TODO we would like to build this with the stack name + traefik domain 
+    - variable: strMailCatchallDomain
+      label: "Mail Catchall Domain"
+      description: "Domain used for catchall, usually same domain as instance domain"
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: cOtherServerNames
+      label: "Optional server names for nginx"
+      description: "A comma (,) separated and terminated list of max 8 domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com,www.acme.org;"
+      type: "string"
+      required: false
+      default: ""
+
     # we force to use stack name
     # - variable: strVirtualHostProd
     #   label: "Odoo Production DNS Hostname"
@@ -13,6 +36,7 @@
     #   required: true
     #   default: "{io.rancher.stack.name}"
 
+# odoo configuration parameters
     - variable: strAdminPassword
       label: "Odoo ADMIN_PASSWORD"
       description: "Odoo ADMIN_PASSWORD environment var"
@@ -49,13 +73,6 @@
     #   type: "boolean"
     #   required: true 
     #   default: True
-
-    - variable: cOtherServerNames
-      label: "Optional server names for nginx"
-      description: "A semicolon (;) separated and terminated list of max 8 domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com;www.acme.org;"
-      type: "string"
-      required: false
-      default: ""
 
     # al final directamente usamos el nombre
     # - variable: strVolumeOptions

@@ -30,13 +30,14 @@ services:
             - SERVER_MODE=$strServerMode
             - WORKERS=$intWorkers
             - ADMIN_PASSWORD=$strAdminPassword
+            - MAIL_CATCHALL_DOMAIN=$strMailCatchallDomain
     nginx:
         image: adhoc/odoo-nginx
         depends_on:
             - odoo
         labels:
             - traefik.enable=stack
-            - traefik.domain=juan.dev-adhoc.com,juans.dev-adhoc.com
+            - traefik.domain=$strTraefikDomain
             - traefik.port=80
             - traefik.alias.fqdn=$cOtherServerNames
         # volumes:
