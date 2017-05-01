@@ -12,7 +12,7 @@ services:
             # variables for receiving emails
             - CATCHALL_DOMAIN=$cCatchallDomain
             - DOMAIN_REGEX=$cDomainRegex
-            - MAIL_ADMINS=$MailAdmins
+            - MAIL_ADMINS=$cMailAdmins
             # variables for sending emails
             # - cMyHostname=$cMyHostname
             - cRelayHostLine=$cRelayHostLine
