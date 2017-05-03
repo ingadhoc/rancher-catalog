@@ -36,10 +36,11 @@ services:
         depends_on:
             - odoo
         labels:
-            - traefik.enable=stack
-            - traefik.domain=$strTraefikDomain
-            - traefik.port=80
-            - traefik.alias.fqdn=$cOtherServerNames
+            traefik.enable: stack
+            traefik.domain: $strTraefikDomain
+            traefik.port: 80
+            traefik.alias.fqdn: $cOtherServerNames
+            io.rancher.container.pull_image: always
         # volumes:
         #     - nginx_conf:/etc/nginx/nginx.conf:ro
 volumes:
