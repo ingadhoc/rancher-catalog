@@ -10,7 +10,7 @@ services:
             # https://hub.docker.com/_/postgres/
             - db_data:/var/lib/postgresql/data
     odoo:
-        image: adhoc/odoo-ar-e:${strOdooVersion}
+        image: adhoc/odoo-ar-e:9.0
         depends_on:
             - db
         labels:

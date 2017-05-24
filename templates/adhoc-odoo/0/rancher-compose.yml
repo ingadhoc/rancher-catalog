@@ -82,12 +82,14 @@
     #   required: true
     #   default: "{io.rancher.stack.name}"
 
-    - variable: strOdooVersion
-      label: "Tag for the odoo image to be used"
-      description: "Odoo version can be 8.0 or 9.0 for now"
-      type: "string"
-      required: true
-      default: "9.0"
+    # la idea es que la version del catalogo defina la version de la imagen
+    # de odoo
+    # - variable: strOdooVersion
+    #   label: "Tag for the odoo image to be used"
+    #   description: "Odoo version can be 8.0 or 9.0 for now"
+    #   type: "string"
+    #   required: true
+    #   default: "9.0"
 
 #scaling and health checks per service as per docker-compose.yml
 version: 2
