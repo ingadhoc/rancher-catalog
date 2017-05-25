@@ -1,5 +1,5 @@
 .catalog:
-  name: "ADHOC Odoo"
+  name: "ADHOC Odoo 9.0"
   version: "1.0"
   description: "All-in-one management software customized by ADHOC"
   minimum_rancher_version: v1.3.2

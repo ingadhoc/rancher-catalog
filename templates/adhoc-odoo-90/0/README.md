@@ -1,4 +1,4 @@
-## ADHOC Odoo
+## ADHOC Odoo 9.0
 
 Deploy Odoo and postgres
 
