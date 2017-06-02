@@ -50,6 +50,6 @@ volumes:
     db_data:
         driver: rancher-nfs
         external: false
-    nginx_conf:
-        driver: rancher-nfs
-        external: true
+    # nginx_conf:
+    #     driver: rancher-nfs
+    #     external: true
