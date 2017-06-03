@@ -10,14 +10,14 @@
       label: "Catchall Domain"
       description: "domain that is using as wildcar for the catchall, for eg 'nubeadhoc.com'. We use it to check if incoming email to addrees, has that domain or not."
       type: "string"
-      required: true
+      required: false
       default: "nubeadhoc.com"
 
     - variable: cDomainRegex
       label: "Postfix Domain Regex"
       description: "Postfix domain regex for accepting mail based on SaaS Odoo hosting shared domain. E.g. domain2.com"
       type: "string"
-      required: true
+      required: false
       # TODO ver como pasar este default o contruirlo
       # default: "/(.*)nubeadhoc\.com$/"
 
@@ -35,6 +35,13 @@
     #   type: "string"
     #   required: true
     #   default: "mail.sistemasadhoc.com"
+
+    - variable: cMyNetworks
+      label: "Optional My Networks"
+      description: ""
+      type: "string"
+      required: false
+      default: "10.0.0.0/8"
 
     - variable: cRelayHostLine
       label: "Optional Postfix Relay Host"

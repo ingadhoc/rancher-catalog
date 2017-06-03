@@ -15,6 +15,7 @@ services:
             - MAIL_ADMINS=$cMailAdmins
             # variables for sending emails
             # - cMyHostname=$cMyHostname
+            - MYNETWORKS=$cMyNetworks
             - cRelayHostLine=$cRelayHostLine
             - cRelaySASLUser=$cRelaySASLUser
             - cRelaySASLPasswd=$cRelaySASLPasswd
