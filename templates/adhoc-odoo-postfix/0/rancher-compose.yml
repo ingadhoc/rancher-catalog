@@ -23,10 +23,10 @@
 
     - variable: cMailAdmins
       label: "Mail Admins"
-      description: "Tuple of eMails where wrong deliveryies will be notified splitted by ',' and between ()"
+      description: "List of eMails where wrong deliveryies will be notified splitted by ','"
       type: "string"
       required: true
-      default: "('info@example.com',)"
+      default: "info@example.com"
 
   # Variables for sending emails
     # - variable: cMyHostname
