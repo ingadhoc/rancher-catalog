@@ -66,6 +66,35 @@
       required: true
       default: "0"
 
+  # SMTP variables
+    - variable: strSmtpServer
+      label: "SMTP Server"
+      type: "string"
+      required: false
+      default: "smtp.mailgun.org"
+
+    - variable: intSmtPort
+      label: "SMTP Port"
+      type: "int"
+      required: false
+      default: "25"
+
+    - variable: boolSmtpSsl
+      label: "SMTP SSL"
+      type: "boolean"
+      required: false
+      default: False
+
+    - variable: strSmtpUser
+      label: "SMTP User"
+      type: "string"
+      required: false
+
+    - variable: strSmtPassword
+      label: "SMTP Password"
+      type: "string"
+      required: false
+
     # en realidad esta variable no suma, la consideramos solo si creamos bds
     # - variable: boolWithoutDemo
     #   label: "Odoo WITHOUT_DEMO"

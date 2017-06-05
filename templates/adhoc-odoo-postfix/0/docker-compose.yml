@@ -6,8 +6,10 @@ services:
         labels:
             io.rancher.scheduler.global: 'true'
             io.rancher.container.pull_image: always
+            # al final solo lo usamos para entrada por lo cual el link
+            # no esnecesario
             # used to be autolinked on odoo containers
-            odoo_service: True
+            # odoo_service: True
         environment:
             # variables for receiving emails
             - CATCHALL_DOMAIN=$cCatchallDomain
