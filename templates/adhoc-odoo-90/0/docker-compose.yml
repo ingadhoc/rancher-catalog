@@ -16,10 +16,10 @@ services:
         labels:
             io.rancher.service.selector.link: odoo_service=True
             io.rancher.container.pull_image: always
-            traefik.enable: stack
-            traefik.domain: $strTraefikDomain
-            traefik.port: 8069
-            traefik.alias.fqdn: $cOtherServerNames            
+            # traefik.enable: stack
+            # traefik.domain: $strTraefikDomain
+            # traefik.port: 8069
+            # traefik.alias.fqdn: $cOtherServerNames            
         volumes:
             - odoo_data:/opt/odoo/data
         environment:
@@ -42,16 +42,16 @@ services:
             - WORKERS=$intWorkers
             - ADMIN_PASSWORD=$strAdminPassword
             - MAIL_CATCHALL_DOMAIN=$strMailCatchallDomain
-    # nginx:
-    #     image: adhoc/odoo-nginx
-    #     depends_on:
-    #         - odoo
-    #     labels:
-    #         traefik.enable: stack
-    #         traefik.domain: $strTraefikDomain
-    #         traefik.port: 80
-    #         traefik.alias.fqdn: $cOtherServerNames
-    #         io.rancher.container.pull_image: always
+    nginx:
+        image: adhoc/odoo-nginx
+        depends_on:
+            - odoo
+        labels:
+            traefik.enable: stack
+            traefik.domain: $strTraefikDomain
+            traefik.port: 80
+            traefik.alias.fqdn: $cOtherServerNames
+            io.rancher.container.pull_image: always
 volumes:
     odoo_data:
         driver: rancher-nfs
