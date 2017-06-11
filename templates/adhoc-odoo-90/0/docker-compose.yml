@@ -19,7 +19,7 @@ services:
             # traefik.enable: stack
             # traefik.domain: $strTraefikDomain
             # traefik.port: 8069
-            # traefik.alias.fqdn: $cOtherServerNames            
+            # traefik.alias.fqdn: $cOtherServerNames
         volumes:
             - odoo_data:/opt/odoo/data
         environment:
@@ -52,6 +52,8 @@ services:
             traefik.port: 80
             traefik.alias.fqdn: $cOtherServerNames
             io.rancher.container.pull_image: always
+            # hasta que usemos traefik, agregamos este label para que nginx levante en el mismo lugar de odoo para forzar que si se cambia de host se reinicien ambos y funcione bien el cambio de host, con traefik no seria necesario
+            io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/odoo
 volumes:
     odoo_data:
         driver: rancher-nfs
