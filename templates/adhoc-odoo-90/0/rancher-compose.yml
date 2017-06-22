@@ -128,7 +128,7 @@ services:
     health_check:
       port: 8069
       interval: 2000
-      initializing_timeout: 60000
+      # initializing_timeout: 60000
       unhealthy_threshold: 3
       strategy: recreate
       healthy_threshold: 2
@@ -138,7 +138,8 @@ services:
     health_check:
       port: 5432
       interval: 2000
-      initializing_timeout: 60000
+      # este no lo usa el de postgres
+      # initializing_timeout: 60000
       unhealthy_threshold: 3
       strategy: recreate
       healthy_threshold: 2
@@ -148,7 +149,7 @@ services:
     health_check:
       port: 80
       interval: 2000
-      initializing_timeout: 60000
+      # initializing_timeout: 60000
       unhealthy_threshold: 3
       strategy: recreate
       healthy_threshold: 2

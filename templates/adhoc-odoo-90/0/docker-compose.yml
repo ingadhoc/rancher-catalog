@@ -1,14 +1,20 @@
 version: '2'
 services:
+    # TODO si llegamos a querer usar un lb de postgres podemos hacerlo como
+    # lo hacen aca http://rancher.adhoc.com.ar:8080/env/1a5/catalog/community:postgres
     db:
         image: postgres:9.6
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
+            # esto tmb lo sacamos del rancher oficial de postgres
+            - PGDATA=/var/lib/postgresql/data/pgdata
         volumes:
             # TODO check if we use subdirectory as recommended here for GCE
             # https://hub.docker.com/_/postgres/
-            - db_data:/var/lib/postgresql/data
+            # cambiamos a pgdata porque es lo que usa el rancher oficial de postgres
+            # - db_data:/var/lib/postgresql/data
+            - db_data:/var/lib/postgresql/data/pgdata
     odoo:
         image: adhoc/odoo-ar-e:9.0
         depends_on:
