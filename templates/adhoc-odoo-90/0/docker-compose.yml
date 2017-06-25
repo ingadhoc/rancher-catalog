@@ -15,6 +15,9 @@ services:
             # cambiamos a pgdata porque es lo que usa el rancher oficial de postgres
             # - db_data:/var/lib/postgresql/data
             - db_data:/var/lib/postgresql/data/pgdata
+        # esto lo usa la imagen oficial pero no pareceria sumar, lo dejamos por las dudas
+        # tty: true
+        # stdin_open: true
     odoo:
         image: adhoc/odoo-ar-e:9.0
         depends_on:
@@ -57,7 +60,7 @@ services:
             traefik.domain: $strTraefikDomain
             traefik.port: 80
             # comentamos a ver si traefik no se tilda
-            # traefik.alias.fqdn: $cOtherServerNames
+            traefik.alias.fqdn: $cOtherServerNames
             io.rancher.container.pull_image: always
             # hasta que usemos traefik, agregamos este label para que nginx levante en el mismo lugar de odoo para forzar que si se cambia de host se reinicien ambos y funcione bien el cambio de host, con traefik no seria necesario
             io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/odoo
