@@ -3,87 +3,67 @@
   version: "1.3.2"
   description: "(Experimental) Traefik load balancer."
   minimum_rancher_version: v1.3.2
-    questions:
-        -   variable: "http_port"
-            description: "Traefik http public port to listen."
-            label: "Http port:"
-            required: true
-            default: 80
-            type: "int"
+  questions:
 
-        -   variable: "https_port"
-            description: "Traefik https public port to listen."
-            label: "Https port:"
-            required: true
-            default: 443
-            type: "int"
+    - variable: "http_port"
+      description: "Traefik http public port to listen."
+      label: "Http port:"
+      required: true
+      default: 80
+      type: "int"
 
-        -   variable: "admin_port"
-            description: "Traefik admin public port to listen."
-            label: "Admin port:"
-            required: true
-            default: 8000 
-            type: "int"
+    - variable: "https_port"
+      description: "Traefik https public port to listen."
+      label: "Https port:"
+      required: true
+      default: 443
+      type: "int"
 
-        -   variable: "domain"
-            description: "Can be overridden by setting the 'traefik.domain' label on an service."
-            label: "Default domain used:"
-            required: true
-            default: "rancher.localhost"
-            type: "str"
+    - variable: "admin_port"
+      description: "Traefik admin public port to listen."
+      label: "Admin port:"
+      required: true
+      default: 8000 
+      type: "int"
 
-        # TODO enable this parameters
-        # - variable: "RefreshSeconds"
-        #     label: "Polling interval (in seconds):"
-        #     required: true
-        #     default: 15
-        #     type: "int"
-        # - variable: "ExposedByDefault"
-        #     description: "Expose Rancher services by default in traefik."
-        #     label: "Expose by Default:"
-        #     required: false
-        #     default: false
-        #     type: "boolean"
-        # - variable: "EnableServiceHealthFilter"
-        #     description: "Filter services with unhealthy states and health states."
-        #     label: "Enable Service Health Filter:"
-        #     required: false
-        #     default: false
-        #     type: "boolean"
-        -   variable: "Endpoint"
-            description: "Endpoint to use when connecting to Rancher."
-            label: "Rancher Endpoint:"
-            required: true
-            default: "http://rancherserver.example.com/v1" 
-            type: "string"
+    - variable: "domain"
+      description: "Can be overridden by setting the 'traefik.domain' label on an service."
+      label: "Default domain used:"
+      required: true
+      default: "rancher.localhost"
+      type: "str"
 
-        -   variable: "AccessKey"
-            description: "AccessKey to use when connecting to Rancher."
-            label: "Rancher AccessKey:"
-            required: true
-            default: "XXXXXXXXXXXXXXXXXXXX" 
-            type: "string"
+    - variable: "Endpoint"
+      description: "Endpoint to use when connecting to Rancher."
+      label: "Rancher Endpoint:"
+      required: true
+      default: "http://rancherserver.example.com/v1" 
+      type: "string"
 
-        -   variable: "SecretKey"
-            description: "SecretKey to use when connecting to Rancher."
-            label: "Rancher SecretKey:"
-            required: true
-            default: "XXXXXXXXXXXXXXXXXXXX" 
-            type: "string"
+    - variable: "AccessKey"
+      description: "AccessKey to use when connecting to Rancher."
+      label: "Rancher AccessKey:"
+      required: true
+      default: "XXXXXXXXXXXXXXXXXXXX" 
+      type: "string"
+
+    - variable: "SecretKey"
+      description: "SecretKey to use when connecting to Rancher."
+      label: "Rancher SecretKey:"
+      required: true
+      default: "XXXXXXXXXXXXXXXXXXXX" 
+      type: "string"
+#
+# Scaling and health checks per service as per docker-compose.yml
+#
 version: 2
 services:
-    traefik:
-        retain_ip: true
-        health_check:
-            port: 8000
-            interval: 5000
-            unhealthy_threshold: 3
-            request_line: 'GET /dashboard/# HTTP/1.0'
-            healthy_threshold: 2
-            response_timeout: 5000
-        # metadata:
-        #     traefik:
-        #         ssl_key: |
-        #             ${ssl_key}
-        #         ssl_crt: |
-        #             ${ssl_crt}
+  traefik:
+    retain_ip: true
+    health_check:
+      port: 8000
+      interval: 5000
+      unhealthy_threshold: 3
+      request_line: 'GET /dashboard/# HTTP/1.0'
+      healthy_threshold: 2
+      response_timeout: 5000
