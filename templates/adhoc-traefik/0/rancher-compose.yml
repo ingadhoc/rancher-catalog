@@ -31,7 +31,7 @@
       label: "Default domain used:"
       required: true
       default: "rancher.localhost"
-      type: "str"
+      type: "string"
 
     - variable: "Endpoint"
       description: "Endpoint to use when connecting to Rancher."
