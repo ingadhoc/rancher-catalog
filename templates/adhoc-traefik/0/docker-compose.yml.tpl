@@ -27,12 +27,12 @@ services:
             # - --entrypoints="Name:http Address::80 Redirect.EntryPoint:https"
             # - --entryPoints="Name:https Address::443 TLS:/ssl/traefik.crt,/ssl/traefik.key"
             # - --entryPoints="Name:https Address::443 TLS insecureskipverify"
-        {{- if eq .Values.https_enable "true"}}
+{{- if eq .Values.https_enable "true"}}
             - --entryPoints='Name:https Address::443 TLS'
             insecureskipverify
-        {{- end}}
+{{- end}}
             # acme config
-        {{- if eq .Values.acme_enable "true"}}
+{{- if eq .Values.acme_enable "true"}}
             - --acme=${acme_enable}
             - --acme.domains=${domain}
             - --acme.entrypoint=https
@@ -40,7 +40,7 @@ services:
             - --acme.ondemand=${acme_ondemand}
             - --acme.onhostrule=${acme_onhostrule}
             - --acme.storage=/ssl/acme.json
-        {{- end}}
+{{- end}}
         labels:
             io.rancher.scheduler.global: 'true'
         # TODO
