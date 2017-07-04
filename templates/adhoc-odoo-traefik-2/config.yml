@@ -1,6 +1,6 @@
-name: ADHOC Odoo Postfix
+name: ADHOC Traefik
 description: |
-  Postfix stack used to deliver mails to odoo stacks and also to send emails from stacks
-version: 1.0
-category: ERP
+  Traefik Catalog by ADHOC
+version: v1.3.2-rancher1
+category: Load Balancing
 projectURL: https://bitbucket.org/ingadhoc/rancher-catalog
