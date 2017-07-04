@@ -1,3 +1,4 @@
-## ADHOC Odoo Postfix Stack.
+## ADHOC Traefik Active Load Balanceer
 
-Postfix stack used to deliver mails to odoo stacks and also to send emails from stacks
+### Configuration Items
+
