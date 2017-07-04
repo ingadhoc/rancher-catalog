@@ -5,6 +5,54 @@
   minimum_rancher_version: v1.3.2
   questions:
 
+    - variable: "http_port"
+      description: "Traefik http public port to listen."
+      label: "Http port:"
+      required: true
+      default: 80
+      type: "int"
+
+    - variable: "https_port"
+      description: "Traefik https public port to listen."
+      label: "Https port:"
+      required: true
+      default: 443
+      type: "int"
+
+    - variable: "admin_port"
+      description: "Traefik admin public port to listen."
+      label: "Admin port:"
+      required: true
+      default: 8000 
+      type: "int"
+
+    - variable: "domain"
+      description: "Can be overridden by setting the "traefik.domain" label on an service."
+      label: "Default domain used:"
+      required: true
+      default: "rancher.localhost"
+      type: "str"
+
+    - variable: "Endpoint"
+      description: "Endpoint to use when connecting to Rancher."
+      label: "Rancher Endpoint:"
+      required: true
+      default: "http://rancherserver.example.com/v1" 
+      type: "string"
+
+    - variable: "AccessKey"
+      description: "AccessKey to use when connecting to Rancher."
+      label: "Rancher AccessKey:"
+      required: true
+      default: "XXXXXXXXXXXXXXXXXXXX" 
+      type: "string"
+
+    - variable: "SecretKey"
+      description: "SecretKey to use when connecting to Rancher."
+      label: "Rancher SecretKey:"
+      required: true
+      default: "XXXXXXXXXXXXXXXXXXXX" 
+      type: "string"
 #
 # Scaling and health checks per service as per docker-compose.yml
 #
