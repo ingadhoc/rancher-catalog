@@ -141,6 +141,7 @@ services:
       response_timeout: 5000
 # esto podria llegar a usarse para que con algun curl o algo, en entrypoint
 # o algo asi, desde el metadata generemos los archivos
+# lo hacen con algo de aca https://github.com/rawmind0/rancher-traefik/blob/master/root/opt/tools/confd/etc/conf.d/traefik.key.toml
   # metadata:
   #   traefik:
   #     ssl_key: |
