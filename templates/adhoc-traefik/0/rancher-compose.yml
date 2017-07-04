@@ -53,6 +53,28 @@
       required: true
       default: "XXXXXXXXXXXXXXXXXXXX" 
       type: "string"
+
+    # TODO enable this
+    # - variable: "RefreshSeconds"
+    #   label: "Polling interval (in seconds):"
+    #   required: true
+    #   default: 15
+    #   type: "int"
+
+    # - variable: "ExposedByDefault"
+    #   description: "Expose Rancher services by default in traefik."
+    #   label: "Expose by Default:"
+    #   required: false
+    #   default: false
+    #   type: "boolean"
+
+    # - variable: "EnableServiceHealthFilter"
+    #   description: "Filter services with unhealthy states and health states."
+    #   label: "Enable Service Health Filter:"
+    #   required: false
+    #   default: false
+    #   type: "boolean"
+
 #
 # Scaling and health checks per service as per docker-compose.yml
 #
