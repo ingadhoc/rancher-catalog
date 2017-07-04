@@ -1,0 +1,6 @@
+name: ADHOC Odoo Postfix
+description: |
+  Postfix stack used to deliver mails to odoo stacks and also to send emails from stacks
+version: 1.0
+category: ERP
+projectURL: https://bitbucket.org/ingadhoc/rancher-catalog

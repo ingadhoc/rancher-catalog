@@ -1,0 +1,24 @@
+version: '2'
+services:
+    postfix:
+        ports:
+            - 25:25/tcp
+        labels:
+            io.rancher.scheduler.global: 'true'
+            io.rancher.container.pull_image: always
+            # al final solo lo usamos para entrada por lo cual el link
+            # no esnecesario
+            # used to be autolinked on odoo containers
+            # odoo_service: True
+        environment:
+            # variables for receiving emails
+            - CATCHALL_DOMAIN=$cCatchallDomain
+            - DOMAIN_REGEX=$cDomainRegex
+            - MAIL_ADMINS=$cMailAdmins
+            # variables for sending emails
+            # - cMyHostname=$cMyHostname
+            - MYNETWORKS=$cMyNetworks
+            - cRelayHostLine=$cRelayHostLine
+            - cRelaySASLUser=$cRelaySASLUser
+            - cRelaySASLPasswd=$cRelaySASLPasswd
+        image: adhoc/odoo-postfix
