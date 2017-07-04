@@ -20,14 +20,18 @@ services:
             - --entryPoints='Name:http Address::80'
             # - --entryPoints='Name:http Address::80 Redirect.EntryPoint:https'
             # - --entryPoints='Name:https Address::443 TLS compress'
+        {{- if eq .Values.https_enable "true"}}
             - --entryPoints='Name:https Address::443 TLS:/ssl/domain.crt,/ssl/domain.key'
+        {{- end}}
             # acme config
+        {{- if eq .Values.acme_enable "true"}}
             - --acme=${acme_enable}
             - --acme.entrypoint=https
             - --acme.email=${acme_email}
             - --acme.ondemand=${acme_ondemand}
             - --acme.onhostrule=${acme_onhostrule}
             - --acme.storage=/ssl/acme.json
+        {{- end}}
         labels:
             io.rancher.scheduler.global: 'true'
         # tty: true
