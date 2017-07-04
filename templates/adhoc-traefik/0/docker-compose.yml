@@ -1,0 +1,73 @@
+version: '2'
+services:
+    # TODO si llegamos a querer usar un lb de postgres podemos hacerlo como
+    # lo hacen aca http://rancher.adhoc.com.ar:8080/env/1a5/catalog/community:postgres
+    db:
+        image: postgres:9.6
+        environment:
+            - POSTGRES_USER=odoo
+            - POSTGRES_PASSWORD=odoo
+            # esto tmb lo sacamos del rancher oficial de postgres
+            - PGDATA=/var/lib/postgresql/data/pgdata
+        volumes:
+            # TODO check if we use subdirectory as recommended here for GCE
+            # https://hub.docker.com/_/postgres/
+            # cambiamos a pgdata porque es lo que usa el rancher oficial de postgres
+            # - db_data:/var/lib/postgresql/data
+            - db_data:/var/lib/postgresql/data/pgdata
+        # esto lo usa la imagen oficial pero no pareceria sumar, lo dejamos por las dudas
+        # tty: true
+        # stdin_open: true
+    odoo:
+        image: adhoc/odoo-ar-e:9.0
+        depends_on:
+            - db
+        labels:
+            io.rancher.service.selector.link: odoo_service=True
+            io.rancher.container.pull_image: always
+            # traefik.enable: stack
+            # traefik.domain: $strTraefikDomain
+            # traefik.port: 8069
+            # traefik.alias.fqdn: $cOtherServerNames
+        volumes:
+            - odoo_data:/opt/odoo/data
+        environment:
+            # TODO remove or use
+            # - WITHOUT_DEMO=$boolWithoutDemo
+            # - VIRTUAL_PORT=8069,8072
+            # TODO borrar o usar, al final fuimos por hacer la config con odoo ws porque la var de stack_name no funciona y ademas queremos configurar el freeze y otros
+            # - MAIL_CATCHALL_DOMAIN={$stack_name}.juans.dev-adhoc.com
+            # al final ne vez de usar postfix directamente nos conctamos
+            # desde odoo
+            # - SMTP_SERVER=postfix
+            - SMTP_SERVER=$strSmtpServer
+            - SMTP_PORT=$intSmtPort
+            - SMTP_SSL=$boolSmtpSsl
+            - SMTP_USER=$strSmtpUser
+            - SMTP_PASSWORD=$strSmtPassword
+            - AEROO_DOCS_HOST=aeroo-docs
+            - DATABASE=$strDatabase
+            - SERVER_MODE=$strServerMode
+            - WORKERS=$intWorkers
+            - ADMIN_PASSWORD=$strAdminPassword
+            - MAIL_CATCHALL_DOMAIN=$strMailCatchallDomain
+    nginx:
+        image: adhoc/odoo-nginx
+        depends_on:
+            - odoo
+        labels:
+            traefik.enable: stack
+            traefik.domain: $strTraefikDomain
+            traefik.port: 80
+            # comentamos a ver si traefik no se tilda
+            traefik.alias.fqdn: $cOtherServerNames
+            io.rancher.container.pull_image: always
+            # hasta que usemos traefik, agregamos este label para que nginx levante en el mismo lugar de odoo para forzar que si se cambia de host se reinicien ambos y funcione bien el cambio de host, con traefik no seria necesario
+            io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/odoo
+volumes:
+    odoo_data:
+        driver: rancher-nfs
+        external: false
+    db_data:
+        driver: rancher-nfs
+        external: false
