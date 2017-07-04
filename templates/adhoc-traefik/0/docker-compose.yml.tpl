@@ -34,7 +34,7 @@ services:
             # acme config
         {{- if eq .Values.acme_enable "true"}}
             - --acme=${acme_enable}
-            - --acme.domains="${domain}"
+            - --acme.domains=${domain}
             - --acme.entrypoint=https
             - --acme.email=${acme_email}
             - --acme.ondemand=${acme_ondemand}
