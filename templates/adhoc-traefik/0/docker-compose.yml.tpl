@@ -23,13 +23,13 @@ services:
             # para investigar...
             # - --docker.constraints="tag==web"
             - --InsecureSkipVerify=true
-        {{- if eq .Values.https_enable "true"}}
-            - --entryPoints='Name:https Address::443 TLS'
             # - --entryPoints='Name:https Address::443 TLS:/ssl/domain.crt,/ssl/domain.key'
-            insecureskipverify
             # - --entrypoints="Name:http Address::80 Redirect.EntryPoint:https"
             # - --entryPoints="Name:https Address::443 TLS:/ssl/traefik.crt,/ssl/traefik.key"
             # - --entryPoints="Name:https Address::443 TLS insecureskipverify"
+        {{- if eq .Values.https_enable "true"}}
+            - --entryPoints='Name:https Address::443 TLS'
+            insecureskipverify
         {{- end}}
             # acme config
         {{- if eq .Values.acme_enable "true"}}
