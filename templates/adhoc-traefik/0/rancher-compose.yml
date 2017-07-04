@@ -26,7 +26,7 @@
             type: "int"
 
         -   variable: "domain"
-            description: "Can be overridden by setting the "traefik.domain" label on an service."
+            description: "Can be overridden by setting the 'traefik.domain' label on an service."
             label: "Default domain used:"
             required: true
             default: "rancher.localhost"
