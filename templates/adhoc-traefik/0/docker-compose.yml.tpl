@@ -13,7 +13,7 @@ services:
             - --rancher.endpoint=${Endpoint}
             - --rancher.accesskey=${AccessKey}
             - --rancher.secretkey=${SecretKey}
-            # parameter para loglevel? (INFO otra opcion)
+            # parameter para loglevel? (INFO, ERROR otra opcion)
             - --logLevel=DEBUG
             # config entrypoints
             - --defaultentrypoints=http,https
@@ -66,8 +66,3 @@ volumes:
     sslcerts:
         driver: rancher-nfs
         external: false
-# volumes:
-#   sslcerts:
-#     driver: local
-#   traefik:
-#     driver: local
