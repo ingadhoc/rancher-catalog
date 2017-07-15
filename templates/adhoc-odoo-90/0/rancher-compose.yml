@@ -66,6 +66,13 @@
       required: true
       default: "0"
 
+    - variable: boolFixDbs
+      label: "FIX DBS"
+      description: "Try to fix database before starting odoo"
+      type: "boolean"
+      required: false
+      default: True
+
   # SMTP variables
     - variable: strSmtpServer
       label: "SMTP Server"

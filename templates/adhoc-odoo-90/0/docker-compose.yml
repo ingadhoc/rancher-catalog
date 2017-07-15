@@ -40,6 +40,7 @@ services:
             # al final ne vez de usar postfix directamente nos conctamos
             # desde odoo
             # - SMTP_SERVER=postfix
+            - FIXDBS=$boolFixDbs
             - SMTP_SERVER=$strSmtpServer
             - SMTP_PORT=$intSmtPort
             - SMTP_SSL=$boolSmtpSsl
