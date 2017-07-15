@@ -3,7 +3,8 @@ services:
     # TODO si llegamos a querer usar un lb de postgres podemos hacerlo como
     # lo hacen aca http://rancher.adhoc.com.ar:8080/env/1a5/catalog/community:postgres
     db:
-        image: postgres:9.6
+        # image: postgres:9.6
+        image: postgres-alpine:9.6
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
