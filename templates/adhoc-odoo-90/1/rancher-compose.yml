@@ -40,7 +40,7 @@
     - variable: strAdminPassword
       label: "Odoo ADMIN_PASSWORD"
       description: "Odoo ADMIN_PASSWORD environment var"
-      type: "string"
+      type: "password"
       required: true
       default: "admin"
 
@@ -51,25 +51,6 @@
       required: false
       # required: true
       # default: "default"
-
-    - variable: strPgUser
-      label: "Postgres User"
-      description: "Postgres user"
-      type: "string"
-      required: true
-      default: "odoo"
-
-    - variable: strPgPassword
-      label: "Postgres Password"
-      description: "Postgres Password"
-      type: "string"
-      required: true
-
-    - variable: strPgHost
-      label: "Postgres Host"
-      description: "Postgres Host"
-      type: "string"
-      required: true
 
     - variable: strServerMode
       label: "Odoo SERVER_MODE"
@@ -118,7 +99,7 @@
 
     - variable: strSmtPassword
       label: "SMTP Password"
-      type: "string"
+      type: "password"
       required: false
 
     # en realidad esta variable no suma, la consideramos solo si creamos bds

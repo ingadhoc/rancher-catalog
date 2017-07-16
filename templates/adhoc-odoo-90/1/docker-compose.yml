@@ -22,9 +22,6 @@ services:
             # al final ne vez de usar postfix directamente nos conctamos
             # desde odoo
             # database parameters
-            - PGUSER=$strPgUser
-            - PGPASSWORD=$strPgPassword
-            - PGHOST=$strPgHost
             # - SMTP_SERVER=postfix
             - FIXDBS=$boolFixDbs
             - SMTP_SERVER=$strSmtpServer
