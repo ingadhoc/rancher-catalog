@@ -20,9 +20,12 @@ services:
             # TODO borrar o usar, al final fuimos por hacer la config con odoo ws porque la var de stack_name no funciona y ademas queremos configurar el freeze y otros
             # - MAIL_CATCHALL_DOMAIN={$stack_name}.juans.dev-adhoc.com
             # al final ne vez de usar postfix directamente nos conctamos
+            # - SMTP_SERVER=postfix
             # desde odoo
             # database parameters
-            # - SMTP_SERVER=postfix
+            - PGUSER=$strPgUser
+            - PGPASSWORD=$strPgPassword
+            - PGHOST=$strPgHost
             - FIXDBS=$boolFixDbs
             - SMTP_SERVER=$strSmtpServer
             - SMTP_PORT=$intSmtPort
