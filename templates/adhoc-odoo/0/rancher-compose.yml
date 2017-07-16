@@ -52,6 +52,14 @@
       # required: true
       # default: "default"
 
+    - variable: strDbFilter
+      label: "Odoo DB Filter"
+      description: "Regexp for Filter listed databases. For exact name use, for eg 'odoo$' for odoo db"
+      type: "string"
+      required: false
+      required: true
+      default: ".*"
+
     - variable: strPgUser
       label: "Postgres User"
       description: "Postgres user"

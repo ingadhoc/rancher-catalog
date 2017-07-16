@@ -10,9 +10,11 @@ services:
             # traefik.port: 8069
             # traefik.alias.fqdn: $cOtherServerNames
         volumes:
+            # TODO borrar, al final nos daba error de permisos si usabamos
+            # filestore
             # hacemos solo del filestore para que podamos matar sesiones
             # y addons descargados en un remove run
-            - odoo_filestore:/opt/odoo/data/filestore
+            - odoo_filestore:/opt/odoo/data
         environment:
             # TODO remove or use
             # - WITHOUT_DEMO=$boolWithoutDemo
@@ -34,6 +36,7 @@ services:
             - SMTP_PASSWORD=$strSmtPassword
             - AEROO_DOCS_HOST=aeroo-docs
             - DATABASE=$strDatabase
+            - DBFILTER=$strDbFilter
             - SERVER_MODE=$strServerMode
             - WORKERS=$intWorkers
             - ADMIN_PASSWORD=$strAdminPassword
