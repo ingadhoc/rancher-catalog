@@ -159,17 +159,6 @@ services:
       strategy: recreate
       healthy_threshold: 2
       response_timeout: 2000
-  db:
-    scale: 1
-    health_check:
-      port: 5432
-      interval: 2000
-      # este no lo usa el de postgres
-      # initializing_timeout: 60000
-      unhealthy_threshold: 3
-      strategy: recreate
-      healthy_threshold: 2
-      response_timeout: 2000
   nginx:
     scale: 1
     health_check:
