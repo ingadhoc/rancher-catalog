@@ -93,12 +93,11 @@
       required: true
       default: "0"
 
-    - variable: boolFixDbs
+    - variable: strFixDbs
       label: "FIX DBS"
-      description: "Try to fix database before starting odoo"
-      type: "boolean"
+      description: "Try to fix database before starting odoo. You can send ',' sep. list or True to fix all available dbs."
+      type: "string"
       required: false
-      default: True
 
   # SMTP variables
     - variable: strSmtpServer

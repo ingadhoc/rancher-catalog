@@ -28,7 +28,7 @@ services:
             - PGUSER=$strPgUser
             - PGPASSWORD=$strPgPassword
             - PGHOST=$strPgHost
-            - FIXDBS=$boolFixDbs
+            - FIXDBS=$strFixDbs
             - SMTP_SERVER=$strSmtpServer
             - SMTP_PORT=$intSmtPort
             - SMTP_SSL=$boolSmtpSsl
