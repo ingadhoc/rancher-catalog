@@ -6,12 +6,12 @@
   questions:
 
 # domain y alias configuration
-    - variable: strTraefikDomain
-      label: "Traefik domain"
-      description: "Base domain used to create subdomains to access this stack"
-      type: "string"
-      required: false
-      default: "dev-adhoc.com"
+    # - variable: strTraefikDomain
+    #   label: "Traefik domain"
+    #   description: "Base domain used to create subdomains to access this stack"
+    #   type: "string"
+    #   required: false
+    #   default: "dev-adhoc.com"
 
     # TODO we would like to build this with the stack name + traefik domain 
     - variable: strMailCatchallDomain
@@ -21,12 +21,19 @@
       required: false
       default: ""
 
-    - variable: cOtherServerNames
-      label: "Optional server names for nginx"
+    - variable: strTraefikDomains
+      label: "Server names for nginx"
       description: "A comma (,) separated and terminated list of max 8 domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com,www.acme.org;"
       type: "string"
-      required: false
+      required: true
       default: ""
+
+    # - variable: cOtherServerNames
+    #   label: "Optional server names for nginx"
+    #   description: "A comma (,) separated and terminated list of max 8 domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com,www.acme.org;"
+    #   type: "string"
+    #   required: false
+    #   default: ""
 
     # we force to use stack name
     # - variable: strVirtualHostProd
