@@ -28,6 +28,10 @@ services:
             - PGUSER=$strPgUser
             - PGPASSWORD=$strPgPassword
             - PGHOST=$strPgHost
+            # TODO, este podria volver a ser un booleano y tmb podriamos
+            # re simplificar el entry point, ahora modificamos a odoo para que
+            # no cree bd si se manda el db_name, y estamos haciendo eso, mandar
+            # db_name
             - FIXDBS=$strFixDbs
             - SMTP_SERVER=$strSmtpServer
             - SMTP_PORT=$intSmtPort

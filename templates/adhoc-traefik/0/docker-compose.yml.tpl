@@ -50,9 +50,7 @@ services:
         #      - traefik.frontend.rule=Host:traefik.domain.com
         # tty: true
         # log_opt: {}
-        # image: traefik:1.3.2
-        # alpine nos permite conectarnos, el otro no
-        image: traefik:1.3.2-alpine
+        image: traefik:1.3.3-alpine
         # environment:
         volumes:
             - traefik:/data
