@@ -15,21 +15,13 @@ services:
             - --rancher.secretkey=${SecretKey}
             # parameter para loglevel? (INFO, ERROR otra opcion)
             - --logLevel=DEBUG
-            # config entrypoints
-            - --defaultentrypoints=http,https
-            - --entryPoints='Name:http Address::80'
-            # - --entryPoints='Name:http Address::80 Redirect.EntryPoint:https'
-            # - --entryPoints='Name:https Address::443 TLS compress'
             # para investigar...
             # - --docker.constraints="tag==web"
+            # config entrypoints
+            - --defaultentrypoints=http,https
             - --InsecureSkipVerify=true
-            # - --entryPoints='Name:https Address::443 TLS:/ssl/domain.crt,/ssl/domain.key'
-            # - --entrypoints="Name:http Address::80 Redirect.EntryPoint:https"
-            # - --entryPoints="Name:https Address::443 TLS:/ssl/traefik.crt,/ssl/traefik.key"
-            # - --entryPoints="Name:https Address::443 TLS insecureskipverify"
-        {{- if eq .Values.https_enable "true"}}
-            - --entryPoints='Name:https Address::443 TLS'
-        {{- end}}
+            - --entryPoints='Name:http Address::80 Redirect.EntryPoint:https Compress:on'
+            - --EntryPoints="Name:https Address::443 TLS:/secrets/domain.crt,/secrets/domain.key Compress:on" 
             # acme config
         {{- if eq .Values.acme_enable "true"}}
             - --acme=${acme_enable}
@@ -38,7 +30,7 @@ services:
             - --acme.email=${acme_email}
             - --acme.ondemand=${acme_ondemand}
             - --acme.onhostrule=${acme_onhostrule}
-            - --acme.storage=/ssl/acme.json
+            - --acme.storage=/secrets/acme.json
         {{- end}}
         labels:
             io.rancher.scheduler.global: 'true'
@@ -48,19 +40,11 @@ services:
         #      - traefik.docker.network=traefik-proxy
         #      - traefik.port=8080
         #      - traefik.frontend.rule=Host:traefik.domain.com
-        # tty: true
-        # log_opt: {}
+        tty: true
         image: traefik:1.3.3-alpine
-        # environment:
         volumes:
-            - traefik:/data
-            - sslcerts:/ssl
-            # - /opt/traefik/acme
-            # - db_data:/var/lib/postgresql/data/pgdata
+            - secrets:/secrets
 volumes:
-    traefik:
-        driver: rancher-nfs
-        external: false
     sslcerts:
         driver: rancher-nfs
-        external: false
+        external: true
