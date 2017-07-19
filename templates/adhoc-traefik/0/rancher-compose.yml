@@ -84,19 +84,20 @@
     #   required: false
     #   type: "boolean"
 
-    - variable: "ssl_key"
-      description: "SSL key to secure the service. *Required if you enable https"
-      label: "SSL key"
-      type: "multiline"
-      required: false
-      default: ""
+    # TODO implementar, por ahora las ponemos a mano
+    # - variable: "ssl_key"
+    #   description: "SSL key to secure the service. *Required if you enable https"
+    #   label: "SSL key"
+    #   type: "multiline"
+    #   required: false
+    #   default: ""
 
-    - variable: "ssl_crt"
-      description: "SSL cert to secure the service. *Required if you enable https"
-      label: "SSL crt"
-      type: "multiline"
-      required: false
-      default: ""
+    # - variable: "ssl_crt"
+    #   description: "SSL cert to secure the service. *Required if you enable https"
+    #   label: "SSL crt"
+    #   type: "multiline"
+    #   required: false
+    #   default: ""
 
     - variable: "acme_enable"
       description: "Enable acme support on traefik."
