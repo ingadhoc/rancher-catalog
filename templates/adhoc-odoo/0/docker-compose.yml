@@ -5,10 +5,17 @@ services:
         labels:
             io.rancher.service.selector.link: odoo_service=True
             io.rancher.container.pull_image: always
-            # traefik.enable: stack
-            # traefik.domain: $strTraefikDomain
+            # para cuando traefik de rancer soporte multiples backends
+            # traefik.enable: true
+            # traefik.frontend.rule: Host:$strTraefikDomains
             # traefik.port: 8069
-            # traefik.alias.fqdn: $cOtherServerNames
+            # traefik.frontend.rule: Host:$strTraefikDomains
+            # traefik.longpolling.port: 8072
+            # traefik.longpolling.frontend.rule: Host:$strTraefikDomains;PathPrefix:/longpolling/
+            # traefik.websiteinfo.auth.basic: "$strPgUser:$strAdminPassword"
+            # traefik.websiteinfo.frontend.rule: Host:$strTraefikDomains;PathPrefix:/website/info
+            # traefik.dbmanager.auth.basic: "$strPgUser:$strAdminPassword"
+            # traefik.dbmanager.frontend.rule: Host:$strTraefikDomains;PathPrefix:/web/database/
         volumes:
             # TODO borrar, al final nos daba error de permisos si usabamos
             # filestore

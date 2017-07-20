@@ -13,6 +13,8 @@ services:
             - --rancher.endpoint=${Endpoint}
             - --rancher.accesskey=${AccessKey}
             - --rancher.secretkey=${SecretKey}
+            # por ahora agregamos esto porque si no da error al restaurar backups. Luego, si queremos actualizar online, tal vez tengamos que desactivarlo
+            - --rancher.EnableServiceHealthFilter=true
             # parameter para loglevel? (INFO, ERROR otra opcion)
             - --logLevel=DEBUG
             # para investigar...
@@ -43,8 +45,8 @@ services:
         tty: true
         image: traefik:1.3.3-alpine
         volumes:
-            - secrets:/secrets
+            - traefik-secrets:/secrets
 volumes:
-    sslcerts:
+    traefik-secrets:
         driver: rancher-nfs
         external: true
