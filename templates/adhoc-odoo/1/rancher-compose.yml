@@ -16,11 +16,10 @@
     - variable: strImageTag
       label: "Odoo Image Tag"
       type: "string"
-      required: false
+      required: true
       default: "9.0"
 
     # TODO we would like to build this with the stack name + traefik domain 
-
     - variable: strMailCatchallDomain
       label: "Mail Catchall Domain"
       description: "Domain used for catchall, usually same domain as instance domain"
