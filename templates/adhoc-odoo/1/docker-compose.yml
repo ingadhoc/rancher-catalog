@@ -52,6 +52,7 @@ services:
             - WORKERS=$intWorkers
             - ADMIN_PASSWORD=$strAdminPassword
             - MAIL_CATCHALL_DOMAIN=$strMailCatchallDomain
+            - FIX_DB_WEB_DISABLED=True
     nginx:
         image: adhoc/odoo-nginx
         depends_on:
