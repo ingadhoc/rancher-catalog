@@ -20,8 +20,9 @@ services:
             # TODO borrar, al final nos daba error de permisos si usabamos
             # filestore
             # hacemos solo del filestore para que podamos matar sesiones
-            # y addons descargados en un remove run
-            - odoo_filestore:/opt/odoo/data
+            # y addons descargados en un remove run. ademas lei que
+            # las sesiones requieren buena performance
+            - odoo_data_filestore:/opt/odoo/data
         environment:
             # TODO remove or use
             # - WITHOUT_DEMO=$boolWithoutDemo
