@@ -22,7 +22,8 @@ services:
             # hacemos solo del filestore para que podamos matar sesiones
             # y addons descargados en un remove run. ademas lei que
             # las sesiones requieren buena performance
-            - odoo_data_filestore:/opt/odoo/data
+            # - odoo_filestore:/opt/odoo/data
+            - odoo_data_filestore:/opt/odoo/data/filestore/
         environment:
             # TODO remove or use
             # - WITHOUT_DEMO=$boolWithoutDemo
