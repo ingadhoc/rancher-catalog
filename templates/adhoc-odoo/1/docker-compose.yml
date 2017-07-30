@@ -59,6 +59,8 @@ services:
         image: adhoc/odoo-nginx
         depends_on:
             - odoo
+        environment:
+            - MainHostname=$strMainHostname
         labels:
             traefik.enable: true
             traefik.frontend.rule: Host:$strTraefikDomains

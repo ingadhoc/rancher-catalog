@@ -28,10 +28,17 @@
       default: ""
 
     - variable: strTraefikDomains
-      label: "Server names for nginx"
+      label: "Server names"
       description: "A comma (,) separated and terminated list of max 8 domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com,www.acme.org;"
       type: "string"
       required: true
+      default: ""
+
+    - variable: strMainHostname
+      label: "Main hostname"
+      description: "If main hostname is configured, then nginx will redirect server names to this hostname"
+      type: "string"
+      required: false
       default: ""
 
     # - variable: cOtherServerNames
