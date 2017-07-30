@@ -80,4 +80,4 @@ services:
         labels:
             io.rancher.container.start_once: 'true'
         volumes:
-            - /opt/odoo/data/sessions:Z
+            - /opt/odoo/data/sessions:/opt/odoo/data/sessions:Z
