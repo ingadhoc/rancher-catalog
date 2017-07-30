@@ -75,9 +75,16 @@ services:
             io.rancher.container.pull_image: always
             # hasta que usemos traefik, agregamos este label para que nginx levante en el mismo lugar de odoo para forzar que si se cambia de host se reinicien ambos y funcione bien el cambio de host, con traefik no seria necesario
             io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/odoo
+    # agregamos esto de las sesiones para que cuando actualizamos la gente no quede deslogeada
+    # no lo montamos a todo el data directamente porque en teoría las sesiones deberian tener buena performance
     odoo-sessions:
+        # probe como hace rawmind y distintas maneras pero no consegui permiso de escritura en la carpeta sessions
+        # la unica fue esta del command
         image: alpine:3.6
         # image: adhoc/odoo-ar-e:9.0
+        # TODO, habria que mejorarlo para nodar permiso 777
+        command:
+            - chmod 777 -R /opt/odoo/data/sessions
         labels:
             io.rancher.container.start_once: 'true'
         volumes:
