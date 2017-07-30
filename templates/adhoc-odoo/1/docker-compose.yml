@@ -77,7 +77,6 @@ services:
             io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/odoo
     odoo-sessions:
         image: alpine:3.6
-        command: sh -c "chmod 777 -R /opt/odoo/data/sessions"
         labels:
             io.rancher.container.start_once: 'true'
         volumes:
