@@ -41,6 +41,14 @@
       required: false
       default: ""
 
+    # la diferencia con el main hostname, es que cualquiera que no sea ni  main ni sec, va a ser redirigido a main
+    - variable: strSecondaryHostnames
+      label: "Secondary hostnames"
+      description: "Other hostnames that are not going to be redirected"
+      type: "string"
+      required: false
+      default: ""
+
     # - variable: cOtherServerNames
     #   label: "Optional server names for nginx"
     #   description: "A comma (,) separated and terminated list of max 8 domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com,www.acme.org;"

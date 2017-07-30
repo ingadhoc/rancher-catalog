@@ -61,6 +61,7 @@ services:
             - odoo
         environment:
             - MainHostname=$strMainHostname
+            - SecondaryHostnames=$strSecondaryHostnames
         labels:
             traefik.enable: true
             traefik.frontend.rule: Host:$strTraefikDomains
