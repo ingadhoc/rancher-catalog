@@ -186,6 +186,8 @@ services:
       strategy: recreate
       healthy_threshold: 2
       response_timeout: 2000
+    upgrade_strategy:
+      start_first: true
   nginx:
     scale: 1
     health_check:
@@ -196,3 +198,5 @@ services:
       strategy: recreate
       healthy_threshold: 2
       response_timeout: 2000
+    upgrade_strategy:
+      start_first: true
