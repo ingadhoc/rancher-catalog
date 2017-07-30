@@ -83,8 +83,7 @@ services:
         image: alpine:3.6
         # image: adhoc/odoo-ar-e:9.0
         # TODO, habria que mejorarlo para nodar permiso 777
-        command:
-            - chmod 777 -R /opt/odoo/data/sessions
+        command: chmod 777 -R /opt/odoo/data/sessions
         labels:
             io.rancher.container.start_once: 'true'
         volumes:
