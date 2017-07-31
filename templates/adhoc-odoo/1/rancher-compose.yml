@@ -41,7 +41,6 @@
       required: false
       default: ""
 
-    # la diferencia con el main hostname, es que cualquiera que no sea ni  main ni sec, va a ser redirigido a main
     - variable: strSecondaryHostnames
       label: "Secondary hostnames"
       description: "Other hostnames that are not going to be redirected"
