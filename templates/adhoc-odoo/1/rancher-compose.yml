@@ -94,6 +94,12 @@
       required: true
       default: "odoo"
 
+    - variable: intPgMaxConnections
+      label: "Postgres Max Connections"
+      type: "int"
+      required: true
+      default: "100"
+
     - variable: strPgPassword
       label: "Postgres Password"
       description: "Postgres Password"
