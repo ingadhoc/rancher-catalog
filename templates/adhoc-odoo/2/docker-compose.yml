@@ -69,7 +69,7 @@ services:
             - SecondaryHostnames=$strSecondaryHostnames
         labels:
             traefik.enable: true
-            io.rancher.sidekicks: odoo-sessions
+            io.rancher.sidekicks: odoo
             traefik.frontend.rule: Host:$strTraefikDomains
             # traefik.domain: $strTraefikDomain
             traefik.port: 80
