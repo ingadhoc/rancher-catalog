@@ -25,8 +25,9 @@ services:
             # las sesiones requieren buena performance
             # - odoo_filestore:/opt/odoo/data
             - odoo_data_filestore:/opt/odoo/data/filestore/
-        volumes_from:
-            - odoo-sessions
+            - odoo_data_sessions:/opt/odoo/data/sessions/
+        # volumes_from:
+        #     - odoo-sessions
         environment:
             # TODO remove or use
             # - WITHOUT_DEMO=$boolWithoutDemo
@@ -76,10 +77,10 @@ services:
             io.rancher.container.pull_image: always
             # hasta que usemos traefik, agregamos este label para que nginx levante en el mismo lugar de odoo para forzar que si se cambia de host se reinicien ambos y funcione bien el cambio de host, con traefik no seria necesario
             io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/odoo
-    odoo-sessions:
-        image: alpine:3.6
-        command: sh -c "chmod 777 -R /opt/odoo/data/sessions"
-        labels:
-            io.rancher.container.start_once: 'true'
-        volumes:
-            - /opt/odoo/data/sessions
+    # odoo-sessions:
+    #     image: alpine:3.6
+    #     command: sh -c "chmod 777 -R /opt/odoo/data/sessions"
+    #     labels:
+    #         io.rancher.container.start_once: 'true'
+    #     volumes:
+    #         - /opt/odoo/data/sessions
