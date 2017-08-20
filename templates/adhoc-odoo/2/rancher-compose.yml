@@ -1,0 +1,221 @@
+.catalog:
+  name: "ADHOC Odoo 9.0"
+  version: "3.0"
+  description: "All-in-one management software customized by ADHOC"
+  minimum_rancher_version: v1.3.2
+  questions:
+
+# domain y alias configuration
+    # - variable: strTraefikDomain
+    #   label: "Traefik domain"
+    #   description: "Base domain used to create subdomains to access this stack"
+    #   type: "string"
+    #   required: false
+    #   default: "dev-adhoc.com"
+
+    - variable: strImageTag
+      label: "Odoo Image Tag"
+      type: "string"
+      required: true
+      default: "9.0"
+
+    # TODO we would like to build this with the stack name + traefik domain 
+    - variable: strMailCatchallDomain
+      label: "Mail Catchall Domain"
+      description: "Domain used for catchall, usually same domain as instance domain"
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: strTraefikDomains
+      label: "Server names"
+      description: "A comma (,) separated and terminated list of max 8 domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com,www.acme.org;"
+      type: "string"
+      required: true
+      default: ""
+
+    - variable: strMainHostname
+      label: "Main hostname"
+      description: "If main hostname is configured, then nginx will redirect server names to this hostname"
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: strSecondaryHostnames
+      label: "Secondary hostnames"
+      description: "Other hostnames that are not going to be redirected"
+      type: "string"
+      required: false
+      default: ""
+
+    # - variable: cOtherServerNames
+    #   label: "Optional server names for nginx"
+    #   description: "A comma (,) separated and terminated list of max 8 domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com,www.acme.org;"
+    #   type: "string"
+    #   required: false
+    #   default: ""
+
+    # we force to use stack name
+    # - variable: strVirtualHostProd
+    #   label: "Odoo Production DNS Hostname"
+    #   description: "The DNS hostname. Used by any DNS agents and by http proxies. E.g. myapp0.domain.io"
+    #   type: "string"
+    #   required: true
+    #   default: "{io.rancher.stack.name}"
+
+# odoo configuration parameters
+    - variable: strAdminPassword
+      label: "Odoo ADMIN_PASSWORD"
+      description: "Odoo ADMIN_PASSWORD environment var"
+      type: "password"
+      required: true
+      default: "admin"
+
+    - variable: strDatabase
+      label: "Odoo DB Name"
+      description: "The Odoo PostgreSQL database to be created on deploy. If none is set, then no database is created"
+      type: "string"
+      required: false
+      # required: true
+      # default: "default"
+
+    - variable: strDbFilter
+      label: "Odoo DB Filter"
+      description: "Regexp for Filter listed databases. For exact name use, for eg 'odoo$' for odoo db"
+      type: "string"
+      required: false
+      required: true
+      default: ".*"
+
+    - variable: strPgUser
+      label: "Postgres User"
+      description: "Postgres user"
+      type: "string"
+      required: true
+      default: "odoo"
+
+    - variable: intPgMaxConnections
+      label: "Postgres Max Connections"
+      type: "int"
+      required: true
+      default: "100"
+
+    - variable: strPgPassword
+      label: "Postgres Password"
+      description: "Postgres Password"
+      type: "password"
+      required: true
+
+    - variable: strPgHost
+      label: "Postgres Host"
+      description: "Postgres Host"
+      type: "string"
+      required: true
+
+    - variable: strServerMode
+      label: "Odoo SERVER_MODE"
+      description: "Odoo SERVER_MODE environment var (leave empty for production environment)"
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: intWorkers
+      label: "Odoo WORKERS"
+      description: "Odoo WORKERS environment var"
+      type: "int"
+      required: true
+      default: "0"
+
+    - variable: strFixDbs
+      label: "FIX DBS"
+      description: "Try to fix database before starting odoo. You can send ',' sep. list or True to fix all available dbs."
+      type: "string"
+      required: false
+
+  # SMTP variables
+    - variable: strSmtpServer
+      label: "SMTP Server"
+      type: "string"
+      required: false
+      default: "smtp.mailgun.org"
+
+    - variable: intSmtPort
+      label: "SMTP Port"
+      type: "int"
+      required: false
+      default: "25"
+
+    - variable: boolSmtpSsl
+      label: "SMTP SSL"
+      type: "boolean"
+      required: false
+      default: False
+
+    - variable: strSmtpUser
+      label: "SMTP User"
+      type: "string"
+      required: false
+
+    - variable: strSmtPassword
+      label: "SMTP Password"
+      type: "password"
+      required: false
+
+    # en realidad esta variable no suma, la consideramos solo si creamos bds
+    # - variable: boolWithoutDemo
+    #   label: "Odoo WITHOUT_DEMO"
+    #   description: "Odoo WITHOUT_DEMO environment var"
+    #   type: "boolean"
+    #   required: true 
+    #   default: True
+
+    # al final directamente usamos el nombre
+    # - variable: strVolumeOptions
+    #   label: "Volume Names - You can use the same name of the Stack"
+    #   description: "Name to be used to create volumns"
+    #   type: "string"
+    #   required: true
+    #   default: "{io.rancher.stack.name}"
+
+    # la idea es que la version del catalogo defina la version de la imagen
+    # de odoo
+    # - variable: strOdooVersion
+    #   label: "Tag for the odoo image to be used"
+    #   description: "Odoo version can be 8.0 or 9.0 for now"
+    #   type: "string"
+    #   required: true
+    #   default: "9.0"
+
+    - variable: strScale
+      label: "Scale"
+      type: "int"
+      required: true
+      default: 1
+
+#scaling and health checks per service as per docker-compose.yml
+version: 2
+services:
+  odoo:
+    scale: 1
+    health_check:
+      port: 8069
+      interval: 2000
+      # initializing_timeout: 60000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
+    upgrade_strategy:
+      start_first: true
+  nginx:
+    scale: $strScale
+    health_check:
+      port: 80
+      interval: 2000
+      # initializing_timeout: 60000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
+    upgrade_strategy:
+      start_first: true
