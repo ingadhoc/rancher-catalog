@@ -186,11 +186,11 @@
     #   required: true
     #   default: "9.0"
 
-    - variable: strScale
-      label: "Scale"
-      type: "int"
-      required: true
-      default: 1
+    # - variable: strScale
+    #   label: "Scale"
+    #   type: "int"
+    #   required: true
+    #   default: 1
 
 #scaling and health checks per service as per docker-compose.yml
 version: 2
@@ -208,7 +208,7 @@ services:
     upgrade_strategy:
       start_first: true
   nginx:
-    scale: $strScale
+    scale: 1
     health_check:
       port: 80
       interval: 2000
