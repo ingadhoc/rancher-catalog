@@ -5,7 +5,7 @@ services:
         labels:
             io.rancher.service.selector.link: odoo_service=True
             io.rancher.container.pull_image: always
-            io.rancher.sidekicks: odoo-sessions
+            # io.rancher.sidekicks: odoo-sessions
             # para cuando traefik de rancer soporte multiples backends
             # traefik.enable: true
             # traefik.frontend.rule: Host:$strTraefikDomains
