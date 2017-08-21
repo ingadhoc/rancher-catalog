@@ -4,6 +4,7 @@
   description: "All-in-one management software customized by ADHOC"
   minimum_rancher_version: v1.3.2
   questions:
+  upgrade_from: "3.0"
 
 # domain y alias configuration
     # - variable: strTraefikDomain
@@ -186,11 +187,11 @@
     #   required: true
     #   default: "9.0"
 
-    - variable: strScale
-      label: "Scale"
-      type: "int"
-      required: true
-      default: 1
+    # - variable: strScale
+    #   label: "Scale"
+    #   type: "int"
+    #   required: true
+    #   default: 1
 
 #scaling and health checks per service as per docker-compose.yml
 version: 2
@@ -208,7 +209,8 @@ services:
     upgrade_strategy:
       start_first: true
   nginx:
-    scale: ${strScale}
+    scale: 1
+    # scale: ${strScale}
     health_check:
       port: 80
       interval: 2000
