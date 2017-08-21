@@ -73,6 +73,9 @@ services:
             traefik.frontend.rule: Host:$strTraefikDomains
             # traefik.domain: $strTraefikDomain
             traefik.port: 80
+            traefik.backend.loadbalancer.sticky: true
+            # tenemos que ver si llega a ser mejor
+            # traefik.backend.loadbalancer.method: drr
             # comentamos a ver si traefik no se tilda
             # traefik.alias.fqdn: $cOtherServerNames
             io.rancher.container.pull_image: always
