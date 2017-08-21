@@ -76,6 +76,9 @@ services:
             # comentamos a ver si traefik no se tilda
             # traefik.alias.fqdn: $cOtherServerNames
             io.rancher.container.pull_image: always
+            # tratar de repartir en los distintos hosts (soft y hard)
+            # io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+            io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             # hasta que usemos traefik, agregamos este label para que nginx levante en el mismo lugar de odoo para forzar que si se cambia de host se reinicien ambos y funcione bien el cambio de host, con traefik no seria necesario
             # io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/odoo
     # odoo-sessions:

@@ -4,7 +4,8 @@
   description: "All-in-one management software customized by ADHOC"
   minimum_rancher_version: v1.3.2
   questions:
-  upgrade_from: "3.0"
+  # intento para que no sugiera upgrade pero no funciono
+  # upgrade_from: "3.0"
 
 # domain y alias configuration
     # - variable: strTraefikDomain
