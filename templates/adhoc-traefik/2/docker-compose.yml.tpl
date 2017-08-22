@@ -8,6 +8,7 @@ services:
             # log_driver: ''
         command:
             - --web
+            - --checkNewVersion=false
             - --rancher
             - --rancher.domain=${domain}
             - --rancher.endpoint=${Endpoint}
@@ -16,7 +17,7 @@ services:
             # por ahora agregamos esto porque si no da error al restaurar backups. Luego, si queremos actualizar online, tal vez tengamos que desactivarlo
             - --rancher.EnableServiceHealthFilter=true
             # parameter para loglevel? (INFO, ERROR otra opcion)
-            - --logLevel=DEBUG
+            - --logLevel=INFO
             # para investigar...
             # - --docker.constraints="tag==web"
             # config entrypoints
