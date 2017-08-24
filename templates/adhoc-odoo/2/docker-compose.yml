@@ -3,7 +3,8 @@ services:
     odoo:
         image: adhoc/odoo-ar-e:$strImageTag
         labels:
-            io.rancher.service.selector.link: odoo_service=True
+            # ahora el selector va en nginx que lidera el service
+            # io.rancher.service.selector.link: odoo_service=True
             io.rancher.container.pull_image: always
             # io.rancher.sidekicks: odoo-sessions
             # para cuando traefik de rancer soporte multiples backends
@@ -68,16 +69,17 @@ services:
             - MainHostname=$strMainHostname
             - SecondaryHostnames=$strSecondaryHostnames
         labels:
-            traefik.enable: true
-            io.rancher.sidekicks: odoo
-            traefik.frontend.rule: Host:$strTraefikDomains
             # traefik.domain: $strTraefikDomain
+            traefik.enable: true
+            traefik.frontend.rule: Host:$strTraefikDomains
             traefik.port: 80
             traefik.backend.loadbalancer.sticky: true
             # tenemos que ver si llega a ser mejor
             # traefik.backend.loadbalancer.method: drr
             # comentamos a ver si traefik no se tilda
             # traefik.alias.fqdn: $cOtherServerNames
+            io.rancher.service.selector.link: odoo_service=True
+            io.rancher.sidekicks: odoo
             io.rancher.container.pull_image: always
             # tratar de repartir en los distintos hosts (soft y hard)
             # io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
