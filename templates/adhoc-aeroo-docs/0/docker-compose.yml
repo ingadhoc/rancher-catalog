@@ -9,4 +9,4 @@ services:
             # io.rancher.scheduler.global: 'true'
             io.rancher.container.pull_image: always
             # used to be autolinked on odoo containers
-            odoo_service: True
+            odoo_service: 'true'
