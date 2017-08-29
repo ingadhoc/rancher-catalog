@@ -52,7 +52,9 @@ services:
             - SMTP_SSL=$boolSmtpSsl
             - SMTP_USER=$strSmtpUser
             - SMTP_PASSWORD=$strSmtPassword
-            - AEROO_DOCS_HOST=aeroo-docs
+            # los selector links no nos están andando...
+            - AEROO_DOCS_HOST= aeroo-docs.adhoc-aeroo-docs
+            # - AEROO_DOCS_HOST=aeroo-docs
             - DATABASE=$strDatabase
             - DBFILTER=$strDbFilter
             - SERVER_MODE=$strServerMode
@@ -78,7 +80,8 @@ services:
             # traefik.backend.loadbalancer.method: drr
             # comentamos a ver si traefik no se tilda
             # traefik.alias.fqdn: $cOtherServerNames
-            io.rancher.service.selector.link: odoo_service=true
+            # no nos está andando el selector link
+            # io.rancher.service.selector.link: odoo_service=true
             io.rancher.sidekicks: odoo
             io.rancher.container.pull_image: always
             # tratar de repartir en los distintos hosts (soft y hard)
