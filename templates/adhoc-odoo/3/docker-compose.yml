@@ -1,0 +1,95 @@
+version: '2'
+services:
+    odoo:
+        image: adhoc/odoo-ar-e:$strImageTag
+        labels:
+            # ahora el selector va en nginx que lidera el service
+            # io.rancher.service.selector.link: odoo_service=True
+            io.rancher.container.pull_image: always
+            # io.rancher.sidekicks: odoo-sessions
+            # para cuando traefik de rancer soporte multiples backends
+            # traefik.enable: true
+            # traefik.frontend.rule: Host:$strTraefikDomains
+            # traefik.port: 8069
+            # traefik.frontend.rule: Host:$strTraefikDomains
+            # traefik.longpolling.port: 8072
+            # traefik.longpolling.frontend.rule: Host:$strTraefikDomains;PathPrefix:/longpolling/
+            # traefik.websiteinfo.auth.basic: "$strPgUser:$strAdminPassword"
+            # traefik.websiteinfo.frontend.rule: Host:$strTraefikDomains;PathPrefix:/website/info
+            # traefik.dbmanager.auth.basic: "$strPgUser:$strAdminPassword"
+            # traefik.dbmanager.frontend.rule: Host:$strTraefikDomains;PathPrefix:/web/database/
+        volumes:
+            # TODO borrar, al final nos daba error de permisos si usabamos
+            # filestore
+            # hacemos solo del filestore para que podamos matar sesiones
+            # y addons descargados en un remove run. ademas lei que
+            # las sesiones requieren buena performance
+            # - odoo_filestore:/opt/odoo/data
+            - odoo_data_filestore:/opt/odoo/data/filestore/
+            - odoo_data_session:/opt/odoo/data/sessions/
+        # volumes_from:
+        #     - odoo-sessions
+        environment:
+            # TODO remove or use
+            # - WITHOUT_DEMO=$boolWithoutDemo
+            # - VIRTUAL_PORT=8069,8072
+            # TODO borrar o usar, al final fuimos por hacer la config con odoo ws porque la var de stack_name no funciona y ademas queremos configurar el freeze y otros
+            # - MAIL_CATCHALL_DOMAIN={$stack_name}.juans.dev-adhoc.com
+            # al final ne vez de usar postfix directamente nos conctamos
+            # - SMTP_SERVER=postfix
+            # desde odoo
+            # database parameters
+            - PGUSER=$strPgUser
+            - PGPASSWORD=$strPgPassword
+            - PGHOST=$strPgHost
+            # TODO, este podria volver a ser un booleano y tmb podriamos
+            # re simplificar el entry point, ahora modificamos a odoo para que
+            # no cree bd si se manda el db_name, y estamos haciendo eso, mandar
+            # db_name
+            - FIXDBS=$strFixDbs
+            - SMTP_SERVER=$strSmtpServer
+            - SMTP_PORT=$intSmtPort
+            - SMTP_SSL=$boolSmtpSsl
+            - SMTP_USER=$strSmtpUser
+            - SMTP_PASSWORD=$strSmtPassword
+            - AEROO_DOCS_HOST=aeroo-docs
+            - DATABASE=$strDatabase
+            - DBFILTER=$strDbFilter
+            - SERVER_MODE=$strServerMode
+            - WORKERS=$intWorkers
+            - ADMIN_PASSWORD=$strAdminPassword
+            - MAIL_CATCHALL_DOMAIN=$strMailCatchallDomain
+            - FIX_DB_WEB_DISABLED=True
+            - PG_MAX_CONNECTIONS=$intPgMaxConnections
+    nginx:
+        image: adhoc/odoo-nginx
+        depends_on:
+            - odoo
+        environment:
+            - MainHostname=$strMainHostname
+            - SecondaryHostnames=$strSecondaryHostnames
+        labels:
+            # traefik.domain: $strTraefikDomain
+            traefik.enable: true
+            traefik.frontend.rule: Host:$strTraefikDomains
+            traefik.port: 80
+            traefik.backend.loadbalancer.sticky: true
+            # tenemos que ver si llega a ser mejor
+            # traefik.backend.loadbalancer.method: drr
+            # comentamos a ver si traefik no se tilda
+            # traefik.alias.fqdn: $cOtherServerNames
+            io.rancher.service.selector.link: odoo_service=true
+            io.rancher.sidekicks: odoo
+            io.rancher.container.pull_image: always
+            # tratar de repartir en los distintos hosts (soft y hard)
+            # io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+            io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+            # hasta que usemos traefik, agregamos este label para que nginx levante en el mismo lugar de odoo para forzar que si se cambia de host se reinicien ambos y funcione bien el cambio de host, con traefik no seria necesario
+            # io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/odoo
+    # odoo-sessions:
+    #     image: alpine:3.6
+    #     command: sh -c "chmod 777 -R /opt/odoo/data/sessions"
+    #     labels:
+    #         io.rancher.container.start_once: 'true'
+    #     volumes:
+    #         - /opt/odoo/data/sessions
