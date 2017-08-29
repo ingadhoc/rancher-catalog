@@ -78,7 +78,7 @@ services:
             # traefik.backend.loadbalancer.method: drr
             # comentamos a ver si traefik no se tilda
             # traefik.alias.fqdn: $cOtherServerNames
-            io.rancher.service.selector.link: odoo_service=true
+            io.rancher.service.selector.link: odoo_service=True
             io.rancher.sidekicks: odoo
             io.rancher.container.pull_image: always
             # tratar de repartir en los distintos hosts (soft y hard)
