@@ -82,7 +82,7 @@
 #
 version: 2
 services:
-  postfix-dockprox:
+  postfix:
     scale: 1
     health_check:
       port: 25
