@@ -8,7 +8,7 @@ services:
             # llega a ser necesario
             # io.rancher.container.hostname_override: container_name
             # io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-            io.rancher.scheduler.global: 'true'
+            # io.rancher.scheduler.global: 'true'
             io.rancher.container.pull_image: always
             # used to be autolinked on odoo containers
             # lo dejamos pero en realidad no nos está andando
