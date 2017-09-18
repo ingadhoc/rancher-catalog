@@ -59,7 +59,7 @@
       required: false
       default: true
       type: "boolean"
--
+
     - variable: "host_label"
       description: "Host label where to run traefik service."
       label: "Host label:"
