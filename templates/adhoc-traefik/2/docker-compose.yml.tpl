@@ -15,7 +15,7 @@ services:
             - --rancher.accesskey=${AccessKey}
             - --rancher.secretkey=${SecretKey}
             # por ahora agregamos esto porque si no da error al restaurar backups. Luego, si queremos actualizar online, tal vez tengamos que desactivarlo
-            - --rancher.EnableServiceHealthFilter=true
+            - --rancher.EnableServiceHealthFilter=${EnableServiceHealthFilter}
             # parameter para loglevel? (INFO, ERROR otra opcion)
             - --logLevel=INFO
             # para investigar...
@@ -26,9 +26,9 @@ services:
             - --entryPoints='Name:http Address::80 Redirect.EntryPoint:https Compress:on'
             - --EntryPoints="Name:https Address::443 TLS:/secrets/domain.crt,/secrets/domain.key Compress:on" 
             # acme config
+            # - --acme.domains=${domain}
         {{- if eq .Values.acme_enable "true"}}
             - --acme=${acme_enable}
-            - --acme.domains=${domain}
             - --acme.entrypoint=https
             - --acme.email=${acme_email}
             - --acme.ondemand=${acme_ondemand}
@@ -37,6 +37,7 @@ services:
         {{- end}}
         labels:
             io.rancher.scheduler.global: 'true'
+            io.rancher.scheduler.affinity:host_label: ${host_label}
         # TODO
         # to enable stats dashboard, also enable web backend in traefik.toml
         #      - traefik.enable=true
