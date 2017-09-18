@@ -11,9 +11,9 @@ services:
             - --checkNewVersion=false
             - --rancher
             - --rancher.domain=${domain}
-            - --rancher.endpoint=${Endpoint}
-            - --rancher.accesskey=${AccessKey}
-            - --rancher.secretkey=${SecretKey}
+            - --rancher.api.endpoint=${Endpoint}
+            - --rancher.api.accesskey=${AccessKey}
+            - --rancher.api.secretkey=${SecretKey}
             # por ahora agregamos esto porque si no da error al restaurar backups. Luego, si queremos actualizar online, tal vez tengamos que desactivarlo
             - --rancher.EnableServiceHealthFilter=${EnableServiceHealthFilter}
             # parameter para loglevel? (INFO, ERROR otra opcion)
