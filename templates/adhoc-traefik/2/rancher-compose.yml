@@ -61,19 +61,6 @@
     #   default: 15
     #   type: "int"
 
-    - variable: "EnableServiceHealthFilter"
-      label: "Enable Service Health Filter:"
-      required: false
-      default: true
-      type: "boolean"
-
-    - variable: "host_label"
-      description: "Host label where to run traefik service."
-      label: "Host label:"
-      required: true
-      default: "traefik_lb=true" 
-      type: "string"
-
     # - variable: "ExposedByDefault"
     #   description: "Expose Rancher services by default in traefik."
     #   label: "Expose by Default:"
