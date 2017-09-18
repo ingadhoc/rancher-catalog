@@ -23,8 +23,11 @@ services:
             # config entrypoints
             - --defaultentrypoints=http,https
             - --InsecureSkipVerify=true
-            - --entryPoints='Name:http Address::80 Redirect.EntryPoint:https Compress:on'
-            - --EntryPoints="Name:https Address::443 TLS:/secrets/domain.crt,/secrets/domain.key Compress:on" 
+            # we disable compression because we do it with nginx
+            # - --entryPoints='Name:http Address::80 Redirect.EntryPoint:https Compress:on'
+            - --entryPoints='Name:http Address::80 Redirect.EntryPoint:https'
+            # - --EntryPoints="Name:https Address::443 TLS:/secrets/domain.crt,/secrets/domain.key Compress:on" 
+            - --EntryPoints="Name:https Address::443 TLS:/secrets/domain.crt,/secrets/domain.key" 
             # acme config
             # - --acme.domains=${domain}
         {{- if eq .Values.acme_enable "true"}}
