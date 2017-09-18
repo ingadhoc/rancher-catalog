@@ -54,6 +54,19 @@
       default: "XXXXXXXXXXXXXXXXXXXX" 
       type: "string"
 
+    - variable: "EnableServiceHealthFilter"
+      label: "Enable Service Health Filter:"
+      required: false
+      default: true
+      type: "boolean"
+-
+    - variable: "host_label"
+      description: "Host label where to run traefik service."
+      label: "Host label:"
+      required: true
+      default: "traefik_lb=true" 
+      type: "string"
+
     # TODO enable this
     # - variable: "RefreshSeconds"
     #   label: "Polling interval (in seconds):"
