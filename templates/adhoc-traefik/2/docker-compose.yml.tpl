@@ -23,6 +23,7 @@ services:
             # config entrypoints
             - --defaultentrypoints=http,https
             - --InsecureSkipVerify=true
+            # la opcion de compress no parece andar, si la sacamos igual da error (no seria necesaria porque ya lo hace nginx), para sacarla lo unico que anduvo fue Compress:off
             - --entryPoints='Name:http Address::80 Redirect.EntryPoint:https Compress:on'
             - --EntryPoints="Name:https Address::443 TLS:/secrets/domain.crt,/secrets/domain.key Compress:on" 
             # acme config
