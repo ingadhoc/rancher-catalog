@@ -45,7 +45,7 @@ services:
         #      - traefik.port=8080
         #      - traefik.frontend.rule=Host:traefik.domain.com
         tty: true
-        image: traefik:1.4
+        image: traefik:1.3.5-alpine
         volumes:
             - traefik-secrets:/secrets
 volumes:
