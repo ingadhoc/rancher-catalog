@@ -10,7 +10,8 @@ services:
             - --web
             - --checkNewVersion=false
             - --rancher
-            - --rancher.metadata
+            - --rancher.metadata=true
+            - --rancher.api=false
             - --rancher.domain=${domain}
             # para v1.4
             # - --rancher.api.endpoint=${Endpoint}
