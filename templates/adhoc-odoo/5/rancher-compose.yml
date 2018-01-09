@@ -1,6 +1,6 @@
 .catalog:
   name: "ADHOC Odoo 9.0"
-  version: "5.0"
+  version: "5.1"
   description: "All-in-one management software customized by ADHOC"
   minimum_rancher_version: v1.3.2
   questions:
@@ -86,7 +86,7 @@
       required: true
       # Este valor es el que usa odoo por defecto (odoo.py) y parecido al que
       # sugiere la conf 629145600, usamos el por defecto
-      default: "671088640"
+      # default: "671088640"
       # este es el que veníamos usando
       # default: "2147483648"
 
@@ -103,7 +103,7 @@
       # default: "1677721600"
       # número que usabamos antes, lo dejamos para no limitar por ahora si hay
       # alguna operación que use demasiada ram (ej. boggio)
-      default: "2147483648"
+      # default: "2147483648"
 
     - variable: strPgPassword
       label: "Postgres Password"
