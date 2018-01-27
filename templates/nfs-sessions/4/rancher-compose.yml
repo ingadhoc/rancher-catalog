@@ -45,7 +45,7 @@
     options:
     - true
     - false
-nfs-driver:
+nfs-driver-sessions:
   storage_driver:
     name: rancher-nfs
     scope: environment
