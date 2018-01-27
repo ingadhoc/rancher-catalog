@@ -57,6 +57,7 @@
     - variable: "EnableServiceHealthFilter"
       label: "Enable Service Health Filter:"
       required: false
+      # por ahora sugerimos que si si no da error al restaurar backups. Luego, si queremos actualizar online, tal vez tengamos que desactivarlo
       default: true
       type: "boolean"
 

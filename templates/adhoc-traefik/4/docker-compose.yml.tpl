@@ -11,11 +11,7 @@ services:
             - --checknewversion=false
             - --rancher
             - --rancher.domain=${domain}
-            # para v1.4
-            - --rancher.api.endpoint=${Endpoint}
-            - --rancher.api.accesskey=${AccessKey}
-            - --rancher.api.secretkey=${SecretKey}
-            # por ahora agregamos esto porque si no da error al restaurar backups. Luego, si queremos actualizar online, tal vez tengamos que desactivarlo
+            - --rancher.metadata
             - --rancher.enableservicehealthfilter=${EnableServiceHealthFilter}
             # parameter para loglevel? (INFO, ERROR otra opcion)
             - --logLevel=INFO
@@ -46,7 +42,7 @@ services:
         #      - traefik.port=8080
         #      - traefik.frontend.rule=Host:traefik.domain.com
         tty: true
-        image: traefik:1.4.2-alpine
+        image: traefik:1.5.0-alpine
         volumes:
             - traefik-secrets:/secrets
 volumes:
