@@ -70,9 +70,3 @@ volumes:
     driver_opts:
       host: $strSessionsHost
       exportBase: /
-  odoo_data_filestore:
-    driver: rancher-nfs
-    external: true
-    driver_opts:
-      host: $strSessionsHost
-      exportBase: /
