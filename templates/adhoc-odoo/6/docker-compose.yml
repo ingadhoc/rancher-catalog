@@ -38,6 +38,7 @@ services:
             - DATABASE=$strDatabase
             - DBFILTER=$strDbFilter
             - SERVER_MODE=$strServerMode
+            - DISABLE_SESSION_GC=$strDisableSessionGC
             - WORKERS=$intWorkers
             - ADMIN_PASSWORD=$strAdminPassword
             - MAIL_CATCHALL_DOMAIN=$strMailCatchallDomain

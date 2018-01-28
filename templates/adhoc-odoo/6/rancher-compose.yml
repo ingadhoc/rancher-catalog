@@ -105,6 +105,11 @@
       # alguna operación que use demasiada ram (ej. boggio)
       default: "2147483648"
 
+    - variable: strDisableSessionGC
+      label: "Disable Odoo Sessions Garbage Collector"
+      type: "string"
+      required: false
+
     - variable: strPgPassword
       label: "Postgres Password"
       description: "Postgres Password"
