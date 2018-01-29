@@ -196,6 +196,7 @@ services:
   odoo-lb:
     scale: 1
     lb_config:
+      certs: []
       config: |-
         global
             maxconn 4096
@@ -204,15 +205,15 @@ services:
             timeout client 36000s
             timeout server 36000s
       port_rules:
-        - protocol: http
-          service: odoo
-          source_port: 80
-          target_port: 8069
-        - protocol: http
-          service: odoo
-          source_port: 80
-          target_port: 8072
-          path: /longpolling
+      - protocol: http
+        service: odoo
+        source_port: 80
+        target_port: 8069
+      - path: /longpolling
+        protocol: http
+        service: odoo
+        source_port: 80
+        target_port: 8072
     health_check:
       port: 42
       interval: 2000
