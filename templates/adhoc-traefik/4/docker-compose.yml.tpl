@@ -25,7 +25,8 @@ services:
             # acme config
             # - --acme.domains=${domain}
         {{- if eq .Values.acme_enable "true"}}
-            - --acme=${acme_enable}
+            - --acme
+            - --acme.acmelogging
             - --acme.entrypoint=https
             - --acme.email=${acme_email}
             - --acme.ondemand=${acme_ondemand}
