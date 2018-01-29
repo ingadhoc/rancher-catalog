@@ -32,6 +32,7 @@ services:
             - --acme.ondemand=${acme_ondemand}
             - --acme.onhostrule=${acme_onhostrule}
             - --acme.storage=/secrets/acme.json
+            - --acme.httpChallenge.entryPoint=http
         {{- end}}
         labels:
             io.rancher.scheduler.global: 'true'

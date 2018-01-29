@@ -58,7 +58,7 @@ services:
             traefik.enable: true
             traefik.frontend.rule: Host:$strTraefikDomains
             traefik.port: 80
-            traefik.backend.loadbalancer.sticky: true
+            traefik.backend.loadbalancer.stickiness: true
             traefik.backend.loadbalancer.method: drr
             io.rancher.sidekicks: odoo
             io.rancher.container.pull_image: always
