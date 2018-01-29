@@ -8,8 +8,7 @@
     - variable: "auth_users"
       label: "Traefik administration Users."
       description: "CSV format: User:Hash,User:Hash. Administration panel is on tr.{domain}"
-      required: required
-      default: "User:Hash"
+      required: true
       type: "string"
 
     - variable: "http_port"
