@@ -6,8 +6,7 @@
   questions:
 
     - variable: "auth_users"
-      description: "Traefik administration Users."
-      label: "CSV format: User:Hash,User:Hash. Administration panel is on tr.{domain}"
+      label: "Traefik administration Users."
       required: required
       type: "string"
 
