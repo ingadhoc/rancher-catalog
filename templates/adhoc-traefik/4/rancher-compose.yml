@@ -1,9 +1,15 @@
 .catalog:
   name: "Adhoc Traefik"
-  version: "1.4.3"
+  version: "1.5.0"
   description: "(Experimental) Traefik load balancer."
   minimum_rancher_version: v1.3.2
   questions:
+
+    - variable: "auth_users"
+      description: "Traefik administration Users."
+      label: "CSV format: User:Hash,User:Hash. Administration panel is on tr.{domain}"
+      required: required
+      type: "string"
 
     - variable: "http_port"
       description: "Traefik http public port to listen."

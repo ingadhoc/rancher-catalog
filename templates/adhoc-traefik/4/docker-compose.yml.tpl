@@ -7,7 +7,7 @@ services:
             - ${https_port}:443/tcp
             # log_driver: ''
         command:
-            - --web
+            - --web.statistics
             - --checknewversion=false
             - --rancher
             - --rancher.domain=${domain}
@@ -36,12 +36,11 @@ services:
         labels:
             io.rancher.scheduler.global: 'true'
             io.rancher.scheduler.affinity:host_label: ${host_label}
-        # TODO
-        # to enable stats dashboard, also enable web backend in traefik.toml
-        #      - traefik.enable=true
-        #      - traefik.docker.network=traefik-proxy
-        #      - traefik.port=8080
-        #      - traefik.frontend.rule=Host:traefik.domain.com
+            # publish traefik admin
+            traefik.enable=true
+            traefik.port=8080
+            traefik.frontend.auth.basic=${auth_users}
+            traefik.frontend.rule=Host:tr.${domain}
         tty: true
         image: traefik:1.5.0-alpine
         volumes:
