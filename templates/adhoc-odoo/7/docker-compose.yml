@@ -59,9 +59,9 @@ services:
             traefik.backend.loadbalancer.stickiness: true
             traefik.backend.loadbalancer.method: drr
 volumes:
-  odoo_data_session:
-    driver: rancher-nfs
-    external: true
-  odoo_data_filestore:
-    driver: rancher-nfs
-    external: true
+    odoo_data_session:
+        driver: rancher-nfs
+        external: true
+    odoo_data_filestore:
+       driver: rancher-nfs
+        external: true

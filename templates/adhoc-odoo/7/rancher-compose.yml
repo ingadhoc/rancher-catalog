@@ -196,6 +196,14 @@ services:
   odoo-lb:
     scale: 1
     lb_config:
+      config: |-
+          global
+              maxconn 4096
+              maxpipes 1024
+          defaults
+              timeout client 36000s
+              timeout server 36000s
+    lb_config:
       certs: []
       port_rules:
       - protocol: http
