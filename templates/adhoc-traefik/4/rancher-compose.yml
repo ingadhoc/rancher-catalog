@@ -7,7 +7,7 @@
 
     - variable: "auth_users"
       label: "Traefik administration Users."
-      description: "CSV format: User:Hash,User:Hash. Administration panel is on tr.{domain}"
+      description: "CSV format: User:Hash,User:Hash. Administration panel is on tr.{domain}. You can generate in here https://www.web2generators.com/apache-tools/htpasswd-generator"
       required: true
       type: "string"
 

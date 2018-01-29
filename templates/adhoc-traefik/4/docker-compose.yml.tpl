@@ -37,10 +37,10 @@ services:
             io.rancher.scheduler.global: 'true'
             io.rancher.scheduler.affinity:host_label: ${host_label}
             # publish traefik admin
-            traefik.enable=true
-            traefik.port=8080
-            traefik.frontend.auth.basic=${auth_users}
-            traefik.frontend.rule=Host:tr.${domain}
+            traefik.enable: 'true'
+            traefik.port: 8080
+            traefik.frontend.auth.basic: "${auth_users}"
+            traefik.frontend.rule: "Host:tr.${domain}"
         tty: true
         image: traefik:1.5.0-alpine
         volumes:
