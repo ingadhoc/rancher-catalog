@@ -21,7 +21,7 @@ services:
             - --defaultentrypoints=http,https
             - --insecureskipverify=true
             - --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
-            - --entryPoints=Name:https Address::443 TLS:/secrets/domain.crt,/secrets/domain.key
+            - --entryPoints=Name:https Address::443 TLS:/secrets/domain.crt,/secrets/domain.key Compress:on
             # acme config
             # - --acme.domains=${domain}
         {{- if eq .Values.acme_enable "true"}}
