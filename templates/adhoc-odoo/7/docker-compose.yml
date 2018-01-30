@@ -4,6 +4,7 @@ services:
         image: adhoc/odoo-ar-e:$strImageTag
         labels:
             io.rancher.container.pull_image: always
+            io.rancher.scheduler.affinity:host_label: ${host_label}
             # io.rancher.sidekicks: odoo-sessions
             # para cuando traefik de rancer soporte multiples backends
             # traefik.enable: true
@@ -51,6 +52,7 @@ services:
         image: rancher/lb-service-haproxy:v0.7.15
         labels:
             # io.rancher.container.agent.role: environmentAdmin,agent
+            io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             io.rancher.container.agent_service.drain_provider: 'true'
             io.rancher.container.create_agent: 'true'
             traefik.enable: true
