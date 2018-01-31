@@ -62,6 +62,8 @@ services:
             traefik.port: 80
             traefik.backend.loadbalancer.stickiness: true
             traefik.backend.loadbalancer.method: drr
+            traefik.frontend.redirect.regex: $strTraefikRedirectRegex
+            traefik.frontend.redirect.replacement: $strTraefikRedirectReplacement
 volumes:
   odoo_data_sessions:
     driver: rancher-nfs

@@ -20,16 +20,16 @@
       required: true
       default: ""
 
-    - variable: strMainHostname
-      label: "Main hostname"
-      description: "If main hostname is configured, then nginx will redirect server names to this hostname"
+    - variable: strTraefikRedirectRegex
+      label: "Redirect Regex"
+      description: "Redirect to another URL for that frontend. Must be set with Redirect Replacement"
       type: "string"
       required: false
       default: ""
 
-    - variable: strSecondaryHostnames
-      label: "Secondary hostnames"
-      description: "Other hostnames that are not going to be redirected"
+    - variable: strTraefikRedirectReplacement
+      label: "Redirect Replacement"
+      description: "Redirect to another URL for that frontend. Must be set with Redirect Regex"
       type: "string"
       required: false
       default: ""
