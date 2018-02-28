@@ -1,6 +1,8 @@
 version: '2'
 services:
     odoo:
+        tty: true
+        stdin_open: true
         image: adhoc/odoo-ar-e:$strImageTag
         labels:
             io.rancher.container.pull_image: always
@@ -40,6 +42,7 @@ services:
             - SERVER_MODE=$strServerMode
             - DISABLE_SESSION_GC=$strDisableSessionGC
             - WORKERS=$intWorkers
+            - MAX_CRON_THREADS=$intMaxCronThreads
             - ADMIN_PASSWORD=$strAdminPassword
             - MAIL_CATCHALL_DOMAIN=$strMailCatchallDomain
             - FIX_DB_WEB_DISABLED=True
@@ -48,6 +51,8 @@ services:
             - LIMIT_MEMORY_SOFT=$intLimitMemorySoft
             - ODOO_VERSION=$strImageTag
     nginx:
+        tty: true
+        stdin_open: true
         image: adhoc/odoo-nginx
         depends_on:
             - odoo

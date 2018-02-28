@@ -136,6 +136,13 @@
       required: true
       default: "0"
 
+    - variable: intMaxCronThreads
+      label: "Maximum Cron Threads"
+      description: "Maximum number of threads processing concurrently cron jobs"
+      type: "int"
+      required: true
+      default: "1"
+
     - variable: strFixDbs
       label: "FIX DBS"
       description: "Try to fix database before starting odoo. You can send ',' sep. list or True to fix all available dbs."
