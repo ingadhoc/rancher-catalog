@@ -1,6 +1,8 @@
 version: '2'
 services:
     postfix:
+        tty: true
+        stdin_open: true
         ports:
             - 25:25/tcp
         labels:

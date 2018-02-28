@@ -1,6 +1,8 @@
 version: '2'
 services:
     aeroo-docs:
+        tty: true
+        stdin_open: true
         image: adhoc/aeroo-docs
         labels:
             # no need to have one on each host but better to distribute load

@@ -1,6 +1,8 @@
 version: '2'
 services:
     traefik:
+        tty: true
+        stdin_open: true
         ports:
             - ${admin_port}:8080/tcp
             - ${http_port}:80/tcp
