@@ -44,7 +44,6 @@ services:
             traefik.port: 8080
             traefik.frontend.auth.basic: "${auth_users}"
             traefik.frontend.rule: "Host:tr.${domain}"
-        tty: true
         image: traefik:1.5.0-alpine
         volumes:
             - traefik-secrets:/secrets
