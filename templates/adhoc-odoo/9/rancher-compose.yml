@@ -199,14 +199,3 @@ services:
       response_timeout: 2000
     upgrade_strategy:
       start_first: true
-  nginx:
-    scale: 1
-    health_check:
-      port: 80
-      interval: 2000
-      unhealthy_threshold: 3
-      strategy: recreate
-      healthy_threshold: 2
-      response_timeout: 2000
-    upgrade_strategy:
-      start_first: true
