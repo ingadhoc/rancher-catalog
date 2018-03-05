@@ -6,6 +6,8 @@ services:
         image: adhoc/odoo-ar-e:$strImageTag
         labels:
             io.rancher.container.pull_image: always
+            io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+            io.rancher.scheduler.affinity:host_label: ${host_label}
             traefik.enable: true
             traefik.frontend.rule: Host:$strTraefikDomains
             traefik.port: 8069
