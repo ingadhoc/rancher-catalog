@@ -132,7 +132,7 @@
     - variable: intWorkers
       label: "Odoo WORKERS"
       description: "Odoo WORKERS environment var"
-      type: "int"
+      type: "string"
       required: true
       default: "0"
 
