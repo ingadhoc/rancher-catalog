@@ -15,7 +15,7 @@ services:
             - --rancher.domain=${domain}
             - --rancher.metadata
             - --rancher.enableservicehealthfilter=${EnableServiceHealthFilter}
-            # parameter para loglevel? (INFO, ERROR otra opcion)
+            # parameter para loglevel? (INFO, DEBUG, ERROR otra opcion)
             - --logLevel=INFO
             # para investigar...
             # - --docker.constraints="tag==web"
