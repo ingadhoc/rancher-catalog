@@ -132,8 +132,8 @@
     - variable: intWorkers
       label: "Odoo WORKERS"
       description: "Odoo WORKERS environment var"
-      type: "string"
-      required: false
+      type: "int"
+      required: true
       default: "0"
 
     - variable: intMaxCronThreads
