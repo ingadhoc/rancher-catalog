@@ -133,7 +133,7 @@
       label: "Odoo WORKERS"
       description: "Odoo WORKERS environment var"
       type: "string"
-      required: true
+      required: false
       default: "0"
 
     - variable: intMaxCronThreads
