@@ -17,8 +17,7 @@ services:
             traefik.frontend.redirect.regex: $strTraefikRedirectRegex
             traefik.frontend.redirect.replacement: $strTraefikRedirectReplacement
             traefik.frontend.redirect.permanent: true
-        {{- end}}
-        {{- if ne .Values.intWorkers "0"}}
+        {{- else}}
             traefik.odoo.port: 8069
             traefik.odoo.frontend.rule: Host:$strTraefikDomains
             traefik.odoo.redirect.regex: $strTraefikRedirectRegex
