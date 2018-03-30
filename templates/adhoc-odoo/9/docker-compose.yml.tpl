@@ -12,13 +12,13 @@ services:
             traefik.port: 8069
             traefik.backend.loadbalancer.stickiness: true
             traefik.backend.loadbalancer.method: drr
-        {{- if eq.Values.acme_enable "0"}}
+        {{- if eq.Values.intWorkers "0"}}
             traefik.frontend.rule: Host:$strTraefikDomains
             traefik.frontend.redirect.regex: $strTraefikRedirectRegex
             traefik.frontend.redirect.replacement: $strTraefikRedirectReplacement
             traefik.frontend.redirect.permanent: true
         {{- end}}
-        {{- if ne.Values.acme_enable "0"}}
+        {{- if ne.Values.intWorkers "0"}}
             traefik.odoo.port: 8069
             traefik.odoo.frontend.rule: Host:$strTraefikDomains
             traefik.odoo.redirect.regex: $strTraefikRedirectRegex
@@ -53,8 +53,7 @@ services:
             - DBFILTER=$strDbFilter
             - SERVER_MODE=$strServerMode
             - DISABLE_SESSION_GC=$strDisableSessionGC
-            # - WORKERS=$intWorkers (por ahora forzamos a 0 workers)
-            - WORKERS=0
+            - WORKERS=$intWorkers
             - MAX_CRON_THREADS=$intMaxCronThreads
             - ADMIN_PASSWORD=$strAdminPassword
             - MAIL_CATCHALL_DOMAIN=$strMailCatchallDomain
