@@ -10,15 +10,26 @@ services:
             io.rancher.scheduler.affinity:host_label: ${host_label}
             traefik.enable: true
             traefik.port: 8069
+            traefik.backend.loadbalancer.stickiness: true
+            traefik.backend.loadbalancer.method: drr
+        {{- if eq.Values.acme_enable "0"}}
             traefik.frontend.rule: Host:$strTraefikDomains
             traefik.frontend.redirect.regex: $strTraefikRedirectRegex
             traefik.frontend.redirect.replacement: $strTraefikRedirectReplacement
+            traefik.frontend.redirect.permanent: true
+        {{- end}}
+        {{- if ne.Values.acme_enable "0"}}
+            traefik.odoo.port: 8069
+            traefik.odoo.frontend.rule: Host:$strTraefikDomains
+            traefik.odoo.redirect.regex: $strTraefikRedirectRegex
+            traefik.odoo.redirect.replacement: $strTraefikRedirectReplacement
+            traefik.odoo.redirect.permanent: true
             traefik.longpolling.port: 8072
             traefik.longpolling.frontend.rule: Host:$strTraefikDomains;PathPrefix:/longpolling/
             traefik.longpolling.redirect.regex: $strTraefikRedirectRegex
             traefik.longpolling.redirect.replacement: $strTraefikRedirectReplacement
-            traefik.backend.loadbalancer.stickiness: true
-            traefik.backend.loadbalancer.method: drr
+            traefik.longpolling.redirect.permanent: true
+        {{- end}}
         volumes:
             - odoo_data_filestore:/opt/odoo/data/filestore/
             - odoo_data_sessions:/opt/odoo/data/sessions/
