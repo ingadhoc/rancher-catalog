@@ -9,7 +9,7 @@ services:
             - ${https_port}:443/tcp
             # log_driver: ''
         command:
-            - --web.statistics
+            - --api.dashboard
             - --checknewversion=false
             - --rancher
             - --rancher.domain=${domain}
@@ -36,7 +36,8 @@ services:
             - --acme.httpChallenge.entryPoint=http
             - --acme.dnschallenge
             - --acme.domains=*.${domain}
-            - --acme.domains=${domain}
+            # dio algunos errores y tampoco lo necesitamos
+            # - --acme.domains=${domain}
             - --acme.dnschallenge.provider=route53
         {{- end}}
         labels:
