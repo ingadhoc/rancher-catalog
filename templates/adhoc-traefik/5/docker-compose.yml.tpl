@@ -22,10 +22,8 @@ services:
             # config entrypoints
             - --defaultentrypoints=http,https
             - --insecureskipverify=true
-            - --entryPoints=Name:http Address::80
+            - --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
             - --entryPoints=Name:https Address::443 TLS Compress:on
-            # viejos, ahora hacemos el redirect en cada uno y sin necesidad de pasar los certs
-            # - --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
             # - --entryPoints=Name:https Address::443 TLS:/secrets/domain.crt,/secrets/domain.key Compress:on
             # acme config
         {{- if eq .Values.acme_enable "true"}}
@@ -50,7 +48,6 @@ services:
             traefik.port: 8080
             traefik.frontend.auth.basic: "${auth_users}"
             traefik.frontend.rule: "Host:tr.${domain}"
-            traefik.frontend.redirect.entryPoint: https
         image: traefik:1.6-alpine
         volumes:
             - traefik-secrets:/secrets
