@@ -17,8 +17,8 @@ services:
             - CATCHALL_DOMAIN=$cCatchallDomain
             - DOMAIN_REGEX=$cDomainRegex
             - MAIL_ADMINS=$cMailAdmins
-            - ODOO_SERVICE_NAME=$cOdooService
             - ODOO_PORT=$iOdooPort
+            - ODOO_PROTOCOL=$eOdooProtocol
             # variables for sending emails (postfix rejections)
             # - cMyHostname=$cMyHostname
             - MYNETWORKS=$cMyNetworks

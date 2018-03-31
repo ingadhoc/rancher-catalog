@@ -28,19 +28,20 @@
       required: true
       default: "info@example.com"
 
-    - variable: cOdooService
-      label: "Odoo Service"
-      description: "Service name where odoo is located"
-      type: "string"
-      required: true
-      default: "odoo.nginx"
-
     - variable: iOdooPort
       label: "Odoo Port"
       description: "Port where odoo is reacheable on that service"
       type: "int"
       required: true
-      default: 8069
+      default: 443
+
+    # TODO use enumeration
+      - variable: eOdooProtocol
+      label: "Odoo Protocol"
+      description: ""
+      type: "string"
+      required: true
+      default: 'https'
 
   # Variables for sending emails
     # - variable: cMyHostname
