@@ -36,7 +36,7 @@
       default: 443
 
     # TODO use enumeration
-      - variable: eOdooProtocol
+    - variable: eOdooProtocol
       label: "Odoo Protocol"
       description: ""
       type: "string"
