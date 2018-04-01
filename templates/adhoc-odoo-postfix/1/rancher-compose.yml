@@ -1,0 +1,102 @@
+.catalog:
+  name: "ADHOC Odoo Postfix (not global)"
+  version: "1.1"
+  description: "Postfix stack used to deliver mails to odoo stacks and also to send emails from stacks"
+  minimum_rancher_version: v1.3.2
+  questions:
+
+  # Variables for receiving emails
+    - variable: cCatchallDomain
+      label: "Catchall Domain"
+      description: "domain that is using as wildcar for the catchall, for eg 'nubeadhoc.com'. We use it to check if incoming email to addrees, has that domain or not."
+      type: "string"
+      required: false
+      default: "nubeadhoc.com"
+
+    - variable: cDomainRegex
+      label: "Postfix Domain Regex"
+      description: "Postfix domain regex for accepting mail based on SaaS Odoo hosting shared domain. E.g. domain2.com"
+      type: "string"
+      required: false
+      # TODO ver como pasar este default o contruirlo
+      # default: "/(.*)nubeadhoc\.com$/"
+
+    - variable: cMailAdmins
+      label: "Mail Admins"
+      description: "List of eMails where wrong deliveryies will be notified splitted by ','"
+      type: "string"
+      required: true
+      default: "info@example.com"
+
+    - variable: iOdooPort
+      label: "Odoo Port"
+      description: "Port where odoo is reacheable on that service"
+      type: "int"
+      required: true
+      default: 443
+
+    # TODO use enumeration
+    - variable: eOdooProtocol
+      label: "Odoo Protocol"
+      description: ""
+      type: "string"
+      required: true
+      default: 'https'
+
+  # Variables for sending emails
+    # - variable: cMyHostname
+    #   label: "Postfix Hostname"
+    #   description: "Postfix main.cf myhostname configuration parameter. Usually FQDN of host. E.g. acme.company.org."
+    #   type: "string"
+    #   required: true
+    #   default: "mail.sistemasadhoc.com"
+
+    - variable: cMyNetworks
+      label: "Optional My Networks"
+      description: ""
+      type: "string"
+      required: false
+      default: "10.0.0.0/8"
+
+    - variable: cRelayHostLine
+      label: "Optional Postfix Relay Host"
+      description: "Postfix main.cf relayhost configuration parameter [host]:port format. E.g. [smtp.sendgrid.net]:2525"
+      type: "string"
+      required: false
+      default: "[smtp.sendgrid.net]:2525"
+
+    - variable: cRelaySASLUser
+      label: "Optional Username for Relay Host"
+      description: "Enter your optional relayhost SASL user name. If you enter a relay host this is required."
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: cRelaySASLPasswd
+      label: "Optional Passwd for Relay Host"
+      description: "Enter your optional relayhost SASL password. If you enter a relay host this is required."
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: "host_label"
+      description: "Host label where to run postfix service."
+      label: "Host label:"
+      required: true
+      default: "postfix=true"
+      type: "string"
+#
+# Scaling and health checks per service as per docker-compose.yml
+#
+version: 2
+services:
+  postfix:
+    scale: 1
+    health_check:
+      port: 25
+      interval: 2000
+      initializing_timeout: 60000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
