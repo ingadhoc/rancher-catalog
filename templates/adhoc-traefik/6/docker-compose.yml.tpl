@@ -22,7 +22,9 @@ services:
             # config entrypoints
             - --defaultentrypoints=http,https
             - --insecureskipverify=true
-            - --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
+            - --entryPoints=Name:http Address::80
+            # hasta no tener todos los certificados no hacemos redirect
+            # - --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
             - --entryPoints=Name:https Address::443 TLS Compress:on
             # - --entryPoints=Name:https Address::443 TLS:/secrets/domain.crt,/secrets/domain.key Compress:on
             # acme config
