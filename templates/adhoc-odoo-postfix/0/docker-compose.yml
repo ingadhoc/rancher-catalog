@@ -7,6 +7,7 @@ services:
             - 25:25/tcp
         labels:
             io.rancher.scheduler.global: 'true'
+            io.rancher.scheduler.affinity:host_label: ${host_label}
             io.rancher.container.pull_image: always
             # al final solo lo usamos para entrada por lo cual el link
             # no esnecesario

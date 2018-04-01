@@ -78,6 +78,13 @@
       type: "string"
       required: false
       default: ""
+
+    - variable: "host_label"
+      description: "Host label where to run postfix service."
+      label: "Host label:"
+      required: true
+      default: "postfix=true"
+      type: "string"
 #
 # Scaling and health checks per service as per docker-compose.yml
 #
