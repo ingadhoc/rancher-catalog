@@ -20,14 +20,14 @@ services:
         {{- else}}
             traefik.odoo.port: 8069
             traefik.odoo.frontend.rule: Host:$strTraefikDomains
-            traefik.odoo.redirect.regex: $strTraefikRedirectRegex
-            traefik.odoo.redirect.replacement: $strTraefikRedirectReplacement
-            traefik.odoo.redirect.permanent: true
+            traefik.odoo.frontend.redirect.regex: $strTraefikRedirectRegex
+            traefik.odoo.frontend.redirect.replacement: $strTraefikRedirectReplacement
+            traefik.odoo.frontend.redirect.permanent: true
             traefik.longpolling.port: 8072
             traefik.longpolling.frontend.rule: Host:$strTraefikDomains;PathPrefix:/longpolling/
-            traefik.longpolling.redirect.regex: $strTraefikRedirectRegex
-            traefik.longpolling.redirect.replacement: $strTraefikRedirectReplacement
-            traefik.longpolling.redirect.permanent: true
+            traefik.longpolling.frontend.redirect.regex: $strTraefikRedirectRegex
+            traefik.longpolling.frontend.redirect.replacement: $strTraefikRedirectReplacement
+            traefik.longpolling.frontend.redirect.permanent: true
         {{- end}}
         volumes:
             - odoo_data_filestore:/opt/odoo/data/filestore/
