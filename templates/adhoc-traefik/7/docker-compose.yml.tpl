@@ -24,8 +24,8 @@ services:
             - --acme.storage=/secrets/acme.json
             - --acme.httpChallenge.entryPoint=http
             - --acme.domains=*.${domain}
-            # - --acme.dnschallenge
-            # - --acme.dnschallenge.provider=route53
+            - --acme.dnschallenge
+            - --acme.dnschallenge.provider=route53
         {{- end}}
         {{- if eq .Values.acme_staging "true"}}
             - --acme.caServer="https://acme-staging-v02.api.letsencrypt.org/directory"
