@@ -27,6 +27,9 @@ services:
             # - --acme.dnschallenge
             # - --acme.dnschallenge.provider=route53
         {{- end}}
+        {{- if eq .Values.acme_staging "true"}}
+            - --acme.caServer="https://acme-staging-v02.api.letsencrypt.org/directory"
+        {{- end}}
         labels:
             io.rancher.scheduler.affinity:host_label: ${host_label}
             traefik.enable: 'true'

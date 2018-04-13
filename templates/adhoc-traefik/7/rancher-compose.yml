@@ -119,6 +119,12 @@
       default: true 
       type: "boolean"
 
+    - variable: "acme_staging"
+      label: "Use ACME staging CA servers?"
+      required: true
+      default: false 
+      type: "boolean"
+
 #
 # Scaling and health checks per service as per docker-compose.yml
 #
