@@ -62,7 +62,6 @@
       label: "Odoo DB Filter"
       description: "Regexp for Filter listed databases. For exact name use, for eg 'odoo$' for odoo db"
       type: "string"
-      required: false
       required: true
       default: ".*"
 
@@ -170,6 +169,18 @@
       type: "string"
       required: false
 
+    - variable: strOdooDataFilestore
+      label: "Odoo Filestore Path"
+      type: "string"
+      required: true
+      default: "/opt/odoo/data/filestore/"
+
+    - variable: strOdooDataSessions
+      label: "Odoo Sessions Path"
+      type: "string"
+      required: true
+      default: "/opt/odoo/data/sessions/"
+
 # SMTP config
 
     - variable: strSmtpServer
@@ -204,7 +215,7 @@
       description: "Host label where to run odoongins service."
       label: "Host label:"
       required: true
-      default: "odoo=true" 
+      default: "odoo=true"
       type: "string"
 
 #scaling and health checks per service as per docker-compose.yml

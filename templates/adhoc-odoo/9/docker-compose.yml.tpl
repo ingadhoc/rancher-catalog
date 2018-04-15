@@ -30,8 +30,8 @@ services:
             traefik.longpolling.frontend.redirect.permanent: true
         {{- end}}
         volumes:
-            - odoo_data_filestore:/opt/odoo/data/filestore/
-            - odoo_data_sessions:/opt/odoo/data/sessions/
+            - odoo_data_filestore:$strOdooDataFilestore
+            - odoo_data_sessions:$strOdooDataSessions
         environment:
             # database parameters
             - PGUSER=$strPgUser
