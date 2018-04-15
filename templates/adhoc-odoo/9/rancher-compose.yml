@@ -78,7 +78,7 @@
       type: "int"
       required: true
       default: "100"
-   
+
     - variable: intLimitMemorySoft
       label: "Limit Memory Soft"
       description: "Maximum allowed virtual memory per worker, when reached the worker be reset after the current request"
@@ -104,6 +104,27 @@
       # número que usabamos antes, lo dejamos para no limitar por ahora si hay
       # alguna operación que use demasiada ram (ej. boggio)
       default: "2147483648"
+
+    - variable: intLimiteTimeCpu
+      label: "Limit Time CPU"
+      description: "Maximum allowed CPU time per request"
+      type: "int"
+      required: true
+      default: "400"
+
+    - variable: intLimiteTimeReal
+      label: "Limit Time Real"
+      description: "Maximum allowed Real time per request"
+      type: "int"
+      required: true
+      default: "800"
+
+    - variable: intLimiteTimeRealCron
+      label: "Limit Time Real (only v11+)"
+      description: "Maximum allowed Real time per cron job. (default: --limit-time-real). Set to 0 for no limit."
+      type: "int"
+      required: true
+      default: "1600"
 
     - variable: strDisableSessionGC
       label: "Disable Odoo Sessions Garbage Collector"

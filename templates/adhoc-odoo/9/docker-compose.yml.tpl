@@ -60,6 +60,9 @@ services:
             - PG_MAX_CONNECTIONS=$intPgMaxConnections
             - LIMIT_MEMORY_HARD=$intLimitMemoryHard
             - LIMIT_MEMORY_SOFT=$intLimitMemorySoft
+            - LIMIT_TIME_CPU=$intLimiteTimeCpu
+            - LIMIT_TIME_REAL=$intLimiteTimeReal
+            - LIMIT_TIME_REAL_CRON=$intLimiteTimeRealCron
             - ODOO_VERSION=$strImageTag
 volumes:
   odoo_data_sessions:
