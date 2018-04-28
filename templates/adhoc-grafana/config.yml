@@ -1,0 +1,6 @@
+name: ADHOC Grafana
+description: |
+  Grafana Catalog by ADHOC
+version: 1.0
+category: Monitoring
+projectURL: https://bitbucket.org/ingadhoc/rancher-catalog

@@ -1,0 +1,64 @@
+version: '2'
+volumes:
+  $strGrafanaVolumeDataName:
+    external: true
+    driver: rancher-nfs
+  $strGrafanaVolumeConfigName:
+    external: true
+    driver: rancher-nfs
+  $strInfluxVolumeName:
+    external: true
+    driver: rancher-nfs
+services:
+  grafana:
+    image: grafana/grafana:5.1.0
+    environment:
+      GF_USERS_ALLOW_SIGN_UP: "$strGrafanaAllowRegister"
+      GF_SERVER_ROOT_URL: "$strGrafanaRootUrl"
+      {{- if eq .Values.boolSmtpEnabled "true"}}
+      GF_SMTP_ENABLED: 'true'
+      GF_SMTP_FROM_ADDRESS: "$srtSmtpFromAddress"
+      GF_SMTP_FROM_NAME: "$srtSmtpFromName"
+      GF_SMTP_HOST: "$strSmtpServer:$intSmtPort"
+      GF_SMTP_PASSWORD: "$strSmtpPassword"
+      GF_SMTP_USER: "$srtSmtpFromAddress"
+      {{- end }}    
+    tty: true
+    links:
+    - $strInfluxDBHost:$strInfluxDBHost
+    volumes:
+    - $strGrafanaVolumeConfigName:/etc/grafana
+    - $strGrafanaVolumeDataName:/var/lib/grafana
+    ports:
+    - $http_port:$http_port
+    {{- if eq .Values.boolTraefikEnabled "true"}}
+    labels:
+      traefik.enable: 'true'
+      traefik.frontend.rule: "$strTraefikFrontEndRule"
+      traefik.port: '$http_port'
+      {{- if eq .Values.boolTraefikBasicAuthEnabled "true"}}
+      traefik.frontend.auth.basic: "$strTraefikAuthBasic"
+      {{- end }}  
+    {{- end }}
+  telegraf-exporter:
+    privileged: true
+    image: nikitux/telegraf:v1.4-alpine
+    environment:
+      INFLUXDB_HOST: http://$strInfluxDBHost:$intInfluxDBPort
+    stdin_open: true
+    network_mode: host
+    tty: true
+    links:
+    - $strInfluxDBHost:$strInfluxDBHost
+    labels:
+      io.rancher.container.dns: 'true'
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.global: 'true'
+  influxdb:
+    image: influxdb:1.4
+    stdin_open: true
+    volumes:
+    - $strInfluxVolumeName:/var/lib/influxdb
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
