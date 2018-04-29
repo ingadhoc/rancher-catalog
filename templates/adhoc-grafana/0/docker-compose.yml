@@ -29,16 +29,13 @@ services:
     volumes:
     - $strGrafanaVolumeConfigName:/etc/grafana
     - $strGrafanaVolumeDataName:/var/lib/grafana
-    ports:
-    - $http_port:$http_port
+    # ports:
+    # - $http_port:$http_port
     {{- if eq .Values.boolTraefikEnabled "true"}}
     labels:
       traefik.enable: 'true'
       traefik.frontend.rule: "$strTraefikFrontEndRule"
       traefik.port: '$http_port'
-      {{- if eq .Values.boolTraefikBasicAuthEnabled "true"}}
-      traefik.frontend.auth.basic: "$strTraefikAuthBasic"
-      {{- end }}  
     {{- end }}
   telegraf-exporter:
     privileged: true

@@ -5,33 +5,19 @@ catalog:
   minimum_rancher_version: v1.3.2
 
   questions:
-    - variable: http_port
-      description: "http port to access Grafana"
-      label: "Http Port"
-      required: true
-      default: "3000"
-      type: "int"
-    
-    - variable: admin_username
-      description: "Grafana admin username"
-      label: "Admin Username"
-      required: true
-      default: "admin"
-      type: "string"
-    
-    - variable: admin_password
-      description: "Grafana admin password"
-      label: "Admin Password"
-      required: true
-      default: "password"
-      type: "password"
-    
-    - variable: install_plugins
-      description: "Include/Install Grafana Plugins (comma-separated plugin-ids)"
-      label: "Install Plugins"
-      required: false
-      default: ""
-      type: "string"
+    # - variable: http_port
+    #   description: "http port to access Grafana"
+    #   label: "Http Port"
+    #   required: true
+    #   default: "3000"
+    #   type: "int"
+
+    # - variable: install_plugins
+    #   description: "Include/Install Grafana Plugins (comma-separated plugin-ids)"
+    #   label: "Install Plugins"
+    #   required: false
+    #   default: ""
+    #   type: "string"
 
     - variable: strGrafanaVolumeDataName
       description: "Grafana Volumen Data Name"
@@ -46,7 +32,7 @@ catalog:
       required: false
       default: "grafana-config"
       type: "string"
-    
+
     - variable: strInfluxDBHost
       description: "InfluxDB host"
       label: "InfluxDB Host"
@@ -75,12 +61,12 @@ catalog:
       default: "false"
       type: "boolean"
 
-    - variable: strGrafanaAlerting
-      description: "Granana Alert monitoring"
-      label: "Grafana Monitoring"
-      required: false
-      default: "true"
-      type: "boolean"
+    # - variable: strGrafanaAlerting
+    #   description: "Granana Alert monitoring"
+    #   label: "Grafana Monitoring"
+    #   required: false
+    #   default: "true"
+    #   type: "boolean"
 
     - variable: strGrafanaRootUrl
       description: "Grafana root URL"
@@ -119,11 +105,11 @@ catalog:
       type: "password"
       required: false
 
-    - variable: srtSmtpSkipVerify
-      label: "SMTP Skip Verify SSL"
-      type: "string"
-      required: false
-      default: "false"
+    # - variable: srtSmtpSkipVerify
+    #   label: "SMTP Skip Verify SSL"
+    #   type: "string"
+    #   required: false
+    #   default: "false"
 
     - variable: srtSmtpFromAddress
       label: "SMTP From Address"
@@ -148,22 +134,6 @@ catalog:
       required: false
       default: "Host: *"
 
-    - variable: boolTraefikBasicAuthEnabled
-      label: "Traefik Basic Auth Enabled"
-      type: boolean
-      required: false
-      default: false
-
-    - variable: strTraefikAuthBasic
-      label: "Traefik Enable Basic Auth"
-      required: false
-      type: string
-      default: "grafana:$apr1$Rir/zVEX$NILVCiAU2cY7Kinf20xDX."
-
-
-
-
-
 #scaling and health checks per service as per docker-compose.yml
 version: '2'
 services:
@@ -182,7 +152,3 @@ services:
   influxdb:
     scale: 1
     start_on_create: true
-
-
-
-      
