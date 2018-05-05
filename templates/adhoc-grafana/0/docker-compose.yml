@@ -21,8 +21,8 @@ services:
       GF_SMTP_FROM_NAME: "$srtSmtpFromName"
       GF_SMTP_HOST: "$strSmtpServer:$intSmtPort"
       GF_SMTP_PASSWORD: "$strSmtpPassword"
-      GF_SMTP_USER: "$srtSmtpFromAddress"
-      {{- end }}    
+      GF_SMTP_USER: "$strSmtpUser"
+      {{- end }}
     tty: true
     links:
     - $strInfluxDBHost:$strInfluxDBHost
