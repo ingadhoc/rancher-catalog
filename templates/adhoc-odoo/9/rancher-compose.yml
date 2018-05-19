@@ -181,6 +181,12 @@
       required: true
       default: "/opt/odoo/data/sessions/"
 
+    - variable: boolListDb
+      label: "LIST DBs"
+      type: "boolean"
+      required: false
+      default: True
+
 # SMTP config
 
     - variable: strSmtpServer

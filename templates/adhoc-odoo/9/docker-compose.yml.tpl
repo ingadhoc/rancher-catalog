@@ -57,6 +57,7 @@ services:
             - ADMIN_PASSWORD=$strAdminPassword
             - MAIL_CATCHALL_DOMAIN=$strMailCatchallDomain
             - FIX_DB_WEB_DISABLED=True
+            - LIST_DB=$boolListDb
             - PG_MAX_CONNECTIONS=$intPgMaxConnections
             - LIMIT_MEMORY_HARD=$intLimitMemoryHard
             - LIMIT_MEMORY_SOFT=$intLimitMemorySoft
