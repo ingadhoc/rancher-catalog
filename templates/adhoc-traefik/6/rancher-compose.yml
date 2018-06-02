@@ -102,21 +102,27 @@
       description: "Enable acme support on traefik."
       label: "Enable ACME:"
       required: true
-      default: false 
+      default: false
+      type: "boolean"
+
+    - variable: "acme_dns_challenge"
+      label: "Enable DNS Challenge with amazon route53?"
+      required: true
+      default: false
       type: "boolean"
 
     - variable: "acme_email"
       description: "ACME user email."
       label: "ACME email:"
       required: true
-      default: "test@traefik.io" 
+      default: "test@traefik.io"
       type: "string"
 
     - variable: "acme_onhostrule"
       description: "Enable acme onHostRule."
       label: "ACME onHostRule:"
       required: true
-      default: true 
+      default: true
       type: "boolean"
 
 #

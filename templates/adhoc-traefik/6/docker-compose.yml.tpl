@@ -34,6 +34,8 @@ services:
             - --acme.onhostrule=${acme_onhostrule}
             - --acme.storage=/secrets/acme.json
             - --acme.httpChallenge.entryPoint=http
+        {{- end}}
+        {{- if eq .Values.acme_dns_challenge "true"}}
             - --acme.dnschallenge
             - --acme.domains=*.${domain}
             # dio algunos errores y tampoco lo necesitamos
@@ -50,7 +52,7 @@ services:
             traefik.port: 8080
             traefik.frontend.auth.basic: "${auth_users}"
             traefik.frontend.rule: "Host:tr.${domain}"
-        image: traefik:1.6-alpine
+        image: traefik:1.6.2-alpine
         volumes:
             - traefik-secrets:/secrets
 volumes:
