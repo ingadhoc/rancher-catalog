@@ -33,6 +33,9 @@ services:
             - --acme.email=${acme_email}
             - --acme.onhostrule=${acme_onhostrule}
             - --acme.storage=/secrets/acme.json
+        {{- end}}
+        # por ahora traefik no soporta los dos challenge a la vez pero puede ser que mas adelante si, ver acá https://github.com/containous/traefik/issues/3378
+        {{- if eq .Values.acme_http_challenge "true"}}
             - --acme.httpChallenge.entryPoint=http
         {{- end}}
         {{- if eq .Values.acme_dns_challenge "true"}}

@@ -105,6 +105,12 @@
       default: false
       type: "boolean"
 
+    - variable: "acme_http_challenge"
+      label: "Enable HTTP Challenge Over http"
+      required: true
+      default: false
+      type: "boolean"
+
     - variable: "acme_dns_challenge"
       label: "Enable DNS Challenge with amazon route53?"
       required: true
