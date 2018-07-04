@@ -73,8 +73,8 @@ services:
         image: gcr.io/cloudsql-docker/gce-proxy:1.11
         network_mode: container:odoo
         command:
-            -- /cloud_sql_proxy
-            -- -instances=$strGCECloudsqlConnectionName=tcp:5432
+            - /cloud_sql_proxy
+            - -instances=$strGCECloudsqlConnectionName=tcp:5432
         # labels:
         #    io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/odoo
     {{- end}}
