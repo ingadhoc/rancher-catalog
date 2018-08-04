@@ -1,0 +1,154 @@
+catalog:
+  name: "TuxGrafana"
+  version: "1.0"
+  description: "Grafana stack customized by Tux"
+  minimum_rancher_version: v1.3.2
+
+  questions:
+    # - variable: http_port
+    #   description: "http port to access Grafana"
+    #   label: "Http Port"
+    #   required: true
+    #   default: "3000"
+    #   type: "int"
+
+    # - variable: install_plugins
+    #   description: "Include/Install Grafana Plugins (comma-separated plugin-ids)"
+    #   label: "Install Plugins"
+    #   required: false
+    #   default: ""
+    #   type: "string"
+
+    - variable: strGrafanaVolumeDataName
+      description: "Grafana Volumen Data Name"
+      label: "Grafana Volumen Name"
+      required: false
+      default: "grafana-data"
+      type: "string"
+
+    - variable: strGrafanaVolumeConfigName
+      description: "Grafana Volumen Config Name"
+      label: "Grafana Volumen Name"
+      required: false
+      default: "grafana-config"
+      type: "string"
+
+    - variable: strInfluxDBHost
+      description: "InfluxDB host"
+      label: "InfluxDB Host"
+      required: true
+      default: influxdb
+      type: "string"
+
+    - variable: intInfluxDBPort
+      description: "InfluxDB Port"
+      label: "InfluxDB Port"
+      required: true
+      default: "8086"
+      type: "int"
+
+    - variable: strInfluxVolumeName
+      description: "InfluxDB Volumen Name"
+      label: "InfluxDB Volumen Name"
+      required: false
+      default: "influxdb-data"
+      type: "string"
+
+    - variable: strGrafanaAllowRegister
+      description: "Grafana Allow Register new users"
+      label: "Grafana Register"
+      required: true
+      default: "false"
+      type: "boolean"
+
+    # - variable: strGrafanaAlerting
+    #   description: "Granana Alert monitoring"
+    #   label: "Grafana Monitoring"
+    #   required: false
+    #   default: "true"
+    #   type: "boolean"
+
+    - variable: strGrafanaRootUrl
+      description: "Grafana root URL"
+      label: "Grafana Url"
+      required: false
+      default: "http://localhost:3000"
+      type: "string"
+
+    # SMTP config
+
+    - variable: boolSmtpEnabled
+      label: "Enable SMTP"
+      type: "boolean"
+      required: false
+      default: False
+
+    - variable: strSmtpServer
+      label: "SMTP Server"
+      type: "string"
+      required: false
+      default: "smtp.gmail.com"
+
+    - variable: intSmtPort
+      label: "SMTP Port"
+      type: "int"
+      required: false
+      default: "465"
+
+    - variable: strSmtpUser
+      label: "SMTP User"
+      type: "string"
+      required: false
+
+    - variable: strSmtpPassword
+      label: "SMTP Password"
+      type: "password"
+      required: false
+
+    # - variable: srtSmtpSkipVerify
+    #   label: "SMTP Skip Verify SSL"
+    #   type: "string"
+    #   required: false
+    #   default: "false"
+
+    - variable: srtSmtpFromAddress
+      label: "SMTP From Address"
+      type: "string"
+      default: "root@localhost.com"
+
+    - variable: srtSmtpFromName
+      label: "SMTP From Name"
+      type: "string"
+      default: "grafana"
+
+     # TRAEFIK config
+
+    - variable: boolTraefikEnabled
+      label: "Traefik Enabled"
+      type: boolean
+      required: false
+      default: false
+
+    - variable: strTraefikFrontEndRule
+      label: "Traefik FrontEnd Rule"
+      required: false
+      default: "Host: *"
+
+#scaling and health checks per service as per docker-compose.yml
+version: '2'
+services:
+  grafana:
+    scale: 1
+    start_on_create: true
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 5000
+      port: 3000
+      unhealthy_threshold: 3
+      interval: 5000
+      strategy: recreate
+  telegraf-exporter:
+    start_on_create: true
+  influxdb:
+    scale: 1
+    start_on_create: true
