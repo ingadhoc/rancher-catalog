@@ -1,6 +1,6 @@
 catalog:
   name: "TuxGrafana"
-  version: "1.0"
+  version: "1.1"
   description: "Grafana stack customized by Tux"
   minimum_rancher_version: v1.3.2
 
