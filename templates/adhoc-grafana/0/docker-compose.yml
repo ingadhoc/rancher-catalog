@@ -6,9 +6,9 @@ volumes:
   $strGrafanaVolumeConfigName:
     external: true
     driver: rancher-nfs
-  $strInfluxVolumeName:
-    external: true
-    driver: rancher-nfs
+  # $strInfluxVolumeName:
+  #   external: true
+  #   driver: rancher-nfs
 services:
   grafana:
     image: grafana/grafana:5.1.0
@@ -54,8 +54,8 @@ services:
   influxdb:
     image: influxdb:1.4
     stdin_open: true
-    volumes:
-    - $strInfluxVolumeName:/var/lib/influxdb
+    # volumes:
+    # - $strInfluxVolumeName:/var/lib/influxdb
     tty: true
     labels:
       io.rancher.container.pull_image: always
