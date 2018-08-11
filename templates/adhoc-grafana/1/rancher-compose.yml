@@ -47,12 +47,12 @@
       default: "8086"
       type: "int"
 
-    - variable: strInfluxVolumeName
-      description: "InfluxDB Volumen Name"
-      label: "InfluxDB Volumen Name"
-      required: false
-      default: "influxdb-data"
-      type: "string"
+    # - variable: strInfluxVolumeName
+    #   description: "InfluxDB Volumen Name"
+    #   label: "InfluxDB Volumen Name"
+    #   required: false
+    #   default: "influxdb-data"
+    #   type: "string"
 
     - variable: strGrafanaAllowRegister
       description: "Grafana Allow Register new users"
