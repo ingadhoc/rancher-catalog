@@ -34,7 +34,6 @@ services:
         {{- end}}
         volumes:
             - $strOdooFilestoreVolumeName:$strOdooDataFilestore
-            {{- if eq .Values.acme_dns_challenge "route53"}}
             {{- if eq .Values.enumSessionsStore "filestore" }}
             - $strOdooSessionsVolumeName:$strOdooDataSessions
             {{- end}}
