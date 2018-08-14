@@ -34,7 +34,7 @@ services:
         {{- end}}
         volumes:
             - $strOdooFilestoreVolumeName:$strOdooDataFilestore
-            {{- if ne .Values.enumSessionsStore "filestore" }}
+            {{- if eq .Values.enumSessionsStore "filestore" }}
             - $strOdooSessionsVolumeName:$strOdooDataSessions
             {{- end}}
         environment:
@@ -69,8 +69,7 @@ services:
             - LIMIT_TIME_CPU=$intLimiteTimeCpu
             - LIMIT_TIME_REAL=$intLimiteTimeReal
             - LIMIT_TIME_REAL_CRON=$intLimiteTimeRealCron
-            - ODOO_VERSION=$strImageTag
-            {{- if ne .Values.enumSessionsStore "redis" }}
+            {{- if eq .Values.enumSessionsStore "redis" }}
             - ENABLE_REDIS=True
             - REDIS_HOST=$strRedisHost
             - REDIS_PASS=$strRedisPass
@@ -85,8 +84,7 @@ services:
         # labels:
         #    io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/odoo
     {{- end}}
-volumes:
-  {{- if ne .Values.enumSessionsStore "filestore" }}
+  {{- if eq .Values.enumSessionsStore "filestore" }}
   $strOdooSessionsVolumeName:
     driver: rancher-nfs
     external: true
