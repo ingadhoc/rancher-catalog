@@ -186,15 +186,37 @@
       default: "odoo_data_filestore"
       type: "string"
 
+    - variable: "enumSessionsStore"
+      label: "Store sessions on:"
+      type: enum
+      default: "filestore"
+      options:
+        - filestore
+        - redis
+
+    - variable: strRedisHost
+      label: "Redis Host"
+      description: "Required if Store Session on Redis"
+      type: "string"
+      required: false
+
+    - variable: strRedisPass
+      label: "Redis Password (optional)"
+      type: "string"
+      required: false
+      default: "False"
+
     - variable: strOdooDataSessions
       label: "Odoo Sessions Path"
+      description: "Required if Store Session on Filestore"
       type: "string"
-      required: true
+      required: false
       default: "/opt/odoo/data/sessions/"
 
     - variable: strOdooSessionsVolumeName
       label: "Odoo Sessions Volumen Name"
-      required: true
+      description: "Required if Store Session on Filestore"
+      required: false
       default: "odoo_data_sessions"
       type: "string"
 
