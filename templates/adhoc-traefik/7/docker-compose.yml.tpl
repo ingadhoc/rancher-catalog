@@ -52,8 +52,8 @@ services:
             # dio algunos errores y tampoco lo necesitamos
             # - --acme.domains=${domain}
         environment:
-            GCE_PROJECT: ${acme_dns_challenge_GCE_PROJECT},
-            GCE_SERVICE_ACCOUNT_FILE: ${acme_dns_challenge_GCE_SERVICE_ACCOUNT_FILE},
+            GCE_PROJECT: ${acme_dns_challenge_GCE_PROJECT}
+            GCE_SERVICE_ACCOUNT_FILE: ${acme_dns_challenge_GCE_SERVICE_ACCOUNT_FILE}
         {{- end}}
         labels:
             # por ahora no lo hacemos global y lo manejamos con scale y host distinto
