@@ -54,6 +54,41 @@ catalog:
       required: true
       default: "pg=true"
       type: "string"
+    - variable: max_connections
+      label: "Max Connections"
+      required: true
+      default: "1000"
+      type: "int"
+    - variable: shared_buffers
+      label: "Shared Buffers"
+      description: |
+        Odoo suggest more than 55% of ram on VM
+        Example: 35GB
+      required: true
+      default: ""
+      type: "string"
+    - variable: effective_cache_size
+      label: "Effective Cache Size"
+      description: |
+        Odoo suggest between 50% and 75% of ram (75 to aggressive)
+        Example: 30GB
+      required: true
+      default: ""
+      type: "string"
+    - variable: work_mem
+      label: "Work Mem"
+      description: "Odoo suggest to start with 64mb"
+      required: true
+      default: "64MB"
+      type: "string"
+    - variable: server_configuration
+      label: "Additional configuration parameters to be set"
+      description: |
+        List of additional configurations to be set. You can check for parameters suggestions on this site https://pgtune.leopard.in.ua/#/
+        Example: -c 'shared_buffers=256MB' -c 'work_mem=64mb'
+      required: false
+      default: ""
+      type: "string"
 
 services:
   postgres:
