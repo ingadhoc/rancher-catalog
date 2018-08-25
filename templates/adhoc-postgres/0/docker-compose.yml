@@ -13,9 +13,10 @@ services:
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
     volumes:
-      - pgdata:/var/lib/postgresql/data/pgdata
+      - $volumen_name:/var/lib/postgresql/data/pgdata
 volumes:
-  pgdata:
+  $volumen_name:
     driver: local
+    # por seguridad para no perder si alguienb borra el stack, se debe crear con
+    # rancher volume create --driver local pgdata
     external: true
-    # per_container: true

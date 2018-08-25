@@ -6,6 +6,12 @@ catalog:
   uuid: postgres-0
   minimum_rancher_version: v0.9.0
   questions:
+    - variable: volumen_name
+      label: "Volume Name"
+      description: "Volume Name where data will be stored. You need to create it with rancher volume create --driver local $volume_name"
+      required: true
+      default: ""
+      type: "string"
     - variable: postgres_db
       description: "Postgres Database"
       label: "Postgres Database"
