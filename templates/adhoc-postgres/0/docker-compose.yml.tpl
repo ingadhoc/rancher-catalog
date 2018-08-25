@@ -9,8 +9,7 @@ services:
       POSTGRES_PASSWORD: ${postgres_password}
     tty: true
     stdin_open: true
-    command:
-      - "-c max_connections=${max_connections}"
+    command: -c max_connections=${max_connections}
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
     volumes:
