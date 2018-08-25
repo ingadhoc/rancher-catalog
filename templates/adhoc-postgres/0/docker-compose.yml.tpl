@@ -17,6 +17,5 @@ services:
       - pgdata:/var/lib/postgresql/data/pgdata
 volumes:
   pgdata:
-    # driver: ${VOLUME_DRIVER}
     driver: local
     per_container: true

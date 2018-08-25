@@ -10,7 +10,7 @@ catalog:
       description: "Postgres Database"
       label: "Postgres Database"
       required: true
-      default: "postgres_sb"
+      default: "postgres"
       type: "string"
     - variable: postgres_user
       description: "Postgres User"
@@ -23,7 +23,7 @@ catalog:
       label: "Postgres Password"
       required: true
       default: "postgres_password"
-      type: "string"
+      type: "password"
     - variable: "POSTGRES_TAG"
       description: "The postgres tag to associate with this server"
       label: "Postgres tag"
@@ -64,7 +64,7 @@ catalog:
         Host label to use as postgres 'value' tag.
         Example: 'postgres=true'
       required: false
-      default: ""
+      default: "pg=true"
       type: "string"
 
 services:
