@@ -28,7 +28,6 @@ catalog:
       description: "The postgres tag to associate with this server"
       label: "Postgres tag"
       required: true
-      # lei por ahi que tal vez mejor la no alpine (en el repo oficial de postgres)
       default: "10"
       type: enum
       options: # List of options if using type of `enum`
@@ -47,23 +46,12 @@ catalog:
         - 9.3
         - 9.2-alpine
         - 9.2
-    # - variable: "VOLUME_DRIVER"
-    #   description: "The VOLUME driver to associate with this server"
-    #   label: "VOLUME Driver"
-    #   required: true
-    #   default: "local"
-    #   type: enum
-    #   options: # List of options if using type of `enum`
-    #     - local
-    #     - rancher-nfs
-    #     - rancher-efs
-    #     - rancher-ebs
     - variable: host_label
       label: "Host with Label to put postgres on"
       description: |
         Host label to use as postgres 'value' tag.
         Example: 'postgres=true'
-      required: false
+      required: true
       default: "pg=true"
       type: "string"
 
