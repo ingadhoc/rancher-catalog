@@ -17,4 +17,5 @@ services:
 volumes:
   pgdata:
     driver: local
-    per_container: true
+    external: true
+    # per_container: true
