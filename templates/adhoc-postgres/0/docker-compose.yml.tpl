@@ -10,10 +10,10 @@ services:
     tty: true
     stdin_open: true
     command:
-      - -c 'max_connections=${max_connections}'
-      - -c 'shared_buffers=${shared_buffers}'
-      - -c 'work_mem=${work_mem}'
-      - -c 'effective_cache_size=${effective_cache_size}'
+      - -c max_connections=${max_connections}
+      - -c shared_buffers=${shared_buffers}
+      - -c work_mem=${work_mem}
+      - -c effective_cache_size=${effective_cache_size}
       {{- if ne .Values.server_configuration "" }}
       - ${server_configuration}
       {{- end}}

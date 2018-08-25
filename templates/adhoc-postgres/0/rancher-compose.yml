@@ -85,7 +85,7 @@ catalog:
       label: "Additional configuration parameters to be set"
       description: |
         List of additional configurations to be set. You can check for parameters suggestions on this site https://pgtune.leopard.in.ua/#/
-        Example: -c 'shared_buffers=256MB' -c 'work_mem=64mb'
+        Example: -c shared_buffers=256MB -c work_mem=64mb
       required: false
       default: ""
       type: "string"
