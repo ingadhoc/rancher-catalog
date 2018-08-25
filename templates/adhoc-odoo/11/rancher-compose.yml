@@ -274,5 +274,6 @@ services:
       strategy: recreate
       healthy_threshold: 2
       response_timeout: 2000
+      request_line: GET "/" "HTTP/1.0"
     upgrade_strategy:
       start_first: true
