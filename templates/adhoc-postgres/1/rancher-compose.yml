@@ -108,7 +108,7 @@ services:
   postgres:
     scale: 1
     health_check:
-      port: 5432
+      port: ${server_port}
       interval: 2000
       unhealthy_threshold: 3
       healthy_threshold: 2
