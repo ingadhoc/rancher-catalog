@@ -19,8 +19,8 @@ services:
         # por ahora traefik no soporta los dos challenge a la vez pero puede ser que mas adelante si, ver acá https://github.com/containous/traefik/issues/3378
         {{- if eq .Values.acme_dns_challenge "gcloud"}}
         environment:
-            GCE_PROJECT: ${acme_dns_challenge_GCE_PROJECT},
-            GCE_SERVICE_ACCOUNT_FILE: ${acme_dns_challenge_GCE_SERVICE_ACCOUNT_FILE},
+            GCE_PROJECT: ${acme_dns_challenge_GCE_PROJECT}
+            GCE_SERVICE_ACCOUNT_FILE: ${acme_dns_challenge_GCE_SERVICE_ACCOUNT_FILE}
         {{- end}}
         labels:
             # por ahora no lo hacemos global y lo manejamos con scale y host distinto
