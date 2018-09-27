@@ -33,7 +33,7 @@ services:
             traefik.port: 8080
             traefik.frontend.auth.basic: "${auth_users}"
             traefik.frontend.rule: "Host:tr.${domain}"
-        image: traefik:1.6.5-alpine
+        image: traefik:1.7-alpine
         volumes:
             - traefik-secrets:/secrets
 volumes:
