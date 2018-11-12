@@ -1,0 +1,48 @@
+catalog:
+    name: "Pgadmin4"
+    version: "1.0"
+    description: "Pgadmin4 by ADHOC"
+    minimum_rancher_version: v1.3.2
+
+    questions:
+        -   variable: strPgadminDefaultEmail
+            label: "Pgadmin default email"
+            required: true
+            type: "string"
+
+        -   variable: strPgadminDefaultPass
+            label: "Pgadmin default pass"
+            required: true
+            type: "password"
+
+        -   variable: strPgadminVolumeLocation
+            label: "Volume location"
+            required: true
+            default: "/data/pgadmin4-data"
+            type: "string"
+
+        -   variable: strTraefikFrontEndRule
+            label: "Traefik frontend rule"
+            required: true
+            default: "Host: pga4.nubeadhoc.com"
+            type: "string"
+
+        -   variable: "host_label"
+            description: "Host label where to run this service."
+            label: "Host label:"
+            required: true
+            default: "pga4=true"
+            type: "string"
+
+version: '2'
+services:
+    pgadmin4:
+        scale: 1
+        start_on_create: true
+        health_check:
+            healthy_threshold: 2
+            response_timeout: 5000
+            port: 3000
+        unhealthy_threshold: 3
+        interval: 5000
+        strategy: recreate

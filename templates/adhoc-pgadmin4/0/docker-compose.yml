@@ -1,0 +1,28 @@
+version: '2'
+# volumes:
+#     pga4volume:
+#         external: true
+#         driver: rancher-nfs
+services:
+    pgadmin4:
+        image: dpage/pgadmin4
+        stdin_open: true
+        tty: true
+        environment:
+            PGADMIN_DEFAULT_EMAIL: "$strPgadminDefaultEmail"
+            PGADMIN_DEFAULT_PASSWORD: "$strPgadminDefaultPass"
+
+            GF_SMTP_ENABLED: 'true'
+            GF_SMTP_FROM_ADDRESS: "$srtSmtpFromAddress"
+            GF_SMTP_FROM_NAME: "$srtSmtpFromName"
+            GF_SMTP_HOST: "$strSmtpServer:$intSmtPort"
+            GF_SMTP_USER: "$strSmtpUser"
+        labels:
+            traefik.frontend.rule: "$strTraefikFrontEndRule"
+            traefik.enable: 'true'
+            io.rancher.scheduler.affinity:host_label: ${host_label}
+            traefik.port: '80'
+            io.rancher.container.pull_image: always
+        volumes:
+            - $strPgadminVolumeLocation:/var/lib/pgadmin
+            # - pga4volume:/var/lib/pgadmin
