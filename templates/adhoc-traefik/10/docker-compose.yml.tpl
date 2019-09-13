@@ -29,8 +29,6 @@ services:
         environment:
             GCE_PROJECT: ${acme_dns_challenge_GCE_PROJECT}
             GCE_SERVICE_ACCOUNT_FILE: ${acme_dns_challenge_GCE_SERVICE_ACCOUNT_FILE}
-            CF_API_KEY: ${acme_dns_challenge_CF_API_KEY}
-            CF_API_EMAIL: ${acme_dns_challenge_CF_API_EMAIL}
         {{- end}}
         labels:
             # por ahora no lo hacemos global y lo manejamos con scale y host distinto
