@@ -124,6 +124,7 @@
       options:
         - gcloud
         - route53
+        - cloudflare
 
     - variable: "acme_dns_challenge_GCE_PROJECT"
       label: "Gcloud DNS challenge GCE_PROJECT"
@@ -131,6 +132,14 @@
 
     - variable: "acme_dns_challenge_GCE_SERVICE_ACCOUNT_FILE"
       label: "Gcloud DNS challenge GCE_SERVICE_ACCOUNT_FILE"
+      type: "string"
+
+    - variable: "acme_dns_challenge_CF_API_KEY"
+      label: "Cloudflare DNS challenge CF_API_KEY"
+      type: "string"
+
+    - variable: "acme_dns_challenge_CF_API_EMAIL"
+      label: "Cloudflare DNS challenge CF_API_EMAIL"
       type: "string"
 
     - variable: "acme_email"

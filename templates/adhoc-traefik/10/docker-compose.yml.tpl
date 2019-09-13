@@ -16,11 +16,16 @@ services:
         {{- if eq .Values.acme_dns_challenge "gcloud"}}
         command: sh -c "traefik storeconfig --api.dashboard --checknewversion=false --rancher --rancher.domain=${domain} --rancher.metadata --rancher.enableservicehealthfilter=${EnableServiceHealthFilter} --logLevel=INFO --defaultentrypoints=http,https --insecureskipverify=true '--entryPoints=Name:http Address::80 Redirect.EntryPoint:https' '--entryPoints=Name:https Address::443 TLS Compress:on' --acme --acme.acmelogging --acme.entrypoint=https --acme.email=${acme_email} --acme.onhostrule=${acme_onhostrule} --acme.storage=traefik/acme/account --acme.dnschallenge --acme.domains=*.${domain} --acme.dnschallenge.provider=gcloud --acme.dnschallenge.delaybeforecheck=180 --consul.endpoint=${ConsulEndpoint} && traefik --consul --consul.endpoint=${ConsulEndpoint}"
         {{- end}}
+        {{- if eq .Values.acme_dns_challenge "cloudflare"}}
+        command: sh -c "traefik storeconfig --api.dashboard --checknewversion=false --rancher --rancher.domain=${domain} --rancher.metadata --rancher.enableservicehealthfilter=${EnableServiceHealthFilter} --logLevel=INFO --defaultentrypoints=http,https --insecureskipverify=true '--entryPoints=Name:http Address::80 Redirect.EntryPoint:https' '--entryPoints=Name:https Address::443 TLS Compress:on' --acme --acme.acmelogging --acme.entrypoint=https --acme.email=${acme_email} --acme.onhostrule=${acme_onhostrule} --acme.storage=traefik/acme/account --acme.dnschallenge --acme.domains=*.${domain} --acme.dnschallenge.provider=cloudflare --acme.dnschallenge.delaybeforecheck=180 --consul.endpoint=${ConsulEndpoint} && traefik --consul --consul.endpoint=${ConsulEndpoint}"
+        {{- end}}
         # por ahora traefik no soporta los dos challenge a la vez pero puede ser que mas adelante si, ver acá https://github.com/containous/traefik/issues/3378
         {{- if eq .Values.acme_dns_challenge "gcloud"}}
         environment:
             GCE_PROJECT: ${acme_dns_challenge_GCE_PROJECT}
             GCE_SERVICE_ACCOUNT_FILE: ${acme_dns_challenge_GCE_SERVICE_ACCOUNT_FILE}
+            CF_API_KEY: ${acme_dns_challenge_CF_API_KEY}
+            CF_API_EMAIL: ${acme_dns_challenge_CF_API_EMAIL}
         {{- end}}
         labels:
             # por ahora no lo hacemos global y lo manejamos con scale y host distinto
