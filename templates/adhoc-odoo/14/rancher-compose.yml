@@ -53,7 +53,7 @@
       label: "Server-wide modules."
       type: "string"
       required: true
-      default: "web,server_mode,database_tools,saas_client"
+      default: "base,web,server_mode,saas_client"
 
     - variable: strAdminPassword
       label: "Odoo ADMIN_PASSWORD"
