@@ -11,6 +11,12 @@
       required: true
       default: "9.0"
 
+    - variable: strImageName
+      label: "Odoo Image Name"
+      description: "For eg. adhoc/odoo-ar-e"
+      type: "string"
+      required: true
+
 # domains configuration
 
     - variable: strTraefikDomains

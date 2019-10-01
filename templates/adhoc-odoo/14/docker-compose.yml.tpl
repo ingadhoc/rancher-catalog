@@ -3,7 +3,7 @@ services:
     odoo:
         tty: true
         stdin_open: true
-        image: adhoc/odoo-ar-e:$strImageTag
+        image: $strImageName:$strImageTag
         labels:
             io.rancher.container.pull_image: always
             io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
