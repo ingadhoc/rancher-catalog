@@ -72,6 +72,7 @@ services:
             - LIMIT_TIME_REAL=$intLimiteTimeReal
             - LIMIT_TIME_REAL_CRON=$intLimiteTimeRealCron
             - ODOO_VERSION=$strImageTag
+            - SERVER_WIDE_MODULES=$strServerWideModules
             {{- if eq .Values.enumSessionsStore "redis" }}
             - ENABLE_REDIS=True
             - REDIS_HOST=$strRedisHost

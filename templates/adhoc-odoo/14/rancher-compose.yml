@@ -49,6 +49,12 @@
       default: ""
 
 # odoo configuration parameters
+    - variable: strServerWideModules
+      label: "Server-wide modules."
+      type: "string"
+      required: true
+      default: "web,server_mode,database_tools,saas_client"
+
     - variable: strAdminPassword
       label: "Odoo ADMIN_PASSWORD"
       description: "Odoo ADMIN_PASSWORD environment var"
