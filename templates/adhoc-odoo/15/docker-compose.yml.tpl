@@ -58,6 +58,7 @@ services:
             - SMTP_SSL=$boolSmtpSsl
             - SMTP_USER=$strSmtpUser
             - SMTP_PASSWORD=$strSmtPassword
+            - AEROO_DOCS_HOST= aeroo-docs.adhoc-aeroo-docs
             - ADMIN_PASSWORD=$strAdminPassword
             - WORKERS=$intWorkers
             - UNACCENT=True
