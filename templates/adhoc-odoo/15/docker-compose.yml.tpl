@@ -75,7 +75,6 @@ services:
             - LIMIT_TIME_CPU=$intLimiteTimeCpu
             - LIMIT_TIME_REAL=$intLimiteTimeReal
             - LIMIT_TIME_REAL_CRON=$intLimiteTimeRealCron
-            - ODOO_VERSION=$strImageTag
             - SERVER_WIDE_MODULES=$strServerWideModules
             - FILESTORE_COPY_HARD_LINK=True
             - FILESTORE_OPERATIONS_THREADS=3
