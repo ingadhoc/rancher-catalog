@@ -188,7 +188,7 @@
       default: "1"
 
     # TODO we should remove and keep only one fixdb or merge both on one enumeration
-      - variable: strFixDbs
+    - variable: strFixDbs
       label: "FIX DBS by click Odoo"
       description: "Try to fix database before starting odoo. You can send ',' sep. list or True to fix all available dbs."
       type: "string"
