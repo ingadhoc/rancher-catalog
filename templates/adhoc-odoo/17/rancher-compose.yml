@@ -9,17 +9,17 @@ catalog:
 
 # Docker image config
 
-    - variable: strImageTag
-      label: "Odoo Image Tag"
-      type: "string"
-      required: true
-      default: "12.0"
-
     - variable: strImageName
       label: "Odoo Image Name"
       description: "For eg. adhoc/odoo-saas"
       type: "string"
       required: true
+
+    - variable: strImageTag
+      label: "Odoo Image Tag"
+      type: "string"
+      required: true
+      default: "12.0"
 
 # domains configuration
 
@@ -52,13 +52,7 @@ catalog:
       required: false
       default: ""
 
-# odoo configuration parameters
-
-    - variable: strServerWideModules
-      label: "Server-wide modules."
-      type: "string"
-      required: true
-      default: "base,web,server_mode,saas_client"
+# Odoo Configuration
 
     - variable: strAdminPassword
       label: "Odoo ADMIN_PASSWORD"
@@ -66,6 +60,37 @@ catalog:
       type: "password"
       required: true
       default: "admin"
+
+    - variable: strServerWideModules
+      label: "Server-wide modules."
+      type: "string"
+      required: true
+      default: "base,web,server_mode,saas_client"
+
+    - variable: strServerMode
+      label: "Odoo SERVER_MODE"
+      description: "Odoo SERVER_MODE environment var (leave empty for production environment)"
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: "enumLogLevel"
+      label: "Log Level"
+      type: enum
+      default: "info"
+      options:
+        - critical
+        - error
+        - warn
+        - info
+        - test
+        - debug
+        - debug_rpc
+        - debug_sql
+        - debug_rpc_answer
+        - notset
+
+# Database Configuration
 
     - variable: strDatabase
       label: "Odoo DB Name"
@@ -75,13 +100,6 @@ catalog:
       # required: true
       # default: "default"
 
-    - variable: strDbFilter
-      label: "Odoo DB Filter"
-      description: "Regexp for Filter listed databases. For exact name use, for eg 'odoo$' for odoo db"
-      type: "string"
-      required: true
-      default: ".*"
-
     - variable: strPgUser
       label: "Postgres User"
       description: "Postgres user"
@@ -89,11 +107,52 @@ catalog:
       required: true
       default: "odoo"
 
+    - variable: strPgPassword
+      label: "Postgres Password"
+      description: "Postgres Password"
+      type: "password"
+      required: true
+
+    - variable: strPgHost
+      label: "Postgres Host"
+      description: "Postgres Host"
+      type: "string"
+      required: true
+
+    - variable: strPgPort
+      label: "Postgres Port"
+      description: "Postgres Port"
+      type: "int"
+      required: true
+      default: "5432"
+
     - variable: intDbMaxconn
       label: "Odoo Max Connections"
       type: "int"
       required: true
       default: "100"
+
+    - variable: strDbFilter
+      label: "Odoo DB Filter"
+      description: "Regexp for Filter listed databases. For exact name use, for eg 'odoo$' for odoo db"
+      type: "string"
+      required: true
+      default: ".*"
+
+    - variable: boolListDb
+      label: "LIST DBs"
+      type: "boolean"
+      required: false
+      default: True
+
+# Performance Configuration
+
+    - variable: intWorkers
+      label: "Odoo WORKERS"
+      description: "Odoo WORKERS environment var"
+      type: "int"
+      required: true
+      default: "0"
 
     - variable: intLimitMemorySoft
       label: "Limit Memory Soft"
@@ -147,66 +206,14 @@ catalog:
       type: "string"
       required: false
 
-    - variable: strPgPassword
-      label: "Postgres Password"
-      description: "Postgres Password"
-      type: "password"
-      required: true
-
-    - variable: strPgHost
-      label: "Postgres Host"
-      description: "Postgres Host"
-      type: "string"
-      required: true
-
-    - variable: strPgPort
-      label: "Postgres Port"
-      description: "Postgres Port"
-      type: "int"
-      required: true
-      default: "5432"
-
-    - variable: strGCECloudsqlConnectionName
-      label: "GCE Instance connection name"
-      description: "If you set a value here a sidekick with cloudsql proxy will be configured to the configured Instance connection name"
-      type: "string"
-
-    - variable: strServerMode
-      label: "Odoo SERVER_MODE"
-      description: "Odoo SERVER_MODE environment var (leave empty for production environment)"
-      type: "string"
-      required: false
-      default: ""
-
-    - variable: "enumLogLevel"
-      label: "Log Level"
-      type: enum
-      default: "info"
-      options:
-        - critical
-        - error
-        - warn
-        - info
-        - test
-        - debug
-        - debug_rpc
-        - debug_sql
-        - debug_rpc_answer
-        - notset
-
-    - variable: intWorkers
-      label: "Odoo WORKERS"
-      description: "Odoo WORKERS environment var"
-      type: "int"
-      required: true
-      default: "0"
-
     - variable: intMaxCronThreads
       label: "Maximum Cron Threads"
       description: "Maximum number of threads processing concurrently cron jobs"
       type: "int"
       required: true
       default: "1"
+
+# Entrypoint Odoo-SaaS
 
     - variable: strFixDbs
       label: "FIX DBS (click-odoo-update)"
@@ -219,6 +226,22 @@ catalog:
       description: "Try to fix database before starting odoo. You can send ',' sep. list or True to fix all available dbs."
       type: "string"
       required: false
+
+# Custom Repositories on entrypoint
+# strReposYml is deprecated. Use multiReposYaml without url-encode instead
+
+    - variable: "strReposYml"
+      label: "Git Aggregator repos.yml "
+      description: "Deprecated. Use non-urlencoded multiReposYaml instead."
+      required: false
+      type: "string"
+
+    - variable: multiReposYaml
+      label: "Git Aggregator repos.yml"
+      description: "Custom repositories to be aggregated on entrypoint."
+      type: multiline
+
+# Filestore / Sessions
 
     - variable: strOdooDataFilestore
       label: "Odoo Filestore Path"
@@ -266,11 +289,12 @@ catalog:
       default: "odoo_data_sessions"
       type: "string"
 
-    - variable: boolListDb
-      label: "LIST DBs"
-      type: "boolean"
-      required: false
-      default: True
+# Other configurations
+
+    - variable: strGCECloudsqlConnectionName
+      label: "GCE Instance connection name"
+      description: "If you set a value here a sidekick with cloudsql proxy will be configured to the configured Instance connection name"
+      type: "string"
 
 # SMTP config
 
@@ -314,20 +338,6 @@ catalog:
     - variable: multiEnvVariables
       label: "Environment Variables"
       description: "ENV1: 'val1' (one per line)"
-      type: multiline
-
-# Custom Repositories on entrypoint
-# strReposYml is deprecated. Use multiReposYaml without url-encode instead
-
-    - variable: "strReposYml"
-      label: "Git Aggregator repos.yml "
-      description: "Deprecated. Use non-urlencoded multiReposYaml instead."
-      required: false
-      type: "string"
-
-    - variable: multiReposYaml
-      label: "Git Aggregator repos.yml"
-      description: "Custom repositories to be aggregated on entrypoint."
       type: multiline
 
 #scaling and health checks per service as per docker-compose.yml
