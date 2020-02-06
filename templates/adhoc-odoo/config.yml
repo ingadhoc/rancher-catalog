@@ -1,6 +1,6 @@
 name: Odoo SaaS
 description: |
   Odoo SaaS
-version: 5.1
+version: 12.5
 category: ERP
 projectURL: https://github.com/ingadhoc/rancher-catalog
