@@ -1,6 +1,6 @@
-name: ADHOC Odoo 9.0/11.0
+name: Odoo SaaS
 description: |
-  Odoo v9.0/11.0 customized by ADHOC
+  Odoo SaaS
 version: 5.1
 category: ERP
-projectURL: https://bitbucket.org/ingadhoc/rancher-catalog
+projectURL: https://github.com/ingadhoc/rancher-catalog
