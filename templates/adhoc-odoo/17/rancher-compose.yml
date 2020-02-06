@@ -1,8 +1,8 @@
 version: '2'
 
 catalog:
-  name: "Druidoo Odoo"
-  version: "2.0"
+  name: "Odoo SaaS"
+  version: "12.5"
   description: "All-in-one management software"
   minimum_rancher_version: v1.3.2
   questions:
@@ -13,11 +13,11 @@ catalog:
       label: "Odoo Image Tag"
       type: "string"
       required: true
-      default: "12.0.druidoo"
+      default: "12.0"
 
     - variable: strImageName
       label: "Odoo Image Name"
-      description: "For eg. druidoo/odoo-druidoo"
+      description: "For eg. adhoc/odoo-saas"
       type: "string"
       required: true
 
@@ -178,6 +178,22 @@ catalog:
       required: false
       default: ""
 
+    - variable: "enumLogLevel"
+      label: "Log Level"
+      type: enum
+      default: "info"
+      options:
+        - critical
+        - error
+        - warn
+        - info
+        - test
+        - debug
+        - debug_rpc
+        - debug_sql
+        - debug_rpc_answer
+        - notset
+
     - variable: intWorkers
       label: "Odoo WORKERS"
       description: "Odoo WORKERS environment var"
@@ -193,7 +209,13 @@ catalog:
       default: "1"
 
     - variable: strFixDbs
-      label: "FIX DBS"
+      label: "FIX DBS (click-odoo-update)"
+      description: "Try to fix database before starting odoo."
+      type: "string"
+      required: false
+
+    - variable: strFixDbsAdhoc
+      label: "FIX DBS (Adhoc)"
       description: "Try to fix database before starting odoo. You can send ',' sep. list or True to fix all available dbs."
       type: "string"
       required: false

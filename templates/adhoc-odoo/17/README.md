@@ -1,4 +1,4 @@
-## ADHOC Odoo 9.0
+## Odoo SaaS 12.0
 
 Deploy Odoo
 

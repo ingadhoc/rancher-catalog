@@ -11,9 +11,9 @@ services:
             traefik.port: 8069
             traefik.backend.loadbalancer.stickiness: true
             traefik.backend.loadbalancer.method: drr
-            {{- if ne .Values.strGCECloudsqlConnectionName "" }}
+        {{- if ne .Values.strGCECloudsqlConnectionName "" }}
             io.rancher.sidekicks: gce-psql-proxy
-            {{- end}}
+        {{- end}}
         {{- if eq .Values.intWorkers "0"}}
             traefik.frontend.rule: Host:$strTraefikDomains
             traefik.frontend.redirect.regex: $strTraefikRedirectRegex
@@ -31,61 +31,78 @@ services:
             traefik.longpolling.frontend.redirect.replacement: $strTraefikRedirectReplacement
             traefik.longpolling.frontend.redirect.permanent: true
         {{- end}}
+
         volumes:
             - $strOdooFilestoreVolumeName:$strOdooDataFilestore
-            {{- if eq .Values.enumSessionsStore "filestore" }}
+        {{- if eq .Values.enumSessionsStore "filestore" }}
             - $strOdooSessionsVolumeName:$strOdooDataSessions
-            {{- end}}
+        {{- end}}
+
         environment:
-            # database parameters
-            - PGUSER=$strPgUser
-            - PGPASSWORD=$strPgPassword
-            - PGHOST=$strPgHost
-            - PGPORT=$strPgPort
-            - PGDATABASE=$strDatabase
-            - DATABASE=$strDatabase
-            - DBFILTER=$strDbFilter
-            - LIST_DB=$boolListDb
-            - DB_MAXCONN=$intDbMaxconn
-            # TODO, este podria volver a ser un booleano y tmb podriamos
-            # re simplificar el entry point, ahora modificamos a odoo para que
-            # no cree bd si se manda el db_name, y estamos haciendo eso, mandar
-            # db_name
-            - FIXDBS=$strFixDbs
-            - FIXDBS_ADHOC=$strFixDbsAdhoc
-            - FIX_DB_WEB_DISABLED=True
-            - SMTP_SERVER=$strSmtpServer
-            - SMTP_PORT=$intSmtPort
-            - SMTP_SSL=$boolSmtpSsl
-            - SMTP_USER=$strSmtpUser
-            - SMTP_PASSWORD=$strSmtPassword
-            - AEROO_DOCS_HOST= aeroo-docs.adhoc-aeroo-docs
-            - ADMIN_PASSWORD=$strAdminPassword
-            - WORKERS=$intWorkers
-            - UNACCENT=True
-            - PROXY_MODE=True
-            - WITHOUT_DEMO=True
-            - WAIT_PG=True
-            - MAX_CRON_THREADS=$intMaxCronThreads
-            - SERVER_MODE=$strServerMode
-            - DISABLE_SESSION_GC=$strDisableSessionGC
-            - MAIL_CATCHALL_DOMAIN=$strMailCatchallDomain
-            - REPOS_YML=$strReposYml
-            - LIMIT_MEMORY_HARD=$intLimitMemoryHard
-            - LIMIT_MEMORY_SOFT=$intLimitMemorySoft
-            - LIMIT_TIME_CPU=$intLimiteTimeCpu
-            - LIMIT_TIME_REAL=$intLimiteTimeReal
-            - LIMIT_TIME_REAL_CRON=$intLimiteTimeRealCron
-            - SERVER_WIDE_MODULES=$strServerWideModules
-            - FILESTORE_COPY_HARD_LINK=True
-            - FILESTORE_OPERATIONS_THREADS=3
-            {{- if eq .Values.enumSessionsStore "redis" }}
-            - ENABLE_REDIS=True
-            - REDIS_HOST=$strRedisHost
-            - REDIS_PORT=6379
-            - REDIS_PASS=$strRedisPass
-            - REDIS_DBINDEX=1
-            {{- end}}
+            # Database parameters
+            PGUSER: ${strPgUser}
+            PGPASSWORD: ${strPgPassword}
+            PGHOST: ${strPgHost}
+            PGPORT: ${strPgPort}
+            PGDATABASE: ${strDatabase}
+            DATABASE: ${strDatabase}
+            # Base Config
+            ADMIN_PASSWORD: ${strAdminPassword}
+            DBFILTER: ${strDbFilter}
+            LIST_DB: ${boolListDb}
+            LOG_LEVEL: ${enumLogLevel}
+            UNACCENT: True
+            PROXY_MODE: True
+            WITHOUT_DEMO: True
+            SERVER_WIDE_MODULES: ${strServerWideModules}
+            # Performance Config
+            WORKERS: ${intWorkers}
+            MAX_CRON_THREADS: ${intMaxCronThreads}
+            DB_MAXCONN: ${intDbMaxconn}
+            LIMIT_MEMORY_HARD: ${intLimitMemoryHard}
+            LIMIT_MEMORY_SOFT: ${intLimitMemorySoft}
+            LIMIT_TIME_CPU: ${intLimiteTimeCpu}
+            LIMIT_TIME_REAL: ${intLimiteTimeReal}
+            LIMIT_TIME_REAL_CRON: ${intLimiteTimeRealCron}
+            FILESTORE_COPY_HARD_LINK: True
+            FILESTORE_OPERATIONS_THREADS: 3
+            # SaaS Config
+            SERVER_MODE: ${strServerMode}
+            DISABLE_SESSION_GC: ${strDisableSessionGC}
+            # Custom Config Files (To be moved at project-level dynamic vars)
+            AEROO_DOCS_HOST: aeroo-docs.adhoc-aeroo-docs
+            # Entrypoint
+            WAIT_PG: True
+            FIXDBS: ${strFixDbs}
+            FIXDBS_ADHOC: ${strFixDbsAdhoc}
+            FIX_DB_WEB_DISABLED: True
+            # Dynamic Entrypoint Repositories
+            # REPOS_YML is url-encoded. Deprecated.
+            # Use a simple multi-line env variable in REPOS_YAML
+            REPOS_YML: ${strReposYml}
+            REPOS_YAML: ${multiReposYaml}
+            # SMTP Config
+            SMTP_SERVER: ${strSmtpServer}
+            SMTP_PORT: ${intSmtPort}
+            SMTP_SSL: ${boolSmtpSsl}
+            SMTP_USER: ${strSmtpUser}
+            SMTP_PASSWORD: ${strSmtPassword}
+            MAIL_CATCHALL_DOMAIN: ${strMailCatchallDomain}
+            # Redis Config
+{{- if eq .Values.enumSessionsStore "redis" }}
+            ENABLE_REDIS: True
+            REDIS_HOST: ${strRedisHost}
+            REDIS_PORT: 6379
+            REDIS_PASS: ${strRedisPass}
+            REDIS_DBINDEX: 1
+{{- end}}
+            # Custom Environment Variables
+            # NOTE: Do not change the indentation
+{{- if .Values.multiEnvVariables }}
+{{ .Values.multiEnvVariables | indent 12 }}
+{{- end}}
+
+            # GCE Proxy
     {{- if ne .Values.strGCECloudsqlConnectionName "" }}
     gce-psql-proxy:
         image: gcr.io/cloudsql-docker/gce-proxy:1.11
@@ -96,6 +113,7 @@ services:
         # labels:
         #    io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/odoo
     {{- end}}
+
 volumes:
   {{- if eq .Values.enumSessionsStore "filestore" }}
   $strOdooSessionsVolumeName:
