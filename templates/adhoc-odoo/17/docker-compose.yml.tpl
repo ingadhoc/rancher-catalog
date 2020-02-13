@@ -69,12 +69,9 @@ services:
             # SaaS Config
             SERVER_MODE: ${strServerMode}
             DISABLE_SESSION_GC: ${strDisableSessionGC}
-            # Custom Config Files (To be moved at project-level dynamic vars)
-            AEROO_DOCS_HOST: aeroo-docs.adhoc-aeroo-docs
             # Entrypoint
             WAIT_PG: True
             FIXDBS: ${strFixDbs}
-            FIXDBS_ADHOC: ${strFixDbsAdhoc}
             FIX_DB_WEB_DISABLED: True
             # Dynamic Entrypoint Repositories
             # REPOS_YML is url-encoded. Deprecated.

@@ -221,12 +221,6 @@ catalog:
       type: "string"
       required: false
 
-    - variable: strFixDbsAdhoc
-      label: "FIX DBS (Adhoc)"
-      description: "Try to fix database before starting odoo. You can send ',' sep. list or True to fix all available dbs."
-      type: "string"
-      required: false
-
 # Custom Repositories on entrypoint
 # strReposYml is deprecated. Use multiReposYaml without url-encode instead
 
