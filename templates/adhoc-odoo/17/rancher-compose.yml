@@ -228,13 +228,6 @@ catalog:
       required: false
 
 # Custom Repositories on entrypoint
-# strReposYml is deprecated. Use multiReposYaml without url-encode instead
-
-    - variable: "strReposYml"
-      label: "Git Aggregator repos.yml "
-      description: "Deprecated. Use non-urlencoded multiReposYaml instead."
-      required: false
-      type: "string"
 
     - variable: multiReposYaml
       label: "Git Aggregator repos.yml"

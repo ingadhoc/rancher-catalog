@@ -77,9 +77,6 @@ services:
             FIXDBS_ADHOC: ${strFixDbsAdhoc}
             FIX_DB_WEB_DISABLED: True
             # Dynamic Entrypoint Repositories
-            # REPOS_YML is url-encoded. Deprecated.
-            # Use a simple multi-line env variable in REPOS_YAML
-            REPOS_YML: ${strReposYml}
             REPOS_YAML: ${multiReposYaml}
             # SMTP Config
             SMTP_SERVER: ${strSmtpServer}
