@@ -73,8 +73,9 @@ services:
             WAIT_PG: True
             FIXDBS: ${strFixDbs}
             FIX_DB_WEB_DISABLED: True
-            # Dynamic Entrypoint Repositories
+            # Dynamic Entrypoint
             REPOS_YAML: ${multiReposYaml}
+            CUSTOM_CONFIG: ${multiOdooConf}
             # SMTP Config
             SMTP_SERVER: ${strSmtpServer}
             SMTP_PORT: ${intSmtPort}

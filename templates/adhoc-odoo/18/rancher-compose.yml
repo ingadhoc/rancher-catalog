@@ -228,6 +228,13 @@ catalog:
       description: "Custom repositories to be aggregated on entrypoint."
       type: multiline
 
+# Custom Configuration on entrypoint
+
+    - variable: multiOdooConf
+      label: "Custom odoo.conf"
+      description: "Custom configuration for odoo.conf"
+      type: multiline
+
 # Filestore / Sessions
 
     - variable: strOdooDataFilestore
