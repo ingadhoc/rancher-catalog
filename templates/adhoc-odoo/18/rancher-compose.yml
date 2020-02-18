@@ -1,0 +1,348 @@
+version: '2'
+
+catalog:
+  name: "Odoo SaaS"
+  version: "12.5"
+  description: "All-in-one management software"
+  minimum_rancher_version: v1.3.2
+  questions:
+
+# Docker image config
+
+    - variable: strImageName
+      label: "Odoo Image Name"
+      description: "For eg. adhoc/odoo-saas"
+      type: "string"
+      required: true
+
+    - variable: strImageTag
+      label: "Odoo Image Tag"
+      type: "string"
+      required: true
+      default: "12.0"
+
+# domains configuration
+
+    - variable: strTraefikDomains
+      label: "Server names"
+      description: "A comma (,) separated and terminated list of max 8 domain names for alternate access to Odoo instance. E.g. ourodoo.acme.com,www.acme.org;"
+      type: "string"
+      required: true
+      default: ""
+
+    - variable: strTraefikRedirectRegex
+      label: "Redirect Regex"
+      description: "Redirect to another URL for that frontend. Must be set with Redirect Replacement"
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: strTraefikRedirectReplacement
+      label: "Redirect Replacement"
+      description: "Redirect to another URL for that frontend. Must be set with Redirect Regex"
+      type: "string"
+      required: false
+      default: ""
+
+    # TODO we would like to build this with the stack name + traefik domain 
+    - variable: strMailCatchallDomain
+      label: "Mail Catchall Domain"
+      description: "Domain used for catchall, usually same domain as instance domain"
+      type: "string"
+      required: false
+      default: ""
+
+# Odoo Configuration
+
+    - variable: strAdminPassword
+      label: "Odoo ADMIN_PASSWORD"
+      description: "Odoo ADMIN_PASSWORD environment var"
+      type: "password"
+      required: true
+      default: "admin"
+
+    - variable: strServerWideModules
+      label: "Server-wide modules."
+      type: "string"
+      required: true
+      default: "base,web,server_mode,saas_client"
+
+    - variable: strServerMode
+      label: "Odoo SERVER_MODE"
+      description: "Odoo SERVER_MODE environment var (leave empty for production environment)"
+      type: "string"
+      required: false
+      default: ""
+
+    - variable: "enumLogLevel"
+      label: "Log Level"
+      type: enum
+      default: "info"
+      options:
+        - critical
+        - error
+        - warn
+        - info
+        - test
+        - debug
+        - debug_rpc
+        - debug_sql
+        - debug_rpc_answer
+        - notset
+
+# Database Configuration
+
+    - variable: strDatabase
+      label: "Odoo DB Name"
+      description: "The Odoo PostgreSQL database to be created on deploy. If none is set, then no database is created"
+      type: "string"
+      required: false
+      # required: true
+      # default: "default"
+
+    - variable: strPgUser
+      label: "Postgres User"
+      description: "Postgres user"
+      type: "string"
+      required: true
+      default: "odoo"
+
+    - variable: strPgPassword
+      label: "Postgres Password"
+      description: "Postgres Password"
+      type: "password"
+      required: true
+
+    - variable: strPgHost
+      label: "Postgres Host"
+      description: "Postgres Host"
+      type: "string"
+      required: true
+
+    - variable: strPgPort
+      label: "Postgres Port"
+      description: "Postgres Port"
+      type: "int"
+      required: true
+      default: "5432"
+
+    - variable: intDbMaxconn
+      label: "Odoo Max Connections"
+      type: "int"
+      required: true
+      default: "100"
+
+    - variable: strDbFilter
+      label: "Odoo DB Filter"
+      description: "Regexp for Filter listed databases. For exact name use, for eg 'odoo$' for odoo db"
+      type: "string"
+      required: true
+      default: ".*"
+
+    - variable: boolListDb
+      label: "LIST DBs"
+      type: "boolean"
+      required: false
+      default: True
+
+# Performance Configuration
+
+    - variable: intWorkers
+      label: "Odoo WORKERS"
+      description: "Odoo WORKERS environment var"
+      type: "int"
+      required: true
+      default: "0"
+
+    - variable: intLimitMemorySoft
+      label: "Limit Memory Soft"
+      description: "Maximum allowed virtual memory per worker, when reached the worker be reset after the current request"
+      type: "int"
+      required: true
+      # Este valor es el que usa odoo por defecto (odoo.py) y parecido al que
+      # sugiere la conf 629145600, usamos el por defecto
+      default: "671088640"
+      # este es el que veníamos usando
+      # default: "2147483648"
+
+    - variable: intLimitMemoryHard
+      label: "Limit Memory Hard"
+      description: "Maximum allowed virtual memory per worker, when reached, any memory allocation will fail"
+      type: "int"
+      required: true
+      # Este valor es el que usa odoo por defecto (odoo.py) pero parece
+      # que quedó viejo respecto a sugerencias más nuevas de usar algo más alto
+      # de 1 gb o más para que el proceso siga
+      # default: "805306368"
+      # sugerencias nuevas en deplo v11
+      # default: "1677721600"
+      # número que usabamos antes, lo dejamos para no limitar por ahora si hay
+      # alguna operación que use demasiada ram (ej. boggio)
+      default: "2147483648"
+
+    - variable: intLimiteTimeCpu
+      label: "Limit Time CPU"
+      description: "Maximum allowed CPU time per request"
+      type: "int"
+      required: true
+      default: "400"
+
+    - variable: intLimiteTimeReal
+      label: "Limit Time Real"
+      description: "Maximum allowed Real time per request"
+      type: "int"
+      required: true
+      default: "800"
+
+    - variable: intLimiteTimeRealCron
+      label: "Limit Time Real (only v11+)"
+      description: "Maximum allowed Real time per cron job. (default: --limit-time-real). Set to 0 for no limit."
+      type: "int"
+      required: true
+      default: "1600"
+
+    - variable: strDisableSessionGC
+      label: "Disable Odoo Sessions Garbage Collector"
+      type: "string"
+      required: false
+
+    - variable: intMaxCronThreads
+      label: "Maximum Cron Threads"
+      description: "Maximum number of threads processing concurrently cron jobs"
+      type: "int"
+      required: true
+      default: "1"
+
+# Entrypoint Odoo-SaaS
+
+    - variable: strFixDbs
+      label: "FIX DBS (click-odoo-update)"
+      description: "Try to fix database before starting odoo."
+      type: "string"
+      required: false
+
+# Custom Repositories on entrypoint
+
+    - variable: multiReposYaml
+      label: "Git Aggregator repos.yml"
+      description: "Custom repositories to be aggregated on entrypoint."
+      type: multiline
+
+# Custom Configuration on entrypoint
+
+    - variable: multiOdooConf
+      label: "Custom odoo.conf"
+      description: "Custom configuration for odoo.conf"
+      type: multiline
+
+# Filestore / Sessions
+
+    - variable: strOdooDataFilestore
+      label: "Odoo Filestore Path"
+      type: "string"
+      required: true
+      default: "/opt/odoo/data/filestore/"
+
+    - variable: strOdooFilestoreVolumeName
+      label: "Odoo Filestore Volumen Name"
+      required: true
+      default: "odoo_data_filestore"
+      type: "string"
+
+    - variable: "enumSessionsStore"
+      label: "Store sessions on:"
+      type: enum
+      default: "filestore"
+      options:
+        - filestore
+        - redis
+
+    - variable: strRedisHost
+      label: "Redis Host"
+      description: "Required if Store Session on Redis"
+      type: "string"
+      required: false
+
+    - variable: strRedisPass
+      label: "Redis Password (optional)"
+      type: "string"
+      required: false
+      default: "False"
+
+    - variable: strOdooDataSessions
+      label: "Odoo Sessions Path"
+      description: "Required if Store Session on Filestore"
+      type: "string"
+      required: false
+      default: "/opt/odoo/data/sessions/"
+
+    - variable: strOdooSessionsVolumeName
+      label: "Odoo Sessions Volumen Name"
+      description: "Required if Store Session on Filestore"
+      required: false
+      default: "odoo_data_sessions"
+      type: "string"
+
+# Other configurations
+
+    - variable: strGCECloudsqlConnectionName
+      label: "GCE Instance connection name"
+      description: "If you set a value here a sidekick with cloudsql proxy will be configured to the configured Instance connection name"
+      type: "string"
+
+# SMTP config
+
+    - variable: strSmtpServer
+      label: "SMTP Server"
+      type: "string"
+      required: false
+      default: "smtp.mailgun.org"
+
+    - variable: intSmtPort
+      label: "SMTP Port"
+      type: "int"
+      required: false
+      default: "25"
+
+    - variable: boolSmtpSsl
+      label: "SMTP SSL"
+      type: "boolean"
+      required: false
+      default: False
+
+    - variable: strSmtpUser
+      label: "SMTP User"
+      type: "string"
+      required: false
+
+    - variable: strSmtPassword
+      label: "SMTP Password"
+      type: "password"
+      required: false
+
+    - variable: "host_label"
+      description: "Host label where to run odoongins service."
+      label: "Host label:"
+      required: true
+      default: "odoo=true"
+      type: "string"
+
+# Custom Environment Variables
+
+    - variable: multiEnvVariables
+      label: "Environment Variables"
+      description: "ENV1: 'val1' (one per line)"
+      type: multiline
+
+#scaling and health checks per service as per docker-compose.yml
+services:
+  odoo:
+    health_check:
+      port: 8069
+      interval: 2000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
+    upgrade_strategy:
+      start_first: true
