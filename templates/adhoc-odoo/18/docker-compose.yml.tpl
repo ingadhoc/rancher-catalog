@@ -11,6 +11,7 @@ services:
             traefik.port: 8069
             traefik.backend.loadbalancer.stickiness: true
             traefik.backend.loadbalancer.method: drr
+            traefik.backend.buffering.retryExpression: IsNetworkError() && Attempts() < 5
         {{- if ne .Values.strGCECloudsqlConnectionName "" }}
             io.rancher.sidekicks: gce-psql-proxy
         {{- end}}
