@@ -1,0 +1,24 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:${POSTGRES_TAG}
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_DB: ${postgres_db}
+      POSTGRES_USER: ${postgres_user}
+      POSTGRES_PASSWORD: ${postgres_password}
+    tty: true
+    network_mode: host
+    stdin_open: true
+    oom_kill_disable: true
+    command: bash -c "update-rc.d cron defaults && /etc/init.d/cron start && echo -e \"*/5 * * * * root psql -p ${server_port} -U ${postgres_user} -d ${postgres_db} -c \\\"SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND state = 'idle' AND state_change < current_timestamp - INTERVAL '5' MINUTE;\\\"\\n\" > /etc/cron.d/free_ram && /etc/init.d/cron restart && docker-entrypoint.sh postgres -p ${server_port} -c max_connections=${max_connections} -c shared_buffers=${shared_buffers} -c work_mem=${work_mem} -c effective_cache_size=${effective_cache_size} ${server_configuration}"
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+    volumes:
+      - $volumen_name:/var/lib/postgresql/data/pgdata
+volumes:
+  $volumen_name:
+    driver: local
+    # por seguridad para no perder si alguienb borra el stack, se debe crear con
+    # rancher volume create --driver local pgdata
+    external: true
