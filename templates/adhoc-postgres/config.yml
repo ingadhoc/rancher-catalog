@@ -3,3 +3,4 @@ description: |
   PostgreSQL — an object-relational database (ORDBMS)
 version: v0.0.5
 category: Databases
+projectURL: https://github.com/ingadhoc/rancher-catalog
