@@ -1,8 +1,8 @@
 version: '2'
 catalog:
   name: "Postgres"
-  version: "v0.0.5"
-  description: "PostgreSQL with flexible tag"
+  version: "v0.0.6"
+  description: "PostgreSQL with pg idle killer"
   uuid: postgres-0
   minimum_rancher_version: v0.9.0
   questions:
@@ -97,3 +97,5 @@ services:
       unhealthy_threshold: 3
       healthy_threshold: 2
       response_timeout: 2000
+  pg-idle-killer:
+    scale: 1
