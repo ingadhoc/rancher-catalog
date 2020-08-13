@@ -40,7 +40,7 @@ services:
       cron.schedule: '@every 30m'
       cron.restart_timeout: '60'
       cron.action: restart
-      io.rancher.scheduler.affinity:host_label: pg=true
+      io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.start_once: 'true'
 volumes:
   $volumen_name:
