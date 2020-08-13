@@ -7,6 +7,10 @@ services:
       POSTGRES_DB: ${postgres_db}
       POSTGRES_USER: ${postgres_user}
       POSTGRES_PASSWORD: ${postgres_password}
+      PGDATABASE: ${postgres_db}
+      PGUSER: ${postgres_user}
+      PGPASSWORD: ${postgres_password}
+      PGPORT: ${server_port}
     tty: true
     network_mode: host
     stdin_open: true
@@ -19,21 +23,14 @@ services:
   pg-idle-killer:
     image: postgres:${POSTGRES_TAG}
     environment:
-      POSTGRES_DB: ${postgres_db}
-      POSTGRES_USER: ${postgres_user}
-      POSTGRES_PASSWORD: ${postgres_password}
-      POSTGRES_HOST: pg
+      PGDATABASE: ${postgres_db}
+      PGUSER: ${postgres_user}
+      PGPASSWORD: ${postgres_password}
+      PGPORT: ${server_port}
+      PGHOST: pg
     stdin_open: true
     entrypoint:
     - psql
-    - -h
-    - pg
-    - -p
-    - ${server_port}
-    - -U
-    - ${postgres_user}
-    - -d
-    - ${postgres_db}
     - -c
     - SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND state = 'idle' AND state_change < current_timestamp - INTERVAL '30' MINUTE;
     tty: true
