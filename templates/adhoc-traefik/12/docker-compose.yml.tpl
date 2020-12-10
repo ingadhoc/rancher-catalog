@@ -19,6 +19,9 @@ services:
         {{- if eq .Values.acme_dns_challenge "cloudflare"}}
         command: sh -c "traefik storeconfig --api.dashboard --checknewversion=false --rancher --rancher.domain=${domain} --rancher.metadata --rancher.enableservicehealthfilter=${EnableServiceHealthFilter} --logLevel=INFO --defaultentrypoints=http,https --insecureskipverify=true '--entryPoints=Name:http Address::80 Redirect.EntryPoint:https' '--entryPoints=Name:https Address::443 TLS Compress:on' --acme --acme.acmelogging --acme.entrypoint=https --acme.email=${acme_email} --acme.onhostrule=${acme_onhostrule} --acme.storage=traefik/acme/account --acme.dnschallenge --acme.domains=*.${domain} --acme.dnschallenge.provider=cloudflare --acme.dnschallenge.delaybeforecheck=180 --consul.endpoint=${ConsulEndpoint} && traefik --consul --consul.endpoint=${ConsulEndpoint}"
         {{- end}}
+        {{- if eq .Values.acme_dns_challenge "ovh"}}
+        command: sh -c "traefik storeconfig --api.dashboard --checknewversion=false --rancher --rancher.domain=${domain} --rancher.metadata --rancher.enableservicehealthfilter=${EnableServiceHealthFilter} --logLevel=INFO --defaultentrypoints=http,https --insecureskipverify=true '--entryPoints=Name:http Address::80 Redirect.EntryPoint:https' '--entryPoints=Name:https Address::443 TLS Compress:on' --acme --acme.acmelogging --acme.entrypoint=https --acme.email=${acme_email} --acme.onhostrule=${acme_onhostrule} --acme.storage=traefik/acme/account --acme.dnschallenge --acme.domains=*.${domain} --acme.dnschallenge.provider=ovh --acme.dnschallenge.delaybeforecheck=180 --consul.endpoint=${ConsulEndpoint} && traefik --consul --consul.endpoint=${ConsulEndpoint}"
+        {{- end}}
         # por ahora traefik no soporta los dos challenge a la vez pero puede ser que mas adelante si, ver acá https://github.com/containous/traefik/issues/3378
         {{- if eq .Values.acme_dns_challenge "cloudflare"}}
         environment:
@@ -29,6 +32,13 @@ services:
         environment:
             GCE_PROJECT: ${acme_dns_challenge_GCE_PROJECT}
             GCE_SERVICE_ACCOUNT_FILE: ${acme_dns_challenge_GCE_SERVICE_ACCOUNT_FILE}
+        {{- end}}
+        {{- if eq .Values.acme_dns_challenge "ovh"}}
+        environment:
+            OVH_ENDPOINT: ${acme_dns_challenge_OVH_ENDPOINT}
+            OVH_APPLICATION_KEY: ${acme_dns_challenge_OVH_APPLICATION_KEY}
+            OVH_APPLICATION_SECRET: ${acme_dns_challenge_OVH_APPLICATION_SECRET}
+            OVH_CONSUMER_KEY: ${acme_dns_challenge_OVH_CONSUMER_KEY}
         {{- end}}
         labels:
             # por ahora no lo hacemos global y lo manejamos con scale y host distinto
