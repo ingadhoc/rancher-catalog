@@ -125,6 +125,7 @@
         - gcloud
         - route53
         - cloudflare
+        - ovh
 
     - variable: "acme_dns_challenge_GCE_PROJECT"
       label: "Gcloud DNS challenge GCE_PROJECT"
@@ -140,6 +141,25 @@
 
     - variable: "acme_dns_challenge_CF_API_EMAIL"
       label: "Cloudflare DNS challenge CF_API_EMAIL"
+      type: "string"
+
+    - variable: "acme_dns_challenge_OVH_ENDPOINT"
+      label: "OVH DNS challenge OVH_ENDPOINT"
+      type: "enum"
+      options:
+        - ovh-eu
+        - ovh-ca
+
+    - variable: "acme_dns_challenge_OVH_APPLICATION_KEY"
+      label: "OVH DNS challenge OVH_APPLICATION_KEY"
+      type: "string"
+
+    - variable: "acme_dns_challenge_OVH_APPLICATION_SECRET"
+      label: "OVH DNS challenge OVH_APPLICATION_SECRET"
+      type: "string"
+
+    - variable: "acme_dns_challenge_OVH_CONSUMER_KEY"
+      label: "OVH DNS challenge OVH_CONSUMER_KEY"
       type: "string"
 
     - variable: "acme_email"
