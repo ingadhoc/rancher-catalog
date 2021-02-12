@@ -93,6 +93,17 @@ catalog:
       required: true
       default: "64mb"
       type: "string"
+    - variable: pgkiller_cron_schedule
+      label: "Cron schedule for pgkiller"
+      description: "Cron schedule expression ( https://pkg.go.dev/github.com/robfig/cron )"
+      required: true
+      default: "*/30 12-22 * * ?"
+      type: "string"
+    - variable: pgkiller_idle_max_interval
+      label: "Maximum time for idle connections in minutes"
+      required: true
+      default: "120"
+      type: "int"
 
 services:
   postgres:

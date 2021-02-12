@@ -37,7 +37,7 @@ services:
     links:
     - postgres:pg
     labels:
-      cron.schedule: '@every 30m'
+      cron.schedule: '*/30 12-22 * * ?'
       cron.restart_timeout: '60'
       cron.action: restart
       io.rancher.scheduler.affinity:host_label: ${host_label}

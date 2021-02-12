@@ -33,12 +33,12 @@ services:
     entrypoint:
     - psql
     - -c
-    - SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND state = 'idle' AND state_change < current_timestamp - INTERVAL '30' MINUTE;
+    - SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND state = 'idle' AND state_change < current_timestamp - INTERVAL '${pgkiller_idle_max_interval}' MINUTE;
     tty: true
     links:
     - postgres:pg
     labels:
-      cron.schedule: '@every 30m'
+      cron.schedule: ${pgkiller_cron_schedule}
       cron.restart_timeout: '60'
       cron.action: restart
       io.rancher.scheduler.affinity:host_label: ${host_label}
