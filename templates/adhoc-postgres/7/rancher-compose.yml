@@ -1,0 +1,112 @@
+version: '2'
+catalog:
+  name: "Postgres"
+  version: "v0.0.8"
+  description: "PostgreSQL with pg idle killer"
+  uuid: postgres-0
+  minimum_rancher_version: v0.9.0
+  questions:
+    - variable: volumen_name
+      label: "Volume Name"
+      description: "Volume Name where data will be stored. You need to create it with rancher volume create --driver local $volume_name"
+      required: true
+      default: ""
+      type: "string"
+    - variable: server_port
+      description: |
+        Port where postgres server will listen. Make sure host allow connections on that port. For eg. for port 5432 you can open them with this example
+        Example: iptables -I INPUT -p tcp --dport 5432 -j ACCEPT
+      label: "Server Port"
+      required: true
+      default: "5432"
+      type: "int"
+    - variable: postgres_db
+      description: "Postgres Database"
+      label: "Postgres Database"
+      required: true
+      default: "postgres"
+      type: "string"
+    - variable: postgres_user
+      description: "Postgres User"
+      label: "Postgres User"
+      required: true
+      default: "postgres_user"
+      type: "string"
+    - variable: postgres_password
+      description: "Postgres Password"
+      label: "Postgres Password"
+      required: true
+      default: "postgres_password"
+      type: "password"
+    - variable: "POSTGRES_TAG"
+      description: "The postgres tag to associate with this server. Choose any valid tag from https://hub.docker.com/_/postgres"
+      label: "Postgres tag"
+      required: true
+      default: "10"
+      type: "string"
+    - variable: host_label
+      label: "Host with Label to put postgres on"
+      description: |
+        Host label to use as postgres 'value' tag.
+        Example: 'postgres=true'
+      required: true
+      default: "pg=true"
+      type: "string"
+    - variable: max_connections
+      label: "Max Connections"
+      required: true
+      default: "1000"
+      type: "int"
+    - variable: shared_buffers
+      label: "Shared Buffers"
+      description: |
+        Odoo suggest more than 55% of ram on VM
+        Example: 35GB
+      required: true
+      default: ""
+      type: "string"
+    - variable: effective_cache_size
+      label: "Effective Cache Size"
+      description: |
+        Odoo suggest between 50% and 75% of ram (75 to aggressive)
+        Example: 30GB
+      required: true
+      default: ""
+      type: "string"
+    - variable: work_mem
+      label: "Work Mem"
+      description: "Odoo suggest to start with 64mb"
+      required: true
+      default: "64MB"
+      type: "string"
+    - variable: server_configuration
+      label: "Additional configuration parameters to be set"
+      description: |
+        List of additional configurations to be set. You can check for parameters suggestions on this site https://pgtune.leopard.in.ua/#/
+        Example: -c shared_buffers=256MB -c work_mem=64mb
+      required: false
+      default: ""
+      type: "string"
+    - variable: pgkiller_cron_schedule
+      label: "Cron schedule for pgkiller"
+      description: "Cron schedule expression ( https://pkg.go.dev/github.com/robfig/cron )"
+      required: true
+      default: "*/30 12-22 * * ?"
+      type: "string"
+    - variable: pgkiller_idle_max_interval
+      label: "Maximum time for idle connections in minutes"
+      required: true
+      default: "120"
+      type: "int"
+
+services:
+  postgres:
+    scale: 1
+    health_check:
+      port: ${server_port}
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  pg-idle-killer:
+    scale: 1
