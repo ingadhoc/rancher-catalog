@@ -98,6 +98,12 @@ catalog:
       required: true
       default: "120"
       type: "int"
+    - variable: shm_size
+      label: "Container shared memory"
+      description: "Shared memory segments allocated by parallel query to communicate between parallel workers (when max_parallel_workers != 0) Their size depends on the data transferred, and several of them can be allocated, so that is a resource that is harder to control. But if you see errors like 'could not resize shared memory segment : No space left on device' you need to increase this value. Docker default 64mb"
+      required: true
+      default: "64mb"
+      type: "string"
 
 services:
   postgres:
