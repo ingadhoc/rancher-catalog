@@ -20,7 +20,8 @@ services:
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
     volumes:
-      - $volumen_name:/var/lib/postgresql/data/pgdata
+      - ${volumen_name}:/var/lib/postgresql/data/pgdata
+
   pg-idle-killer:
     image: postgres:${POSTGRES_TAG}
     environment:
@@ -43,7 +44,10 @@ services:
       cron.action: restart
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.start_once: 'true'
+
+{{- if eq .Values.pgdata_path "false" }}
 volumes:
-  $volumen_name:
+  ${volumen_name}:
     driver: local
     external: true
+{{- end}}

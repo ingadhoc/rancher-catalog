@@ -8,10 +8,16 @@ catalog:
   questions:
     - variable: volumen_name
       label: "Volume Name"
-      description: "Volume Name where data will be stored."
+      description: "Volume Name (or path) where pgdata will be stored."
       required: true
       default: ""
       type: "string"
+    - variable:  pgdata_path
+      label: "Use path instead of volume? "
+      description: "If is set true bind this path instead of a named volume."
+      default: false
+      type: "boolean"
+      required: true
     - variable: server_port
       description: |
         Port where postgres server will listen. Make sure host allow connections on that port. For eg. for port 5432 you can open them with this example
