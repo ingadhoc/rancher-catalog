@@ -1,6 +1,6 @@
 name: ADHOC Traefik
 description: |
   Traefik Catalog by ADHOC
-version: 1.7.24.1
+version: 1.7.33.1
 category: Load Balancing
 projectURL: https://github.com/ingadhoc/rancher-catalog
